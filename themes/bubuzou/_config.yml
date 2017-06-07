@@ -1,0 +1,31 @@
+menu:
+    博文: /blog/
+    归档: /blog/archives/
+    生活: /blog/categories/live/
+    技术: /blog/categories/tech/
+    关于: /blog/about/
+
+widgets:
+- category
+- tag
+- tagcloud
+- archive
+
+# count
+show_count: true
+favicon: /blog/images/favicon.ico
+logo: /blog/images/logo.png
+
+# Comment
+# e.g disqus: seansun
+yungentie: bubuzou
+disqus:
+duoshuo: 
+
+
+# Analytics
+# google-analytics:
+# ga: UA-65933410-1
+
+# Copyright Infomation
+startyear: 2016
