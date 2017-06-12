@@ -8,9 +8,10 @@ html {
 body {
     margin: 0
 }
+
+
 .row {
     width: 100%;
-    max-width: 980px;
     margin: 0 auto;
     position: relative;
 }
@@ -277,14 +278,19 @@ header {
 }
 .header {
     margin: 0 auto;
-    height: 60px;
+    height: 40px;
 }
 header .logo-link {
     float: left
 }
 
+header .wycode{
+    background: #34495e;
+
+}
+
 header .nav {
-    float: right;
+    float: left;
     left: 80px;
     height: 25px;
     padding-top: 18px;
@@ -844,7 +850,7 @@ footer .copyright a:hover {
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
     backface-visibility: hidden;
-    -moz-transform: scale(0.7)
+    -moz-transform: scale(0.7);
     -ms-transform: scale(0.7);
     -webkit-transform: scale(0.7);
     transform: scale(0.7);
@@ -856,14 +862,14 @@ footer .copyright a:hover {
 .search-on .search-modal {
     visibility: visible;
     opacity: 1;
-    -moz-transform: scale(1)
+    -moz-transform: scale(1);
     -ms-transform: scale(1);
     -webkit-transform: scale(1);
     transform: scale(1);
 }
 .search-modal .search-result li {
     list-style-type: none;
-    word-break: break-word;
+    word-break: normal;
 }
 .blog-overlay {
     display: none;

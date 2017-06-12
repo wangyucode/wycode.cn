@@ -5,7 +5,7 @@
 # Site
 title: 王郁的博客
 subtitle:
-description:
+description: 王郁的博客
 author: 王郁
 language: zh-cn
 timezone:
@@ -68,7 +68,7 @@ archive_generator:
   monthly: true
   daily: false
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: bubuzou
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

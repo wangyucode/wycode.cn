@@ -4,12 +4,14 @@ html(lang=config.language)
         include head
     body
         header
-           .header.row 
-                a.logo-link(href=url_for())
-                    img(src=theme.logo)
+           .header.row.wycode
+               a.logo-link(href=theme.home_page)
+                   img(src=theme.logo)
+               include nav_wycode
+               .search
+                   a#search_btn(href='#search')
+           .header.row
                 include nav
-                .search
-                    a#search_btn(href='#search')
         .row.scroll-con
             section.container
                 block container

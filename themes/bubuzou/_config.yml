@@ -13,8 +13,8 @@ widgets:
 
 # count
 show_count: true
-favicon: /blog/images/favicon.ico
-logo: /blog/images/logo.png
+favicon: /blog/images/logo_48.png
+logo: /blog/images/logo_48.png
 
 # Comment
 # e.g disqus: seansun
@@ -29,3 +29,8 @@ duoshuo:
 
 # Copyright Infomation
 startyear: 2016
+icp: 陕ICP备15011477号
+
+
+#navibar
+home_page: http://wycode.cn
