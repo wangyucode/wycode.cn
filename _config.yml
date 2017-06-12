@@ -68,7 +68,7 @@ archive_generator:
   monthly: true
   daily: false
 ## Themes: https://hexo.io/themes/
-theme: bubuzou
+theme: wycode
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
