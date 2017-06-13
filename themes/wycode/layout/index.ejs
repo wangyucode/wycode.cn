@@ -1,1 +1,9 @@
-<%- partial('_partial/archive', {pagination: 2, index: true}) %>
+<div class="col-sm-8 blog-main">
+    <%- partial('_partial/archive', {pagination: 2, index: true}) %>
+</div>
+
+<div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+    <% if (theme.sidebar && theme.sidebar !== 'bottom'){ %>
+    <%- partial('_partial/sidebar', null, {cache: !config.relative_link}) %>
+    <% } %>
+</div>

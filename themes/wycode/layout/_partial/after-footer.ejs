@@ -14,9 +14,8 @@
 </script>
 <% } %>
 
-<script src="/flat/dist/js/vendor/jquery.min.js"></script>
-<script src="/flat/dist/js/vendor/jquery.min.js"></script>
-<script src="/flat/dist/js/vendor/jquery.min.js"></script>
+<%- js('flat/dist/js/vendor/jquery.min') %>
+<%- js('flat/dist/js/flat-ui.min') %>
 
 <% if (theme.fancybox){ %>
   <%- css('fancybox/jquery.fancybox') %>
