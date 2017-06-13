@@ -207,6 +207,6 @@ h4 {
 }
 
 .article-category{
-    margin-left: 48px;
+    float: right;
     display: inline;
 }
