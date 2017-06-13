@@ -6,9 +6,9 @@
             <% } %>
 
             <% if (theme.rss){ %>
-            <a class="blog-nav-right-a" href="<%- url_for(theme.rss) %>" title="<%= __('rss_feed') %>" target="_blank"><img src="img/navi/rss.png"/></a>
+            <a class="blog-nav-right-a" href="<%- url_for(theme.rss) %>" title="<%= __('rss_feed') %>" target="_blank"><img src="<%- url_for("img/navi/rss.png")%>"/></a>
             <% } %>
-            <a class="blog-nav-right-a" title="<%= __('search') %>" style="margin-right: 10px"><img src="img/navi/search.png"/></a>
+            <a class="blog-nav-right-a" title="<%= __('search') %>" style="margin-right: 10px"><img src="<%- url_for("img/navi/search.png")%>"/></a>
         </nav>
     </div>
 </div>
