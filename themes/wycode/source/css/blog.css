@@ -221,6 +221,10 @@ img{
     margin-top: 12px;
 }
 
+.article-title{
+    color: #000;
+}
+
 .article-tag-list{
     padding: 0;
 }
