@@ -1,6 +1,6 @@
-# Landscape
+# Wycode
 
-A brand new default theme for [Hexo].
+A new theme for [Hexo].Modified from landscape
 
 - [Preview](http://hexo.io/hexo-theme-landscape/)
 
@@ -16,7 +16,7 @@ $ git clone https://github.com/hexojs/hexo-theme-landscape.git themes/landscape
 
 ### Enable
 
-Modify `theme` setting in `_config.yml` to `landscape`.
+Modify `theme` setting in `_config.yml` to `wycode`.
 
 ### Update
 

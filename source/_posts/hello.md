@@ -1,10 +1,9 @@
 ---
-title: Hello Hexo
+title: Hello
 date: 2017-6-1 12:15:53
 tags: 
 categories: 杂记
 ---
 
 
-## Hello
-Hexo
+Hello My Blog!

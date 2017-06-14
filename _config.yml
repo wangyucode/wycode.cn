@@ -6,8 +6,8 @@
 title: 王郁的博客
 subtitle:
 description: 王郁的博客
-author: 王郁
-language: zh-cn
+author: wycode
+language: zh-CN
 timezone:
 
 # URL
@@ -38,8 +38,8 @@ post_asset_folder: false
 relative_link: false
 future: true
 highlight:
-  enable: true
-  line_number: true
+  enable: false
+  line_number: false
   auto_detect: false
   tab_replace:
 
@@ -74,3 +74,7 @@ theme: wycode
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type:
+
+
+server:
+  compress: true

@@ -8,7 +8,6 @@ rss: /atom.xml
 excerpt_link: Read More
 
 # Sidebar
-sidebar: right
 widgets:
 - category
 - tag
@@ -27,9 +26,5 @@ archive_type: 'monthly'
 show_count: false
 
 # Miscellaneous
-google_analytics:
 favicon: img/favicon.png
-twitter:
-google_plus:
-fb_admins:
-fb_app_id:
+yungentie: 32b5a020f7eb416280e9317a050982ac

@@ -20,19 +20,24 @@ h6, .h6 {
 }
 
 h1 {
-    font-size: 36px;
+    font-size: 32px;
 }
 
 h2 {
-    font-size: 30px;
-}
-
-h3 {
     font-size: 24px;
 }
 
-h4 {
+h3 {
     font-size: 18px;
+}
+
+h4 {
+    font-size: 12px;
+}
+
+img{
+    max-width: 100%;
+    height: auto;
 }
 
 .content {
@@ -84,6 +89,7 @@ h4 {
 .blog-nav-right-a {
     padding: 8px;
     float: right;
+    color: #fff;
 }
 
 .blog-nav-item:hover,
@@ -208,5 +214,32 @@ h4 {
 
 .article-category{
     float: right;
+    display: inline;
+}
+
+.article{
+    margin-top: 12px;
+}
+
+.article-tag-list{
+    padding: 0;
+}
+.article-tag-list-item{
+    display: inline;
+    margin-right: 8px;
+}
+
+.article-nav{
+    display: inline;
+}
+.article-nav-left{
+    float: left;
+}
+
+.article-nav-right{
+    float: right;
+}
+
+.article-nav-title{
     display: inline;
 }
