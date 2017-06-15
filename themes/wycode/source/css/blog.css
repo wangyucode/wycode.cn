@@ -41,10 +41,20 @@ img{
     height: auto;
 }
 
-blockquote{
-    border-left: 3px solid #1abc9c;
+p{
+    font-size: 16px;
 }
 
+blockquote{
+    border-left: 3px solid #1abc9c;
+    background: #eee;
+    padding: 12px;
+    font-size: 12px;
+}
+
+blockquote p{
+    font-size: 16px;
+}
 .content {
     margin-top: 20px;
 }
@@ -90,7 +100,13 @@ blockquote{
     color: #fff;
 }
 
-.blog-nav-right-a {
+.blog-nav-right-rss {
+    padding: 8px;
+    float: right;
+    color: #fff;
+}
+
+.blog-nav-right-search {
     padding: 8px;
     float: right;
     color: #fff;
@@ -310,4 +326,8 @@ blockquote{
 
 .recent-list-item{
     font-size: 14px;
+}
+
+.search-keyword{
+    color: #c7254e;
 }
