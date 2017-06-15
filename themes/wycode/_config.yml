@@ -18,5 +18,5 @@ archive_type: 'monthly'
 show_count: true
 
 # Miscellaneous
-favicon: img/favicon.png
+favicon: /img/logo_48.png
 yungentie: 32b5a020f7eb416280e9317a050982ac
