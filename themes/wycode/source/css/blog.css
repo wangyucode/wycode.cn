@@ -4,6 +4,7 @@
 
 body {
     font-family: Georgia, "Times New Roman", Times, serif;
+    background: #e2e1e0;
     color: #555;
 }
 
@@ -20,11 +21,11 @@ h6, .h6 {
 }
 
 h1 {
-    font-size: 32px;
+    font-size: 28px;
 }
 
 h2 {
-    font-size: 24px;
+    font-size: 20px;
 }
 
 h3 {
@@ -32,12 +33,16 @@ h3 {
 }
 
 h4 {
-    font-size: 12px;
+    font-size: 16px;
 }
 
 img{
     max-width: 100%;
     height: auto;
+}
+
+blockquote{
+    border-left: 3px solid #1abc9c;
 }
 
 .content {
@@ -72,9 +77,8 @@ img{
 
 .blog-masthead {
     background-color: #1abc9c;
-    height: 50px;
-    -webkit-box-shadow: inset 0 -2px 5px rgba(0, 0, 0, .1);
-    box-shadow: inset 0 -2px 5px rgba(0, 0, 0, .1);
+    height: 42px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
 /* Nav links */
@@ -200,25 +204,34 @@ img{
  * Footer
  */
 
-.blog-footer {
-    padding: 40px 0;
-    color: #999;
-    text-align: center;
-    background-color: #f9f9f9;
-    border-top: 1px solid #e5e5e5;
+.footer-bottom {
+    margin-top: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
-.blog-footer p:last-child {
+.ui-bottom{
     margin-bottom: 0;
 }
+
 
 .article-category{
     float: right;
     display: inline;
 }
 
+.article-category:before{
+    font-family: FontAwesome;
+    color: #1abc9c;
+    content: "\f009";
+    padding-right: 0.3em;
+}
+
 .article{
-    margin-top: 12px;
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    padding: 12px;
+    margin-bottom: 24px;
 }
 
 .article-title{
@@ -228,6 +241,14 @@ img{
 .article-tag-list{
     padding: 0;
 }
+
+.article-tag-list:before{
+    font-family: FontAwesome;
+    color: #1abc9c;
+    content: "\f02b";
+    padding-right: 0.3em;
+}
+
 .article-tag-list-item{
     display: inline;
     margin-right: 8px;
@@ -246,4 +267,47 @@ img{
 
 .article-nav-title{
     display: inline;
+}
+
+.page-nav{
+    text-align: center;
+}
+
+.widget-wrap{
+    padding: 12px;
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    margin-bottom: 24px;
+}
+
+.category-list{
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.category-list-item{
+    font-size: 14px;
+}
+
+.category-list-count{
+    float: right;
+}
+
+.category-list-count:before{
+    content: "(";
+}
+.category-list-count:after{
+    content: ")";
+}
+
+.recent-list{
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.recent-list-item{
+    font-size: 14px;
 }

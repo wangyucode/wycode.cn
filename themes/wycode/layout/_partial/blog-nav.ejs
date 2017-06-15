@@ -2,13 +2,22 @@
     <div class="container">
         <nav class="blog-nav">
             <% for (var i in theme.menu){ %>
-            <a class="blog-nav-item" href="<%- url_for(theme.menu[i]) %>" ><%= i %></a>
+            <a class="blog-nav-item" href="<%- url_for(theme.menu[i]) %>">
+                <% if(i === "博客"){ %>
+                <i class="fa fa-pencil"></i> <%= i %>
+                <% }else if(i === "归档"){ %>
+                <i class="fa fa-folder-open"></i> <%= i %>
+                <% }else{ %>
+                <%= i %>
+                <% } %>
+            </a>
             <% } %>
 
             <% if (theme.rss){ %>
-            <a class="blog-nav-right-a" href="<%- url_for(theme.rss) %>" title="<%= __('rss_feed') %>" target="_blank"><img src="<%- url_for("img/navi/rss.png")%>"/></a>
+            <a class="blog-nav-right-a" href="<%- url_for(theme.rss) %>" title="<%= __('rss_feed') %>"
+               target="_blank"><i class="fa fa-rss" aria-hidden="true"></i> 订阅</a>
             <% } %>
-            <a class="blog-nav-right-a" title="<%= __('search') %>" style="margin-right: 10px"><img src="<%- url_for("img/navi/search.png")%>"/>TODO 搜索</a>
+            <!--<a class="blog-nav-right-a" title="<%= __('search') %>" style="margin-right: 10px"><i class="fa fa-search" aria-hidden="true"></i> TODO 搜索</a>-->
         </nav>
     </div>
 </div>

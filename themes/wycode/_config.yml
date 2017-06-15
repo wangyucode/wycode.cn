@@ -8,10 +8,9 @@ rss: /atom.xml
 # Sidebar
 widgets:
 - category
-- tag
-- tagcloud
-- archive
 - recent_posts
+- tagcloud
+
 
 
 # widget behavior
