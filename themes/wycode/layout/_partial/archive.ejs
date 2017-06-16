@@ -3,16 +3,17 @@
     <%- partial('article', {post: post, index: true}) %>
   <% }) %>
 <% } else { %>
-  <% var last; %>
+  <% var lastYear; %>
+  <% var lastMonth; %>
   <% page.posts.each(function(post, i){ %>
     <% var year = post.date.year(); %>
-    <% if (last != year){ %>
-      <% if (last != null){ %>
-      <% } %>
-      <% last = year; %>
+    <% var month = post.date.month(); %>
+    <% if (lastYear != year||lastMonth!=month){ %>
+      <% lastYear = year; %>
+      <% lastMonth = month; %>
       <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="<%- url_for(config.archive_dir + '/' + year) %>" class="archive-year"><%= year %></a>
+        <div class="archive-year-month-wrap">
+          <a href="<%- url_for(config.archive_dir + post.date.format("/YYYY/MM/")) %>" class="archive-year-month"><%= post.date.format("YYYY年MM月") %></a>
         </div>
         <div class="archives">
     <% } %>

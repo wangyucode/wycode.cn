@@ -112,6 +112,18 @@ blockquote p{
     color: #fff;
 }
 
+.blog-nav-right-rss:hover,
+.blog-nav-right-rss:focus {
+    color: #fff;
+    text-decoration: none;
+}
+
+.blog-nav-right-search:hover,
+.blog-nav-right-search:focus {
+    color: #fff;
+    text-decoration: none;
+}
+
 .blog-nav-item:hover,
 .blog-nav-item:focus {
     color: #fff;
@@ -243,6 +255,14 @@ blockquote p{
 }
 
 .article{
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    padding: 12px;
+    margin-bottom: 24px;
+}
+
+.archives-wrap{
     background: #fff;
     border-radius: 2px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
