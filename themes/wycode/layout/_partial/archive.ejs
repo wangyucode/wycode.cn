@@ -11,7 +11,7 @@
     <% if (lastYear != year||lastMonth!=month){ %>
       <% lastYear = year; %>
       <% lastMonth = month; %>
-      <section class="archives-wrap">
+      <section class="archives-wrap col-sm-12">
         <div class="archive-year-month-wrap">
           <a href="<%- url_for(config.archive_dir + post.date.format("/YYYY/MM/")) %>" class="archive-year-month"><%= post.date.format("YYYY年MM月") %></a>
         </div>

@@ -5,7 +5,7 @@ tags:
 - Hexo
 - EJS
 - Bootstrap
-categories: 前端
+categories: Web前端
 ---
 
 > 刚刚完成了Hexo博客主题的自定义，现在总结如下，让我们一起来看看如何打造一款属于自己的Hexo主题。
