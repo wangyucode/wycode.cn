@@ -3,7 +3,6 @@ title: Android Studio工程应该忽略的文件及如何使用gitignore
 date: 2017-6-16 14:46:22
 tags: 
 - Android
-- Android Studio
 - Git
 - SVN
 categories: Android
