@@ -29,3 +29,10 @@ categories: Android
 ### 使用gitignore
 这是最简单的方式
 
+在项目根目录下创建`.gitignore`文件，将上面应该忽略的文件，内容复制到`.gitignore`中。
+
+用Android Studio打开`.gitignore`文件时会在右上角弹出安装gitignore插件，点击安装即可，安装完成后就自动设置好忽略了，如果要添加忽略文件，只需要在`.gitignore`中添加文件路径即可。
+
+### 自己设置忽略
+
+右键点击相应文件，选择相应VCS操作即可。
