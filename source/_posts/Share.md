@@ -44,3 +44,39 @@ if (sendIntent.resolveActivity(getPackageManager()) != null) {
 集成ShareSDK的好处是，提供了统一的接口，抹平了不同平台间API的差异，集成更简单，维护也方便。特别是当你需要集成很多平台的时候。
 但是上面单独集成的前两步还是不可缺少。
 
+## 集成微信分享的一些注意事项
+
+有时会遇到错误`{"req":"e","errCode":-6,"transaction":"webpage1498805832655"}`
+- 微信分享需要经过签名才可以
+- 微信Android应用信息的签名那一栏需要填入签名的**MD5**值，通过以下命令获取
+
+```bash
+keytool -list -v -keystore <你的keystore路径>
+```
+
+>`keytool` 是jdk的自带一个命令，类似`javac`
+
+- 签名的**MD5**值必须全部小写，并去掉冒号
+- 可以在gradle文件中配置以下属性，让开发版本也使用正式签名
+
+```
+android {
+    ***
+    signingConfigs {
+        debug{
+            storeFile file("你的keystore路径")
+            storePassword "你的storePassword"
+            keyAlias "你的keyAlias"
+            keyPassword "keyPassword"
+        }
+        release {
+            storeFile file("你的keystore路径")
+            storePassword "你的storePassword"
+            keyAlias "你的keyAlias"
+            keyPassword "你的keyPassword"
+        }
+    }
+    ***
+}
+```
+
