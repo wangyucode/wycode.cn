@@ -1,13 +1,13 @@
 ---
 title: Unity脚本生命周期
-date: 2017-7-7 18:15:39
+date: 2017-7-7 22:55:47
 tags: 
 - Unity
 - Coroutine
 categories: Unity
 ---
 
-> Unity脚本的生命周期，关键函数以及协程调用次序图如下：
+> Unity脚本的生命周期，协程、各关键函数的调用顺序如下图所示：
 
 <!--more-->
 
