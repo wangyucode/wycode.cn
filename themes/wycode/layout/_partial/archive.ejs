@@ -1,33 +1,45 @@
 <% if (pagination == 2){ %>
-  <% page.posts.each(function(post){ %>
-    <%- partial('article', {post: post, index: true}) %>
-  <% }) %>
+<% page.posts.each(function(post){ %>
+<%- partial('article', {post: post, index: true}) %>
+<% }) %>
 <% } else { %>
-  <% var lastYear; %>
-  <% var lastMonth; %>
-  <% page.posts.each(function(post, i){ %>
+<% var lastYear; %>
+<% var lastMonth; %>
+<section class="archives-wrap col-sm-12">
+<% page.posts.each(function(post, i){ %>
     <% var year = post.date.year(); %>
     <% var month = post.date.month(); %>
-    <% if (lastYear != year||lastMonth!=month){ %>
-      <% lastYear = year; %>
-      <% lastMonth = month; %>
-      <section class="archives-wrap col-sm-12">
+
+    <% if (lastYear != year || lastMonth != month){ %>
+        <% lastYear = year; %>
+        <% lastMonth = month; %>
+        <% if (i!=0){ %>
+            </div>
+        <% } %>
         <div class="archive-year-month-wrap">
-          <a href="<%- url_for(config.archive_dir + post.date.format("/YYYY/MM/")) %>" class="archive-year-month"><%= post.date.format("YYYY年MM月") %></a>
-        </div>
+            <a href="<%- url_for(config.archive_dir + post.date.format("/YYYY/MM/")) %>"
+               class="archive-year-month"><%= post.date.format("YYYY年MM月") %></a>
+            <div class="archives">
+                <%- partial('archive-post', {post: post, even: i % 2 == 0}) %>
+            </div>
+        <% if (i==page.posts.length){ %>
+            </div>
+        <% } %>
+
+    <% }else{ %>
         <div class="archives">
+            <%- partial('archive-post', {post: post, even: i % 2 == 0}) %>
+        </div>
     <% } %>
-    <%- partial('archive-post', {post: post, even: i % 2 == 0}) %>
-  <% }) %>
-  <% if (page.posts.length){ %>
-    </div></section>
-  <% } %>
+<% }) %>
+
+</section>
 <% } %>
 <% if (page.total > 1){ %>
-  <nav class="page-nav">
+<nav class="page-nav">
     <%- paginator({
-      prev_text: __('prev'),
-      next_text: __('next')
+        prev_text: __('prev'),
+        next_text: __('next')
     }) %>
-  </nav>
+</nav>
 <% } %>
