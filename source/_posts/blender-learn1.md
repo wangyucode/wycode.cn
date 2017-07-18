@@ -1,6 +1,6 @@
 ---
 title: Blender建模入门
-date: 2017-7-12 10:24:51
+date: 2017-7-18 17:53:34
 tags: 
 - Blender
 - Modeling
@@ -13,7 +13,19 @@ categories: 3D Modeling
 ![Blender](/blog/images/20170717_blender_logo.png)
 在这篇文章中你将学到Blender 3D建模入门。
 
+Blender官方中文手册：[https://docs.blender.org/manual/zh.cn/dev/](https://docs.blender.org/manual/zh.cn/dev/)
+
 <!--more-->
+
+## 用户界面
+![用户界面](/blog/images/20170718_blender_interface.jpg)
+- `T`打开、关闭工具栏（左侧）
+- `N`打开、关闭属性栏（右侧）
+- `Shift`+`Space`最大化当前窗口
+
+## 设置为中文
+
+- 在`File`-`User preferences`-`System`勾选`International Fonts`，并选择下方的`Interface`和`Tooltips`
 
 ## 选择
 
