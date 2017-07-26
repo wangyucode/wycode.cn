@@ -80,3 +80,11 @@ android {
 }
 ```
 
+有时会遇到错误`checkArgs fail, thumbData is invalid`
+
+- 图片太大，可以获取缩略图
+```java
+Bitmap bmp = BitmapFactory.decodeResource(getResources(),R.drawable.app_icon);
+Bitmap thumb = Bitmap.createScaledBitmap(bmp,THUMB_SIZE,THUMB_SIZE,true);
+bmp.recycle();
+```
