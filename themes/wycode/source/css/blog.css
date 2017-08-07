@@ -254,19 +254,7 @@ blockquote p{
     padding-right: 0.3em;
 }
 
-.article{
-    background: #fff;
-    border-radius: 2px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    padding: 12px;
-    margin-bottom: 24px;
-}
-
-.archives-wrap{
-
-}
-
-.archive-year-month-wrap{
+.article,.archive-year-month-wrap,.widget-wrap,.article-nav,.comment{
     background: #fff;
     border-radius: 2px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -297,14 +285,19 @@ blockquote p{
     padding-right: 0.3em;
 }
 
+.article-nav{
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    height: 50px;
+    margin-bottom: 24px;
+}
+
 .article-tag-list-item{
     display: inline;
     margin-right: 8px;
 }
 
-.article-nav{
-    display: inline;
-}
 .article-nav-left{
     float: left;
 }
@@ -314,19 +307,12 @@ blockquote p{
 }
 
 .article-nav-title{
+    margin-left: 12px;
     display: inline;
 }
 
 .page-nav{
     text-align: center;
-}
-
-.widget-wrap{
-    padding: 12px;
-    background: #fff;
-    border-radius: 2px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    margin-bottom: 24px;
 }
 
 .category-list{

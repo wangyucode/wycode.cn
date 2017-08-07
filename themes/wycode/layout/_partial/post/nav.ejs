@@ -18,8 +18,7 @@
     <% if (post.next){ %>
     <div class="article-nav-right">
         <a href="<%- url_for(post.next.path) %>" id="article-nav-older" class="article-nav-link-wrap">
-            <strong class="article-nav-caption"><%= __('older') %></strong>
-            <div class="article-nav-title"><%= post.next.title %></div>
+            <strong class="article-nav-caption"><%= __('older') %></strong><div class="article-nav-title"><%= post.next.title %></div>
         </a>
     </div>
     <% } %>
