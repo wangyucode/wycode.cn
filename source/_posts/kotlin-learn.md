@@ -1,7 +1,7 @@
 ---
 title: Kotlin入门
 date: 2017-7-27 13:19:47
-tags: 
+tags:
 - Kotlin
 - Java
 - Android
@@ -52,7 +52,23 @@ val nullableList: List<Int?> = listOf(1, 2, null, 4)
 val intList: List<Int> = nullableList.filterNotNull()
 ```
 
-- 没有基础数据类型`int,byte,char...`
+- 基础数据类型没有`Character`
 
-- 数组不可变
+- `Char`被单独处理，不是数字，不能和数字进行比较，可以使用`toInt()`函数
 
+- 没有8进制
+
+- 数组类型不可变，不能将`Array<String>`赋给`Array<Any>`
+
+- 以下是位运算，只支持`Int`和`Long`
+
+```kotlin
+shl(bits) – signed shift left (Java's <<)
+shr(bits) – signed shift right (Java's >>)
+ushr(bits) – unsigned shift right (Java's >>>)
+and(bits) – bitwise and
+or(bits) – bitwise or
+xor(bits) – bitwise xor
+inv() – bitwise inversion
+```
+- 没有静态方法，可以使用 `object declaration`替代

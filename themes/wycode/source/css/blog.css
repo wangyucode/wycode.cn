@@ -20,6 +20,19 @@ h6, .h6 {
     color: #333;
 }
 
+thead{
+    background: #B39DDB;
+}
+
+tbody{
+    background: #B2DFDB;
+}
+
+th,td{
+    padding: 6px;
+    border: 1px solid #777;
+}
+
 h1 {
     font-size: 28px;
 }
