@@ -15,6 +15,7 @@ categories: Android
 <!--more-->
 ## 创建SwaggerUI渲染需要的JSON
 - 首先为项目添加生成JSON的库：
+
 ```
 dependencies {
     compile "io.springfox:springfox-swagger2:2.7.0"
@@ -54,7 +55,6 @@ public class SwaggerConfig {
                 new ArrayList<>());
     }
 }
-
 ```
 
 - 访问`http://localhost:8080/v2/api-docs`可以看到JSON即说明配置成功：
