@@ -7,8 +7,8 @@ rss: /atom.xml
 
 # Sidebar
 widgets:
-- category
 - recent_posts
+- category
 - tagcloud
 
 
@@ -19,4 +19,3 @@ show_count: true
 
 # Miscellaneous
 favicon: /img/logo_48.png
-yungentie: 32b5a020f7eb416280e9317a050982ac

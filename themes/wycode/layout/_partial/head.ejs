@@ -1,6 +1,5 @@
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <%
     var title = page.title;
 
@@ -19,7 +18,7 @@
     }
     %>
     <title><% if (title){ %><%= title %> |<% } %><%= config.title %></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <% if (theme.rss){ %>
     <link rel="alternate" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
     <% } %>
@@ -27,18 +26,10 @@
     <link rel="icon" href="<%- url_for(theme.favicon) %>">
     <% } %>
     <!-- Bootstrap -->
-    <%- css('flat/dist/css/vendor/bootstrap.min.css') %>
-    <%- css('flat/dist/css/flat-ui.min') %>
-    <%- css('font-awesome-4.7.0/css/font-awesome.min') %>
-    <%- css('highlight/styles/monokai-sublime') %>
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/monokai-sublime.min.css" rel="stylesheet">
     <%- css('css/blog') %>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <%- js('flat/dist/js/vendor/html5shiv') %>
-    <%- js('flat/dist/js/vendor/respond.min') %>
-    <![endif]-->
     <script>
         var _hmt = _hmt || [];
         (function() {

@@ -1,9 +1,8 @@
 ---
 title: 自定义形状波浪进度
 date: 2017-7-24 12:41:59
-tags: 
+tags:
 - Android
-- 贝塞尔曲线
 - SurfaceView
 categories: Android
 ---
@@ -78,7 +77,7 @@ categories: Android
 
 ## 注意事项
 
-- 为了达到`SurfaceView`透明效果，需要加入以下两句代码 
+- 为了达到`SurfaceView`透明效果，需要加入以下两句代码
 ```java
 setZOrderOnTop(true);
 mHolder.setFormat(TRANSLUCENT);

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <%- partial('_partial/head') %>
 <body>
 <%- partial('_partial/wycode-nav') %>
 <%- partial('_partial/blog-nav') %>
 <%- partial('_partial/search-modal') %>
 <div class="container">
-    <div class="row">
-        <div class="content"><%- body %></div>
+    <div class="row" style="margin-top: 16px">
+        <%- body %>
     </div>
 </div>
 <%- partial('_partial/footer', null, {cache: !config.relative_link}) %>

@@ -3,7 +3,6 @@
  */
 
 body {
-    font-family: Georgia, "Times New Roman", Times, serif;
     background: #e2e1e0;
     color: #555;
 }
@@ -15,8 +14,6 @@ h4, .h4,
 h5, .h5,
 h6, .h6 {
     margin-top: 0;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: normal;
     color: #333;
 }
 
@@ -49,7 +46,7 @@ h4 {
     font-size: 16px;
 }
 
-img{
+.article-entry img{
     max-width: 100%;
     height: auto;
 }
@@ -59,7 +56,7 @@ p{
 }
 
 blockquote{
-    border-left: 3px solid #1abc9c;
+    border-left: 3px solid #0B9BA9;
     background: #eee;
     padding: 12px;
     font-size: 12px;
@@ -67,19 +64,6 @@ blockquote{
 
 blockquote p{
     font-size: 16px;
-}
-.content {
-    margin-top: 20px;
-}
-
-/*
- * Override Bootstrap's default container.
- */
-
-@media (min-width: 1200px) {
-    .container {
-        width: 960px;
-    }
 }
 
 /*
@@ -95,13 +79,14 @@ blockquote p{
 }
 
 .wycode-nav-li-active {
-    background-color: #1abc9c;
+    background-color: #0B9BA9;
 }
 
 .blog-masthead {
-    background-color: #1abc9c;
+    background-color: #0B9BA9;
     height: 42px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    margin-top: 60px;
 }
 
 /* Nav links */
@@ -194,7 +179,6 @@ blockquote p{
 
 /* Sidebar modules for boxing content */
 .sidebar-module {
-    padding: 15px;
     margin: 0 -15px 15px;
 }
 
@@ -247,7 +231,7 @@ blockquote p{
 
 .footer-bottom {
     margin-top: 24px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    box-shadow: 0 -1px 3px rgba(0,0,0,0.12), 0 -1px 2px rgba(0,0,0,0.24);
 }
 
 .ui-bottom{
@@ -262,9 +246,9 @@ blockquote p{
 
 .article-category:before{
     font-family: FontAwesome;
-    color: #1abc9c;
+    color: #007BFF;
     content: "\f009";
-    padding-right: 0.3em;
+    margin-right: 0.3em;
 }
 
 .article,.archive-year-month-wrap,.widget-wrap,.article-nav,.comment{
@@ -283,8 +267,8 @@ blockquote p{
     font-size: 18px;
 }
 
-.article-title{
-    color: #000;
+a.article-title{
+    color: #0B9BA9;
 }
 
 .article-tag-list{
@@ -293,7 +277,7 @@ blockquote p{
 
 .article-tag-list:before{
     font-family: FontAwesome;
-    color: #1abc9c;
+    color: #007BFF;
     content: "\f02b";
     padding-right: 0.3em;
 }
@@ -361,4 +345,30 @@ blockquote p{
 
 .search-keyword{
     color: #c7254e;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #eee;
+}
+
+a.nav-link.active{
+    background-color: rgba(0,140,160,0.8);
+    border-radius: 4px;
+}
+
+.wy-footer {
+    background-color: #0B9BA9;
+    color:white;
+}
+
+.wy-footer a{
+    color: #eee;
+}
+
+.recent-list-item a{
+    color:#0B9BA9;
+}
+
+.wy-footer ul{
+    margin-bottom: 0;
 }
