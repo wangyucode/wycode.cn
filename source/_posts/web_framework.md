@@ -6,7 +6,7 @@ tags:
 - Spring Security
 - Java
 - Thymeleaf
-categories: Java后台
+categories: 后台
 ---
 
 - Spring Boot能够创建独立的Spring应用程序，在云计算，分布式流行的今天，它提供了一种非常契合目前web开发需求的解决方案，是Java开发web应用的不二选择。

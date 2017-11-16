@@ -1,11 +1,11 @@
 ---
 title: Blender建模入门
 date: 2017-7-18 17:53:34
-tags: 
+tags:
 - Blender
 - Modeling
 - 3D
-categories: 3D Modeling
+categories: 3D
 ---
 
 > Blender 是一款开源的跨平台全能三维动画制作软件，永久免费。
@@ -38,4 +38,3 @@ Blender官方中文手册：[https://docs.blender.org/manual/zh.cn/dev/](https:/
 - 按住`鼠标中键`+`Shift`可以上下左右移动（不旋转）
 - `Shift`+`F`可以进入飞行模式，可以使用`W`、`A`、`S`、`D`、`Q`、`E`移动视角
 - `鼠标滚轮`缩放视角
-

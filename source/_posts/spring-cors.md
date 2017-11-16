@@ -1,11 +1,11 @@
 ---
 title: Spring中启用CORS
 date: 2017-7-27 13:19:47
-tags: 
+tags:
 - Spring
 - Java
 - CORS
-categories: Java后台
+categories: 后台
 ---
 
 > JavaScript在跨域请求时会碰到`No 'Access-Control-Allow-Origin' header is present on the requested resource.`。是因为服务器不支持`Cross-origin resource sharing (CORS)`这篇教程教你如何为Java Spring后台配置`CORS`

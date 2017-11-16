@@ -1,13 +1,13 @@
 ---
 title:  为Hexo博客添加全文搜索
 date: 2017-6-15 15:20:55
-tags: 
+tags:
 - XML
 - jQuery
 - Ajax
 - Hexo
 - Bootstrap
-categories: Web前端
+categories: 前端
 ---
 
 > 本文介绍如何利用`hexo-generator-search`插件为Hexo博客添加本地全文搜索

@@ -1,11 +1,11 @@
 ---
 title: 给自己的网站添加评论功能
 date: 2017-6-9 16:31:25
-tags: 
+tags:
 - HTML
 - CSS
 - JavaScript
-categories: Web前端
+categories: 前端
 ---
 
 ## 解决方案
@@ -44,7 +44,7 @@ categories: Web前端
 <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
 <script>
 var cloudTieConfig = {
-  url: document.location.href, 
+  url: document.location.href,
   sourceId: "",
   productKey: "32b5a020f7eb416280e9317a050982ac",
   target: "cloud-tie-wrapper"
