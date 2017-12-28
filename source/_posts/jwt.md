@@ -4,7 +4,7 @@ date: 2017年11月17日 14:10:29
 tags:
 - Spring
 - JWT
-categories: 后台
+categories: Back-end
 ---
 
 为使用前后端分离的后端管理框架做准备，使用JWT目前看来是最佳选择。

@@ -5,7 +5,7 @@ tags:
 - SEO
 - robots.txt
 - Sitemaps
-categories: 前端
+categories: Front-end
 ---
 
 > 本文介绍SEO相关知识和实践

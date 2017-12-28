@@ -6,7 +6,7 @@ tags:
 - npm
 - Linux
 - Ubuntu
-categories: Linux
+categories: Front-end
 ---
 
 ## Linux平台

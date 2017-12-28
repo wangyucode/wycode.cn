@@ -7,7 +7,7 @@ tags:
 - Java
 - SwaggerUI
 - JavaScript
-categories: 后台
+categories: Back-end
 ---
 
 > 本文介绍如何使用swaggerUI为Spring Boot项目创建动态的、从代码生成的REST API文档
