@@ -7,11 +7,11 @@ tags:
 categories: Languages
 ---
 
-> RxJava是`ReactiveX`的Java分支，除了Java版，`ReactiveX`还支持包括`JavaScript`、`.NET`、`Swift`、`Python`、`Swift`、`Android`、`Kotlin`、`Go`、`PHP`在内的众多平台和语言。
+> RxJava是`ReactiveX`的Java分支，除了Java版，`ReactiveX`还支持包括`JavaScript`、`C#`、`C++`、`Swift`、`Python`、`Swift`、`Android`、`Unity`、`Kotlin`、`Go`、`PHP`在内的众多平台和语言。
 
-> ReactiveX的核心是对观察者模式的扩展，并上升到了和命令式编程完全不同的编程方式的高度，称为`函数式编程`（官方文档说这是一个误解，函数式编程应该是随时间线性变化的，而ReactiveX要解决的问题是离散的），优势在于处理异步、基于事件的应用程序。可以将数据或是事件都加队列中处理，优雅地解决了以前多线程交互、IO、并发、同步、异常处理这种编程的老大难问题。同时利用`Lambda`表达式和链式编程，让程序变得更加简洁优雅。
+> ReactiveX的核心是对观察者模式的扩展，并上升到了和命令式编程完全不同的编程方式的高度，称为`响应式编程`，其优势在于处理异步、基于事件的应用程序。可以将数据或是事件都加队列中处理，优雅地解决了以前多线程交互、IO、并发、同步、异常处理这种编程的老大难问题。同时利用`Lambda`表达式和链式编程，让程序变得更加简洁优雅。
 
-ReactiveX框架(更像是一种思想)的核心概念：
+## ReactiveX函数库(更像是一种思想)的核心概念：
 
 - 元素(`Element`) Recat认为元素是不可变的，创建后不能修改。React使用`JSX`技术将HTML代码直接作为常量使用。
 - 组件(`Component`) 组件是对元素的封装。拥有自身的生命周期函数。
