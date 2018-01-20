@@ -1,6 +1,6 @@
 ---
 title: Spring Boot + Spring Security + H2 + Thymeleaf做一个后台管理系统
-date: 2017年10月26日 09:56:19
+date: 2017-10-26 09:56:19
 tags:
 - Spring Boot
 - Spring Security

@@ -1,6 +1,6 @@
 ---
 title: React框架原理的思考
-date: 2018年1月6日 14:41:14
+date: 2018-1-6 14:41:14
 tags:
 - React
 - JavaScript

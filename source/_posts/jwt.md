@@ -1,6 +1,6 @@
 ---
 title: 使用JWT和Spring Security结合开发一套认证鉴权系统
-date: 2017年11月17日 14:10:29
+date: 2017-11-17 14:10:29
 tags:
 - Spring
 - JWT
