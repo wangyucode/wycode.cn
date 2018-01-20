@@ -7,11 +7,13 @@ tags:
 categories: Languages
 ---
 
-> RxJava是`ReactiveX`的Java分支，除了Java版，`ReactiveX`还支持包括`JavaScript`、`.NET`、`Swift`、`Python`、`Swift`、`Android`、`Kotlin`、`Go`、`PHP`在内的众多平台和语言。
+> RxJava是`ReactiveX`的Java分支，除了Java版，`ReactiveX`还支持包括JavaScript、C#、C++、Swift、Python、Swift、Android、Unity、Kotlin、Go、PHP在内的众多平台和语言。
+
 
 > ReactiveX的核心是对观察者模式的扩展，并上升到了和命令式编程完全不同的编程方式的高度，称为`响应式编程`，优势在于处理异步、基于事件的应用程序。可以将数据或是事件都加队列中处理，优雅地解决了以前多线程交互、IO、并发、同步、异常处理这种编程的老大难问题。再加上`Lambda`表达式和链式编程，让程序变得更加简洁优雅。
 
 <!--more-->
+
 
 看完了RactiveX的简介，觉得用它来封装一个网络请求框架应该是再好不过了，但是当我真正开始封装网络请求时，我发现：RxJava给的答案是，你并不需要去封装，而是**直接使用**就好了。实例代码如下。
 
@@ -76,7 +78,7 @@ categories: Languages
 
 ## 变换操作
 
-通常的，我们在请求网络后要对服务器返回的字符串进行解析，这时我们可以使用RxJava的`Transforming`操作，将JSON String转为实体类。
+通常的，我们在请求网络后要对服务器返回的字符串进行解析，这时我们可以使用RxJava的`Transforming`操作，在返回前将JSON String转为实体类。
 
 ```Java
 Observable.create((ObservableOnSubscribe<String>) emitter -> emitter.onNext(httpRequest("https://wycode.cn/web/api/public/hello?message=Hello"))) //1.
@@ -86,7 +88,7 @@ Observable.create((ObservableOnSubscribe<String>) emitter -> emitter.onNext(http
                 .subscribe(message -> textView.setText(message.message)); //4.
 ```
 
-可以看到在原有代码几乎没变的情况下，加上1行代码就实现了将Json转为实体再发射的需求。这就是RxJava的魅力。
+可以看到在原有代码几乎没变的情况下，加上1行代码就实现了将Json转为实体再处理的需求。这就是RxJava的魅力。
 
 完整源码在这里：https://github.com/wangyucode/rxjava
 
