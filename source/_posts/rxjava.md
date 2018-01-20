@@ -7,7 +7,7 @@ tags:
 categories: Languages
 ---
 
-> RxJava是`ReactiveX`的Java分支，除了Java版，`ReactiveX`还支持包括JavaScript、C#、C++、Swift、Python、Swift、Android、Unity、Kotlin、Go、PHP在内的众多平台和语言。
+> RxJava是`ReactiveX`的Java分支，除了Java版，`ReactiveX`还支持包括JavaScript、C#、C++、Swift、Python、Android、Unity、Kotlin、Go、PHP在内的众多平台和语言。
 
 
 > ReactiveX的核心是对观察者模式的扩展，并上升到了和命令式编程完全不同的编程方式的高度，称为`响应式编程`，优势在于处理异步、基于事件的应用程序。可以将数据或是事件都加队列中处理，优雅地解决了以前多线程交互、IO、并发、同步、异常处理这种编程的老大难问题。再加上`Lambda`表达式和链式编程，让程序变得更加简洁优雅。
