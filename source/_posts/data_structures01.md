@@ -141,4 +141,254 @@ public class Test02 {
 3. 方法1，慢就慢在`pow`函数上
 4. 替换pow函数为计数循环`x *=x`耗时500ms，差距缩小至约20倍。
 
-## 
+## 作业1
+
+01-复杂度1 最大子列和问题（20 分）
+给定K个整数组成的序列{ N​1, N2, ..., NK}，“连续子列”被定义为{ N​i, Ni+1, ..., N​j}，其中 1≤i≤j≤K。
+“最大子列和”则被定义为所有连续子列元素的和中最大者。
+例如给定序列{ -2, 11, -4, 13, -5, -2 }，其连续子列{ 11, -4, 13 }有最大的和20。
+现要求你编写程序，计算给定整数序列的最大子列和。
+
+本题旨在测试各种不同的算法在各种数据情况下的表现。
+
+各组测试数据特点如下：
+
+ 数据1：与样例等价，测试基本正确性；
+ 数据2：102个随机整数；
+ 数据3：103个随机整数；
+ 数据4：104个随机整数；
+ 数据5：105个随机整数；
+输入格式:
+
+ 输入第1行给出正整数K (≤100000)；第2行给出K个整数，其间以空格分隔。
+
+输出格式:
+
+ 在一行中输出最大子列和。如果序列中所有整数皆为负数，则输出0。
+
+输入样例:
+```
+ 6
+ -2 11 -4 13 -5 -2
+```
+输出样例:
+```
+ 20
+```
+
+实现：
+
+```java
+import java.util.Scanner;
+
+
+public class Main{
+
+    public static void main(String args[]) {
+        Scanner scanner = new Scanner(System.in);
+        int k = scanner.nextInt();
+        int[] n = new int[k];
+        for (int i = 0; i < k; i++) {
+            if (scanner.hasNext()) {
+                n[i] = scanner.nextInt();
+            }
+        }
+        System.out.println(maximumSubsequenceSum(n));
+    }
+
+    /**
+     * 在线处理算法，任意时刻给出的都是当前最大子数列和
+     * @param n
+     * @return
+     */
+    private static int maximumSubsequenceSum(int[] n) {
+        int thisMax = 0;
+        int maxSum = 0;
+        for (int i = 0; i < n.length; i++) {
+            thisMax += n[i];
+
+            if (thisMax < 0) {
+                thisMax = 0;
+            } else if (thisMax > maxSum) {
+                maxSum = thisMax;
+            }
+        }
+        return maxSum;
+    }
+}
+```
+
+## 作业2
+
+01-复杂度2 Maximum Subsequence Sum（25 分）
+Given a sequence of K integers { N1, N2, ..., NK}. A continuous subsequence is defined to be { Ni, Ni+1, ..., Nj } where 1≤i≤j≤K. The Maximum Subsequence is the continuous subsequence which has the largest sum of its elements. For example, given sequence { -2, 11, -4, 13, -5, -2 }, its maximum subsequence is { 11, -4, 13 } with the largest sum being 20.
+
+Now you are supposed to find the largest sum, together with the first and the last numbers of the maximum subsequence.
+
+Input Specification:
+
+Each input file contains one test case. Each case occupies two lines. The first line contains a positive integer K (≤10000). The second line contains K numbers, separated by a space.
+
+Output Specification:
+
+For each test case, output in one line the largest sum, together with the first and the last numbers of the maximum subsequence. The numbers must be separated by one space, but there must be no extra space at the end of a line. In case that the maximum subsequence is not unique, output the one with the smallest indices i and j (as shown by the sample case). If all the K numbers are negative, then its maximum sum is defined to be 0, and you are supposed to output the first and the last numbers of the whole sequence.
+
+Sample Input:
+```
+10
+-10 1 2 3 4 -5 -23 3 7 -21
+```
+Sample Output:
+```
+10 1 4
+```
+
+- 实现：
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int k = scanner.nextInt();
+        int[] n = new int[k];
+
+        for (int i = 0; i < k; i++) {
+            n[i] = scanner.nextInt();
+        }
+
+        maximumSubsequenceSum(n);
+
+    }
+
+    /**
+     * 在线处理算法，任意时刻给出的都是当前最大子数列和
+     *
+     * @param n
+     * @return
+     */
+    private static void maximumSubsequenceSum(int[] n) {
+        int thisMax = 0;
+        int maxSum = 0;
+
+        int startI = 0;
+        int endI = n.length - 1;
+        int temp = 0;
+        boolean isMaxStart = true;
+        for (int i = 0; i < n.length; i++) {
+            thisMax += n[i];
+
+            if (thisMax < 0) {
+                thisMax = 0;
+                temp = 0;
+                isMaxStart = true;
+            } else {
+
+                if(isMaxStart){
+                    temp = i;
+                    isMaxStart = false;
+                }
+
+                if (thisMax > maxSum) {
+
+                    maxSum = thisMax;
+                    endI = i;
+                    startI = temp;
+                }
+
+                if(maxSum==0){
+                    startI =temp;
+                    endI = i;
+                }
+            }
+        }
+
+
+        System.out.println(maxSum + " " + n[startI] + " " + n[endI]);
+    }
+}
+
+```
+
+这题所有case要求在200ms内执行完毕，其中一个case比较大的N导致执行超时。应该是题目未考虑使用Java语言的情况。
+
+## 作业3
+
+
+01-复杂度3 二分查找（20 分）
+本题要求实现二分查找算法。
+
+函数接口定义：
+
+`Position BinarySearch( List L, ElementType X );`
+其中List结构定义如下：
+```c
+typedef int Position;
+typedef struct LNode *List;
+struct LNode {
+    ElementType Data[MAXSIZE];
+    Position Last; /* 保存线性表中最后一个元素的位置 */
+};
+```
+L是用户传入的一个线性表，其中ElementType元素可以通过>、==、<进行比较，并且题目保证传入的数据是递增有序的。函数BinarySearch要查找X在Data中的位置，即数组下标（注意：元素从下标1开始存储）。找到则返回下标，否则返回一个特殊的失败标记NotFound。
+
+裁判测试程序样例：
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAXSIZE 10
+#define NotFound 0
+typedef int ElementType;
+
+typedef int Position;
+typedef struct LNode *List;
+struct LNode {
+    ElementType Data[MAXSIZE];
+    Position Last; /* 保存线性表中最后一个元素的位置 */
+};
+
+List ReadInput(); /* 裁判实现，细节不表。元素从下标1开始存储 */
+Position BinarySearch( List L, ElementType X );
+
+int main()
+{
+    List L;
+    ElementType X;
+    Position P;
+
+    L = ReadInput();
+    scanf("%d", &X);
+    P = BinarySearch( L, X );
+    printf("%d\n", P);
+
+    return 0;
+}
+
+/* 你的代码将被嵌在这里 */
+```
+输入样例1：
+```
+5
+12 31 55 89 101
+31
+```
+输出样例1：
+```
+2
+```
+输入样例2：
+```
+3
+26 78 233
+31
+```
+输出样例2：
+```
+0
+```
+
+
+- 实现：
+
+
+
