@@ -51,7 +51,11 @@ h4 {
     height: auto;
 }
 
-p{
+pre{
+    font-size: 12px;
+}
+
+p,li{
     font-size: 16px;
 }
 

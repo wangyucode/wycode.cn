@@ -1,6 +1,6 @@
 ---
 title:  浙大数据结构学习笔记01
-date: 2018年3月8日 13:14:57
+date: 2018年3月14日 13:14:57
 tags:
 - C
 categories: Data Structures
@@ -248,13 +248,30 @@ Sample Output:
 ```java
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int k = scanner.nextInt();
-        int[] n = new int[k];
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String countString = null;
+        String numbersString =null;
+        try {
+            countString = reader.readLine();
+            numbersString = reader.readLine();
+        }catch (Exception ignored){
 
-        for (int i = 0; i < k; i++) {
-            n[i] = scanner.nextInt();
         }
+        int[] n = new int[Integer.parseInt(countString)];
+        String[] numbersStringArray = numbersString.split(" ");
+
+        for (int i = 0; i < n.length; i++) {
+            n[i] = Integer.parseInt(numbersStringArray[i]);
+        }
+
+
+//        Scanner scanner = new Scanner(System.in);
+//        int k = scanner.nextInt();
+//        int[] n = new int[k];
+//
+//        for (int i = 0; i < k; i++) {
+//            n[i] = scanner.nextInt();
+//        }
 
         maximumSubsequenceSum(n);
 
@@ -309,7 +326,9 @@ public class Main {
 
 ```
 
-这题所有case要求在200ms内执行完毕，其中一个case比较大的N导致执行超时。应该是题目未考虑使用Java语言的情况。
+- 总结
+
+1. 这题所有case要求在200ms内执行完毕，其中一个case比较大的N导致执行超时,调查发现Scanner这个东西贼慢...换成BufferReader就好了。
 
 ## 作业3
 
