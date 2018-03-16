@@ -1,9 +1,9 @@
 ---
-title:  浙大数据结构学习笔记02
-date: 2018-3-15 08:41:04
+title:  数据结构与算法学习笔记02
+date: 2018-3-16 20:41:04
 tags:
 - C
-categories: Data Structures
+categories: Data Structures and Algorithms
 ---
 
 
@@ -350,13 +350,15 @@ For each case, output the resulting ordered linked list. Each node occupies a li
 
 Sample Input:
 ```bash
-00100 6 4
+00100 8 4
 00000 4 99999
 00100 1 12309
-68237 6 -1
+68237 6 77777
 33218 3 00000
+77777 7 88888
 99999 5 68237
 12309 2 33218
+88888 8 -1
 ```
 Sample Output:
 ```bash
@@ -371,6 +373,111 @@ Sample Output:
 - 实现：
 
 ```java
+package cn.wycode;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Objects;
+import java.util.Stack;
+
+public class Main {
+    public static void main(String args[]) {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        //读第一行
+        String[] line1Array = getStringArray(reader);
+        String firstAddress = line1Array[0];
+        int count = Integer.parseInt(line1Array[1]);
+        int k = Integer.parseInt(line1Array[2]);
+
+        //读取所有节点
+        ArrayList<Node> nodes = new ArrayList<>(count);
+        for (int i = 0; i < count; i++) {
+            String[] lineArray = getStringArray(reader);
+            Node node = new Node();
+            node.address = lineArray[0];
+            node.data = Integer.parseInt(lineArray[1]);
+            node.nextAddress = lineArray[2];
+            nodes.add(node);
+        }
+
+
+        //按链表顺序加入队列
+        LinkedList<Node> queue = new LinkedList<>();
+        String address = firstAddress;
+        while (!address.equals("-1")) {
+            for (int i = 0; i < nodes.size(); i++) { //循环匹配地址
+                Node n = nodes.get(i);
+                if (Objects.equals(address, n.address)) { //找到则加入队列
+                    queue.add(n);
+                    address = n.nextAddress; //查找地址赋值为当前节点的下一个地址
+                    nodes.remove(n); //处理完的移出节点数组，减少循环量
+                    break;
+                }
+            }
+        }
+
+        Stack<Node> stack = new Stack<>();
+        boolean isCanConvert = queue.size() >= k; //是否够反转
+        while (!queue.isEmpty()) { //循环出队列
+            Node n = queue.remove();
+            if (isCanConvert) { //够反转则压入堆栈
+                stack.push(n);
+                if (stack.size() == k) { //压够反转数量就全部输出
+                    isCanConvert = queue.size() >= k; //再次检查是否够反转
+                    while (!stack.isEmpty()) {
+                        //重新赋值next
+                        Node nStack = stack.pop();
+                        if (stack.isEmpty()) { //如果栈里没了，地址就等于队列的下一个
+                            if (queue.isEmpty()) { //队列也没了，地址等于-1
+                                nStack.nextAddress = "-1";
+                            } else {
+                                //如果剩下的还能反转
+                                if (isCanConvert) {
+                                    nStack.nextAddress = queue.get(k - 1).address;
+                                } else {
+                                    nStack.nextAddress = queue.peek().address;
+                                }
+                            }
+                        } else {
+                            nStack.nextAddress = stack.peek().address;
+                        }
+                        print(nStack);
+                    }
+                }
+            } else { //不够反转 直接输出节点
+                print(n);
+            }
+        }
+
+    }
+
+
+    private static void print(Node n) {
+        System.out.println(n.address + " " + n.data + " " + n.nextAddress);
+    }
+
+    private static String[] getStringArray(BufferedReader reader) {
+        String line1 = null;
+        try {
+            line1 = reader.readLine();
+        } catch (Exception ignore) {
+        }
+        return line1.split(" ");
+    }
+
+    static class Node {
+        String address;
+        int data;
+        String nextAddress;
+    }
+}
 
 ```
+
+
+- 总结：
+
+1. 利用队列和栈解决顺序问题
 

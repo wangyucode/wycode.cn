@@ -1,6 +1,6 @@
 ---
 title: OpenCV入门
-date: 2018年3月8日 13:14:57
+date: 2018-3-8 20:41:04
 tags:
 - OpenCV
 categories: AI

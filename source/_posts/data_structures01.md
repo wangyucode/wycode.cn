@@ -1,9 +1,9 @@
 ---
-title:  浙大数据结构学习笔记01
-date: 2018年3月14日 13:14:57
+title:  数据结构与算法学习笔记01
+date: 2018-3-14 20:41:04
 tags:
 - C
-categories: Data Structures
+categories: Data Structures and Algorithms
 ---
 
 
