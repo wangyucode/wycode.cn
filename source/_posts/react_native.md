@@ -8,6 +8,7 @@ tags:
 categories: Front-end
 ---
 
+![React](/blog/images/20180213_react.png)
 
 > Facebook的React Native是比基于WebView更先进的跨平台解决方案。实现了只编写一次JavaScript代码即可同时生成Android及iOS应用，并且同时拥有原生控件的性能。此篇文章我将从React Native Android端源码中探究它到底是如何做到的。以及实现的思路，架构的设计等。
 
@@ -176,410 +177,31 @@ public class ReactInstanceManager {
 
   ···
 
-  /**
-   * Use this method when the activity resumes to enable invoking the back button directly from JS.
-   *
-   * This method retains an instance to provided mDefaultBackButtonImpl. Thus it's important to pass
-   * from the activity instance that owns this particular instance of {@link
-   * ReactInstanceManager}, so that once this instance receive {@link #onHostDestroy} event it
-   * will clear the reference to that defaultBackButtonImpl.
-   *
-   * @param defaultBackButtonImpl a {@link DefaultHardwareBackBtnHandler} from an Activity that owns
-   * this instance of {@link ReactInstanceManager}.
-   */
-  @ThreadConfined(UI)
-  public void onHostResume(Activity activity, DefaultHardwareBackBtnHandler defaultBackButtonImpl) {
-    UiThreadUtil.assertOnUiThread();
-
-    mDefaultBackButtonImpl = defaultBackButtonImpl;
-    mCurrentActivity = activity;
-
-    if (mUseDeveloperSupport) {
-      // Resume can be called from one of two different states:
-      // a) when activity was paused
-      // b) when activity has just been created
-      // In case of (a) the activity is attached to window and it is ok to add new views to it or
-      // open dialogs. In case of (b) there is often a slight delay before such a thing happens.
-      // As dev support manager can add views or open dialogs immediately after it gets enabled
-      // (e.g. in the case when JS bundle is being fetched in background) we only want to enable
-      // it once we know for sure the current activity is attached.
-
-      // We check if activity is attached to window by checking if decor view is attached
-      final View decorView = mCurrentActivity.getWindow().getDecorView();
-      if (!ViewCompat.isAttachedToWindow(decorView)) {
-        decorView.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
-          @Override
-          public void onViewAttachedToWindow(View v) {
-            // we can drop listener now that we know the view is attached
-            decorView.removeOnAttachStateChangeListener(this);
-            mDevSupportManager.setDevSupportEnabled(true);
-          }
-
-          @Override
-          public void onViewDetachedFromWindow(View v) {
-            // do nothing
-          }
-        });
-      } else {
-        // activity is attached to window, we can enable dev support immediately
-        mDevSupportManager.setDevSupportEnabled(true);
-      }
-    }
-
-    moveToResumedLifecycleState(false);
-  }
-
-  /**
-   * Call this from {@link Activity#onDestroy()}. This notifies any listening modules so they can do
-   * any necessary cleanup.
-   *
-   * @deprecated use {@link #onHostDestroy(Activity)} instead
-   */
-  @ThreadConfined(UI)
-  public void onHostDestroy() {
-    UiThreadUtil.assertOnUiThread();
-
-    if (mUseDeveloperSupport) {
-      mDevSupportManager.setDevSupportEnabled(false);
-    }
-
-    moveToBeforeCreateLifecycleState();
-    mCurrentActivity = null;
-  }
-
-  /**
-   * Call this from {@link Activity#onDestroy()}. This notifies any listening modules so they can do
-   * any necessary cleanup. If the activity being destroyed is not the current activity, no modules
-   * are notified.
-   *
-   * @param activity the activity being destroyed
-   */
-  @ThreadConfined(UI)
-  public void onHostDestroy(Activity activity) {
-    if (activity == mCurrentActivity) {
-      onHostDestroy();
-    }
-  }
-
-  /**
-   * Destroy this React instance and the attached JS context.
-   */
-  @ThreadConfined(UI)
-  public void destroy() {
-    UiThreadUtil.assertOnUiThread();
-    PrinterHolder.getPrinter().logMessage(ReactDebugOverlayTags.RN_CORE, "RNCore: Destroy");
-
-    mHasStartedDestroying = true;
-
-    if (mUseDeveloperSupport) {
-      mDevSupportManager.setDevSupportEnabled(false);
-      mDevSupportManager.stopInspector();
-    }
-
-    moveToBeforeCreateLifecycleState();
-
-    if (mCreateReactContextThread != null) {
-      mCreateReactContextThread = null;
-    }
-
-    mMemoryPressureRouter.destroy(mApplicationContext);
-
-    synchronized (mReactContextLock) {
-      if (mCurrentReactContext != null) {
-        mCurrentReactContext.destroy();
-        mCurrentReactContext = null;
-      }
-    }
-    mHasStartedCreatingInitialContext = false;
-    mCurrentActivity = null;
-
-    ResourceDrawableIdHelper.getInstance().clear();
-    mHasStartedDestroying = false;
-    synchronized (mHasStartedDestroying) {
-      mHasStartedDestroying.notifyAll();
-    }
-  }
-
-  private synchronized void moveToResumedLifecycleState(boolean force) {
-    ReactContext currentContext = getCurrentReactContext();
-    if (currentContext != null) {
-      // we currently don't have an onCreate callback so we call onResume for both transitions
-      if (force ||
-          mLifecycleState == LifecycleState.BEFORE_RESUME ||
-          mLifecycleState == LifecycleState.BEFORE_CREATE) {
-        currentContext.onHostResume(mCurrentActivity);
-      }
-    }
-    mLifecycleState = LifecycleState.RESUMED;
-  }
-
-  private synchronized void moveToBeforeResumeLifecycleState() {
-    ReactContext currentContext = getCurrentReactContext();
-    if (currentContext != null) {
-      if (mLifecycleState == LifecycleState.BEFORE_CREATE) {
-        currentContext.onHostResume(mCurrentActivity);
-        currentContext.onHostPause();
-      } else if (mLifecycleState == LifecycleState.RESUMED) {
-        currentContext.onHostPause();
-      }
-    }
-    mLifecycleState = LifecycleState.BEFORE_RESUME;
-  }
-
-  private synchronized void moveToBeforeCreateLifecycleState() {
-    ReactContext currentContext = getCurrentReactContext();
-    if (currentContext != null) {
-      if (mLifecycleState == LifecycleState.RESUMED) {
-        currentContext.onHostPause();
-        mLifecycleState = LifecycleState.BEFORE_RESUME;
-      }
-      if (mLifecycleState == LifecycleState.BEFORE_RESUME) {
-        currentContext.onHostDestroy();
-      }
-    }
-    mLifecycleState = LifecycleState.BEFORE_CREATE;
-  }
-
-  private synchronized void moveReactContextToCurrentLifecycleState() {
-    if (mLifecycleState == LifecycleState.RESUMED) {
-      moveToResumedLifecycleState(true);
-    }
-  }
-
-  @ThreadConfined(UI)
-  public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
-    ReactContext currentContext = getCurrentReactContext();
-    if (currentContext != null) {
-      currentContext.onActivityResult(activity, requestCode, resultCode, data);
-    }
-  }
-
-  @ThreadConfined(UI)
-  public void showDevOptionsDialog() {
-    UiThreadUtil.assertOnUiThread();
-    mDevSupportManager.showDevOptionsDialog();
-  }
-
-  /**
-   * Attach given {@param rootView} to a catalyst instance manager and start JS application using
-   * JS module provided by {@link ReactRootView#getJSModuleName}. If the react context is currently
-   * being (re)-created, or if react context has not been created yet, the JS application associated
-   * with the provided root view will be started asynchronously, i.e this method won't block.
-   * This view will then be tracked by this manager and in case of catalyst instance restart it will
-   * be re-attached.
-   */
-  @ThreadConfined(UI)
-  public void attachRootView(ReactRootView rootView) {
-    UiThreadUtil.assertOnUiThread();
-    mAttachedRootViews.add(rootView);
-
-    // Reset view content as it's going to be populated by the application content from JS.
-    rootView.removeAllViews();
-    rootView.setId(View.NO_ID);
-
-    // If react context is being created in the background, JS application will be started
-    // automatically when creation completes, as root view is part of the attached root view list.
-    ReactContext currentContext = getCurrentReactContext();
-    if (mCreateReactContextThread == null && currentContext != null) {
-      attachRootViewToInstance(rootView, currentContext.getCatalystInstance());
-    }
-  }
-
-  /**
-   * Detach given {@param rootView} from current catalyst instance. It's safe to call this method
-   * multiple times on the same {@param rootView} - in that case view will be detached with the
-   * first call.
-   */
-  @ThreadConfined(UI)
-  public void detachRootView(ReactRootView rootView) {
-    UiThreadUtil.assertOnUiThread();
-    if (mAttachedRootViews.remove(rootView)) {
-      ReactContext currentContext = getCurrentReactContext();
-      if (currentContext != null && currentContext.hasActiveCatalystInstance()) {
-        detachViewFromInstance(rootView, currentContext.getCatalystInstance());
-      }
-    }
-  }
-
-  /**
-   * Uses configured {@link ReactPackage} instances to create all view managers.
-   */
-  public List<ViewManager> createAllViewManagers(
-      ReactApplicationContext catalystApplicationContext) {
-    ReactMarker.logMarker(CREATE_VIEW_MANAGERS_START);
-    Systrace.beginSection(TRACE_TAG_REACT_JAVA_BRIDGE, "createAllViewManagers");
-    try {
-      synchronized (mPackages) {
-        List<ViewManager> allViewManagers = new ArrayList<>();
-        for (ReactPackage reactPackage : mPackages) {
-          allViewManagers.addAll(reactPackage.createViewManagers(catalystApplicationContext));
-        }
-        return allViewManagers;
-      }
-    } finally {
-      Systrace.endSection(TRACE_TAG_REACT_JAVA_BRIDGE);
-      ReactMarker.logMarker(CREATE_VIEW_MANAGERS_END);
-    }
-  }
-
-  public @Nullable ViewManager createViewManager(String viewManagerName) {
-    ReactApplicationContext context;
-    synchronized (mReactContextLock) {
-      context = (ReactApplicationContext) getCurrentReactContext();
-      if (context == null || !context.hasActiveCatalystInstance()) {
-        return null;
-      }
-    }
-
-    synchronized (mPackages) {
-      for (ReactPackage reactPackage : mPackages) {
-        if (reactPackage instanceof ViewManagerOnDemandReactPackage) {
-          ViewManager viewManager =
-              ((ViewManagerOnDemandReactPackage) reactPackage)
-                  .createViewManager(context, viewManagerName, !mDelayViewManagerClassLoadsEnabled);
-          if (viewManager != null) {
-            return viewManager;
-          }
-        }
-      }
-    }
-    return null;
-  }
-
-  public @Nullable List<String> getViewManagerNames() {
-    ReactApplicationContext context;
-    synchronized(mReactContextLock) {
-      context = (ReactApplicationContext) getCurrentReactContext();
-      if (context == null || !context.hasActiveCatalystInstance()) {
-        return null;
-      }
-    }
-
-    synchronized (mPackages) {
-      Set<String> uniqueNames = new HashSet<>();
-      for (ReactPackage reactPackage : mPackages) {
-        if (reactPackage instanceof ViewManagerOnDemandReactPackage) {
-          List<String> names =
-              ((ViewManagerOnDemandReactPackage) reactPackage)
-                  .getViewManagerNames(context, !mDelayViewManagerClassLoadsEnabled);
-          if (names != null) {
-            uniqueNames.addAll(names);
-          }
-        }
-      }
-      return new ArrayList<>(uniqueNames);
-    }
-  }
-
-  /**
-   * Add a listener to be notified of react instance events.
-   */
-  public void addReactInstanceEventListener(ReactInstanceEventListener listener) {
-    mReactInstanceEventListeners.add(listener);
-  }
-
-  /**
-   * Remove a listener previously added with {@link #addReactInstanceEventListener}.
-   */
-  public void removeReactInstanceEventListener(ReactInstanceEventListener listener) {
-    mReactInstanceEventListeners.remove(listener);
-  }
-
-  @VisibleForTesting
-  public @Nullable ReactContext getCurrentReactContext() {
-    synchronized (mReactContextLock) {
-      return mCurrentReactContext;
-    }
-  }
-
-  public LifecycleState getLifecycleState() {
-    return mLifecycleState;
-  }
-
-  @ThreadConfined(UI)
-  private void onReloadWithJSDebugger(JavaJSExecutor.Factory jsExecutorFactory) {
-    Log.d(ReactConstants.TAG, "ReactInstanceManager.onReloadWithJSDebugger()");
-    recreateReactContextInBackground(
-        new ProxyJavaScriptExecutor.Factory(jsExecutorFactory),
-        JSBundleLoader.createRemoteDebuggerBundleLoader(
-            mDevSupportManager.getJSBundleURLForRemoteDebugging(),
-            mDevSupportManager.getSourceUrl()));
-  }
-
-  @ThreadConfined(UI)
-  private void onJSBundleLoadedFromServer() {
-    Log.d(ReactConstants.TAG, "ReactInstanceManager.onJSBundleLoadedFromServer()");
-    recreateReactContextInBackground(
-        mJavaScriptExecutorFactory,
-        JSBundleLoader.createCachedBundleFromNetworkLoader(
-            mDevSupportManager.getSourceUrl(), mDevSupportManager.getDownloadedJSBundleFile()));
-  }
-
   @ThreadConfined(UI)
   private void recreateReactContextInBackground(
     JavaScriptExecutorFactory jsExecutorFactory,
     JSBundleLoader jsBundleLoader) {
-    Log.d(ReactConstants.TAG, "ReactInstanceManager.recreateReactContextInBackground()");
-    UiThreadUtil.assertOnUiThread();
-
-    final ReactContextInitParams initParams = new ReactContextInitParams(
-      jsExecutorFactory,
-      jsBundleLoader);
-    if (mCreateReactContextThread == null) {
+    ···
       runCreateReactContextOnNewThread(initParams);
-    } else {
-      mPendingReactContextInitParams = initParams;
-    }
+    ···
   }
 
   @ThreadConfined(UI)
   private void runCreateReactContextOnNewThread(final ReactContextInitParams initParams) {
-    Log.d(ReactConstants.TAG, "ReactInstanceManager.runCreateReactContextOnNewThread()");
-    UiThreadUtil.assertOnUiThread();
-    synchronized (mReactContextLock) {
-      if (mCurrentReactContext != null) {
-        tearDownReactContext(mCurrentReactContext);
-        mCurrentReactContext = null;
-      }
-    }
-
+    ···
     mCreateReactContextThread =
         new Thread(
             new Runnable() {
               @Override
               public void run() {
-                ReactMarker.logMarker(REACT_CONTEXT_THREAD_END);
-                synchronized (ReactInstanceManager.this.mHasStartedDestroying) {
-                  while (ReactInstanceManager.this.mHasStartedDestroying) {
-                    try {
-                      ReactInstanceManager.this.mHasStartedDestroying.wait();
-                    } catch (InterruptedException e) {
-                      continue;
-                    }
-                  }
-                }
-                // As destroy() may have run and set this to false, ensure that it is true before we create
-                mHasStartedCreatingInitialContext = true;
-
-                try {
-                  Process.setThreadPriority(Process.THREAD_PRIORITY_DISPLAY);
+                ···
+                
                   final ReactApplicationContext reactApplicationContext =
                       createReactContext(
                           initParams.getJsExecutorFactory().create(),
                           initParams.getJsBundleLoader());
 
-                  mCreateReactContextThread = null;
-                  ReactMarker.logMarker(PRE_SETUP_REACT_CONTEXT_START);
-                  final Runnable maybeRecreateReactContextRunnable =
-                      new Runnable() {
-                        @Override
-                        public void run() {
-                          if (mPendingReactContextInitParams != null) {
-                            runCreateReactContextOnNewThread(mPendingReactContextInitParams);
-                            mPendingReactContextInitParams = null;
-                          }
-                        }
-                      };
+                 ···
                   Runnable setupReactContextRunnable =
                       new Runnable() {
                         @Override
@@ -593,125 +215,14 @@ public class ReactInstanceManager {
                       };
 
                   reactApplicationContext.runOnNativeModulesQueueThread(setupReactContextRunnable);
-                  UiThreadUtil.runOnUiThread(maybeRecreateReactContextRunnable);
-                } catch (Exception e) {
-                  mDevSupportManager.handleException(e);
-                }
+                 ···
               }
             });
-    ReactMarker.logMarker(REACT_CONTEXT_THREAD_START);
+    ···
     mCreateReactContextThread.start();
   }
 
-  private void setupReactContext(final ReactApplicationContext reactContext) {
-    Log.d(ReactConstants.TAG, "ReactInstanceManager.setupReactContext()");
-    ReactMarker.logMarker(PRE_SETUP_REACT_CONTEXT_END);
-    ReactMarker.logMarker(SETUP_REACT_CONTEXT_START);
-    Systrace.beginSection(TRACE_TAG_REACT_JAVA_BRIDGE, "setupReactContext");
-    synchronized (mReactContextLock) {
-      mCurrentReactContext = Assertions.assertNotNull(reactContext);
-    }
-    CatalystInstance catalystInstance =
-      Assertions.assertNotNull(reactContext.getCatalystInstance());
-
-    catalystInstance.initialize();
-    mDevSupportManager.onNewReactContextCreated(reactContext);
-    mMemoryPressureRouter.addMemoryPressureListener(catalystInstance);
-    moveReactContextToCurrentLifecycleState();
-
-    ReactMarker.logMarker(ATTACH_MEASURED_ROOT_VIEWS_START);
-    synchronized (mAttachedRootViews) {
-      for (ReactRootView rootView : mAttachedRootViews) {
-        attachRootViewToInstance(rootView, catalystInstance);
-      }
-    }
-    ReactMarker.logMarker(ATTACH_MEASURED_ROOT_VIEWS_END);
-
-    ReactInstanceEventListener[] listeners =
-      new ReactInstanceEventListener[mReactInstanceEventListeners.size()];
-    final ReactInstanceEventListener[] finalListeners =
-        mReactInstanceEventListeners.toArray(listeners);
-
-    UiThreadUtil.runOnUiThread(
-        new Runnable() {
-          @Override
-          public void run() {
-            for (ReactInstanceEventListener listener : finalListeners) {
-              listener.onReactContextInitialized(reactContext);
-            }
-          }
-        });
-    Systrace.endSection(TRACE_TAG_REACT_JAVA_BRIDGE);
-    ReactMarker.logMarker(SETUP_REACT_CONTEXT_END);
-    reactContext.runOnJSQueueThread(
-        new Runnable() {
-          @Override
-          public void run() {
-            Process.setThreadPriority(Process.THREAD_PRIORITY_DEFAULT);
-          }
-        });
-    reactContext.runOnNativeModulesQueueThread(
-        new Runnable() {
-          @Override
-          public void run() {
-            Process.setThreadPriority(Process.THREAD_PRIORITY_DEFAULT);
-          }
-        });
-  }
-
-  private void attachRootViewToInstance(
-      final ReactRootView rootView,
-      CatalystInstance catalystInstance) {
-    Log.d(ReactConstants.TAG, "ReactInstanceManager.attachRootViewToInstance()");
-    Systrace.beginSection(TRACE_TAG_REACT_JAVA_BRIDGE, "attachRootViewToInstance");
-    UIManagerModule uiManagerModule = catalystInstance.getNativeModule(UIManagerModule.class);
-    final int rootTag = uiManagerModule.addRootView(rootView);
-    rootView.setRootViewTag(rootTag);
-    rootView.invokeJSEntryPoint();
-    Systrace.beginAsyncSection(
-      TRACE_TAG_REACT_JAVA_BRIDGE,
-      "pre_rootView.onAttachedToReactInstance",
-      rootTag);
-    UiThreadUtil.runOnUiThread(new Runnable() {
-      @Override
-      public void run() {
-        Systrace.endAsyncSection(
-          TRACE_TAG_REACT_JAVA_BRIDGE,
-          "pre_rootView.onAttachedToReactInstance",
-          rootTag);
-        rootView.onAttachedToReactInstance();
-      }
-    });
-    Systrace.endSection(TRACE_TAG_REACT_JAVA_BRIDGE);
-  }
-
-  private void detachViewFromInstance(
-      ReactRootView rootView,
-      CatalystInstance catalystInstance) {
-    Log.d(ReactConstants.TAG, "ReactInstanceManager.detachViewFromInstance()");
-    UiThreadUtil.assertOnUiThread();
-    catalystInstance.getJSModule(AppRegistry.class)
-        .unmountApplicationComponentAtRootTag(rootView.getId());
-  }
-
-  private void tearDownReactContext(ReactContext reactContext) {
-    Log.d(ReactConstants.TAG, "ReactInstanceManager.tearDownReactContext()");
-    UiThreadUtil.assertOnUiThread();
-    if (mLifecycleState == LifecycleState.RESUMED) {
-      reactContext.onHostPause();
-    }
-
-    synchronized (mAttachedRootViews) {
-      for (ReactRootView rootView : mAttachedRootViews) {
-        rootView.removeAllViews();
-        rootView.setId(View.NO_ID);
-      }
-    }
-
-    reactContext.destroy();
-    mDevSupportManager.onReactInstanceDestroyed(reactContext);
-    mMemoryPressureRouter.removeMemoryPressureListener(reactContext.getCatalystInstance());
-  }
+  ···
 
   /**
    * @return instance of {@link ReactContext} configured a {@link CatalystInstance} set
@@ -719,19 +230,10 @@ public class ReactInstanceManager {
   private ReactApplicationContext createReactContext(
       JavaScriptExecutor jsExecutor,
       JSBundleLoader jsBundleLoader) {
-    Log.d(ReactConstants.TAG, "ReactInstanceManager.createReactContext()");
-    ReactMarker.logMarker(CREATE_REACT_CONTEXT_START);
+    ···
     final ReactApplicationContext reactContext = new ReactApplicationContext(mApplicationContext);
 
-    if (mUseDeveloperSupport) {
-      reactContext.setNativeModuleCallExceptionHandler(mDevSupportManager);
-    }
-
-    NativeModuleRegistry nativeModuleRegistry = processPackages(reactContext, mPackages, false);
-
-    NativeModuleCallExceptionHandler exceptionHandler = mNativeModuleCallExceptionHandler != null
-      ? mNativeModuleCallExceptionHandler
-      : mDevSupportManager;
+    ···
     CatalystInstanceImpl.Builder catalystInstanceBuilder = new CatalystInstanceImpl.Builder()
       .setReactQueueConfigurationSpec(ReactQueueConfigurationSpec.createDefault())
       .setJSExecutor(jsExecutor)
@@ -739,89 +241,182 @@ public class ReactInstanceManager {
       .setJSBundleLoader(jsBundleLoader)
       .setNativeModuleCallExceptionHandler(exceptionHandler);
 
-    ReactMarker.logMarker(CREATE_CATALYST_INSTANCE_START);
-    // CREATE_CATALYST_INSTANCE_END is in JSCExecutor.cpp
-    Systrace.beginSection(TRACE_TAG_REACT_JAVA_BRIDGE, "createCatalystInstance");
-    final CatalystInstance catalystInstance;
-    try {
+    ···
       catalystInstance = catalystInstanceBuilder.build();
-    } finally {
-      Systrace.endSection(TRACE_TAG_REACT_JAVA_BRIDGE);
-      ReactMarker.logMarker(CREATE_CATALYST_INSTANCE_END);
-    }
-
-    if (mBridgeIdleDebugListener != null) {
-      catalystInstance.addBridgeIdleDebugListener(mBridgeIdleDebugListener);
-    }
-    if (Systrace.isTracing(TRACE_TAG_REACT_APPS | TRACE_TAG_REACT_JS_VM_CALLS)) {
-      catalystInstance.setGlobalVariable("__RCTProfileIsProfiling", "true");
-    }
-    ReactMarker.logMarker(ReactMarkerConstants.PRE_RUN_JS_BUNDLE_START);
+    
+    ···
     catalystInstance.runJSBundle();
     reactContext.initializeWithInstance(catalystInstance);
 
     return reactContext;
   }
 
-  private NativeModuleRegistry processPackages(
-    ReactApplicationContext reactContext,
-    List<ReactPackage> packages,
-    boolean checkAndUpdatePackageMembership) {
-    NativeModuleRegistryBuilder nativeModuleRegistryBuilder = new NativeModuleRegistryBuilder(
-      reactContext,
-      this,
-      mLazyNativeModulesEnabled);
-
-    ReactMarker.logMarker(PROCESS_PACKAGES_START);
-
-    // TODO(6818138): Solve use-case of native modules overriding
-    synchronized (mPackages) {
-      for (ReactPackage reactPackage : packages) {
-        if (checkAndUpdatePackageMembership && mPackages.contains(reactPackage)) {
-          continue;
-        }
-        Systrace.beginSection(TRACE_TAG_REACT_JAVA_BRIDGE, "createAndProcessCustomReactPackage");
-        try {
-          if (checkAndUpdatePackageMembership) {
-            mPackages.add(reactPackage);
-          }
-          processPackage(reactPackage, nativeModuleRegistryBuilder);
-        } finally {
-          Systrace.endSection(TRACE_TAG_REACT_JAVA_BRIDGE);
-        }
-      }
-    }
-    ReactMarker.logMarker(PROCESS_PACKAGES_END);
-
-    ReactMarker.logMarker(BUILD_NATIVE_MODULE_REGISTRY_START);
-    Systrace.beginSection(TRACE_TAG_REACT_JAVA_BRIDGE, "buildNativeModuleRegistry");
-    NativeModuleRegistry nativeModuleRegistry;
-    try {
-      nativeModuleRegistry = nativeModuleRegistryBuilder.build();
-    } finally {
-      Systrace.endSection(TRACE_TAG_REACT_JAVA_BRIDGE);
-      ReactMarker.logMarker(BUILD_NATIVE_MODULE_REGISTRY_END);
-    }
-
-    return nativeModuleRegistry;
-  }
-
-  private void processPackage(
-    ReactPackage reactPackage,
-    NativeModuleRegistryBuilder nativeModuleRegistryBuilder) {
-    SystraceMessage.beginSection(TRACE_TAG_REACT_JAVA_BRIDGE, "processPackage")
-      .arg("className", reactPackage.getClass().getSimpleName())
-      .flush();
-    if (reactPackage instanceof ReactPackageLogger) {
-      ((ReactPackageLogger) reactPackage).startProcessPackage();
-    }
-    nativeModuleRegistryBuilder.processPackage(reactPackage);
-
-    if (reactPackage instanceof ReactPackageLogger) {
-      ((ReactPackageLogger) reactPackage).endProcessPackage();
-    }
-    SystraceMessage.endSection(TRACE_TAG_REACT_JAVA_BRIDGE).flush();
-  }
+  ···
 }
 
 ```
+
+这个`ReactInstanceManager`有点长，通过一系列方法调用，最后通过`createReactContext()`方法创建了`ReactApplicationContext`的实例，并创建了`CatalystInstance`用于初始化`reactContext`。
+
+在初始化`reactContext`之前又调用了`catalystInstance.runJSBundle();`，猜想这里是调用JS代码的入口，这里的`CatalystInstance`是个接口，我们要查看`CatalystInstanceImpl`来看看具体实现。
+
+## 核心类CatalystInstanceImpl
+
+```java
+
+···
+
+/**
+ * This provides an implementation of the public CatalystInstance instance.  It is public because
+ * it is built by XReactInstanceManager which is in a different package.
+ */
+@DoNotStrip
+public class CatalystInstanceImpl implements CatalystInstance {
+  
+  ···
+
+  public static class PendingJSCall {
+
+    ···
+
+    void call(CatalystInstanceImpl catalystInstance) {
+      NativeArray arguments = mArguments != null ? mArguments : new WritableNativeArray();
+      catalystInstance.jniCallJSFunction(mModule, mMethod, arguments);
+    }
+
+    ···
+  }
+
+  ···
+
+  private native void jniSetSourceURL(String sourceURL);
+  private native void jniRegisterSegment(int segmentId, String path);
+  private native void jniLoadScriptFromAssets(AssetManager assetManager, String assetURL, boolean loadSynchronously);
+  private native void jniLoadScriptFromFile(String fileName, String sourceURL, boolean loadSynchronously);
+
+  @Override
+  public void runJSBundle() {
+    static {
+      ReactBridge.staticInit();
+    }
+    ···
+    mJSBundleLoader.loadScript(CatalystInstanceImpl.this);
+
+    synchronized (mJSCallsPendingInitLock) {
+
+      // Loading the bundle is queued on the JS thread, but may not have
+      // run yet.  It's safe to set this here, though, since any work it
+      // gates will be queued on the JS thread behind the load.
+      mAcceptCalls = true;
+
+      for (PendingJSCall function : mJSCallsPendingInit) {
+        function.call(this);
+      }
+      mJSCallsPendingInit.clear();
+      mJSBundleHasLoaded = true;
+    }
+
+    ···
+  }
+
+  private native void jniCallJSFunction(
+    String module,
+    String method,
+    NativeArray arguments);
+
+  ···
+}
+
+```
+
+这里通过`mJSBundleLoader.loadScript()`去加载js，然后把js函数构建为`PendingJSCall`放到一个列表里逐个执行，`PendingJSCall`的`call()`方法最终调用了C++层的`jniCallJSFunction()`函数。
+
+文件开头使用静态代码块`ReactBridge.staticInit()`装载了名为`reactnativejni`的so文件。
+
+至此java层源码就追完了，我们接着看c++层源码
+
+## C++层
+
+```c++
+···
+
+namespace facebook {
+namespace react {
+
+···
+
+void CatalystInstanceImpl::initializeBridge(
+    jni::alias_ref<ReactCallback::javaobject> callback,
+    // This executor is actually a factory holder.
+    JavaScriptExecutorHolder* jseh,
+    jni::alias_ref<JavaMessageQueueThread::javaobject> jsQueue,
+    jni::alias_ref<JavaMessageQueueThread::javaobject> nativeModulesQueue,
+    jni::alias_ref<jni::JCollection<JavaModuleWrapper::javaobject>::javaobject> javaModules,
+    jni::alias_ref<jni::JCollection<ModuleHolder::javaobject>::javaobject> cxxModules) {
+  // TODO mhorowitz: how to assert here?
+  // Assertions.assertCondition(mBridge == null, "initializeBridge should be called once");
+  moduleMessageQueue_ = std::make_shared<JMessageQueueThread>(nativeModulesQueue);
+
+  // This used to be:
+  //
+  // Java CatalystInstanceImpl -> C++ CatalystInstanceImpl -> Bridge -> Bridge::Callback
+  // --weak--> ReactCallback -> Java CatalystInstanceImpl
+  //
+  // Now the weak ref is a global ref.  So breaking the loop depends on
+  // CatalystInstanceImpl#destroy() calling mHybridData.resetNative(), which
+  // should cause all the C++ pointers to be cleaned up (except C++
+  // CatalystInstanceImpl might be kept alive for a short time by running
+  // callbacks). This also means that all native calls need to be pre-checked
+  // to avoid NPE.
+
+  // See the comment in callJSFunction.  Once js calls switch to strings, we
+  // don't need jsModuleDescriptions any more, all the way up and down the
+  // stack.
+
+  moduleRegistry_ = std::make_shared<ModuleRegistry>(
+    buildNativeModuleList(
+       std::weak_ptr<Instance>(instance_),
+       javaModules,
+       cxxModules,
+       moduleMessageQueue_));
+
+  instance_->initializeBridge(
+    folly::make_unique<JInstanceCallback>(
+    callback,
+    moduleMessageQueue_),
+    jseh->getExecutorFactory(),
+    folly::make_unique<JMessageQueueThread>(jsQueue),
+    moduleRegistry_);
+}
+
+···
+
+void CatalystInstanceImpl::jniCallJSFunction(std::string module, std::string method, NativeArray* arguments) {
+  // We want to share the C++ code, and on iOS, modules pass module/method
+  // names as strings all the way through to JS, and there's no way to do
+  // string -> id mapping on the objc side.  So on Android, we convert the
+  // number to a string, here which gets passed as-is to JS.  There, they they
+  // used as ids if isFinite(), which handles this case, and looked up as
+  // strings otherwise.  Eventually, we'll probably want to modify the stack
+  // from the JS proxy through here to use strings, too.
+  instance_->callJSFunction(std::move(module),
+                            std::move(method),
+                            arguments->consume());
+}
+
+···
+
+}}
+
+```
+
+在这个`CatalystInstanceImpl.cpp`中可以发现c++对于js的调用。以及非常棒的两段注释。
+
+React Navtive 通过C++层去解释执行JS，从而达到一个比较好的性能。
+
+
+## 总结
+
+通过此文算是搞明白了，Android系统是怎么样去执行JavaScript代码的。
+但React Native又是如何将JS中的组件渲染成Android原生组件的仍然是个疑问。
+以后再研究吧...
