@@ -496,3 +496,109 @@ NO
 YES
 NO
 ```
+
+- 实现
+```java
+public class Main {
+    public static void main(String args[]) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        int sum;
+        sum = Integer.parseInt(reader.readLine());
+
+        String[] inputs = new String[sum*2];
+
+        for (int i = 0; i < inputs.length; i++) {
+            inputs[i] = reader.readLine();
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        //Build Tree
+        Node root = buildTree(inputs);
+        //后序遍历打印
+        traversalsTree(root,sb);
+        
+
+        if (sb.length() > 0) {
+            sb.deleteCharAt(sb.length() - 1);
+        }
+        System.out.println(sb.toString());
+    }
+
+
+    private static Node buildTree(String[] inputs) {
+        Node root =null;
+
+        Stack<Node> nodes = new Stack<>();
+        final String PUSH = "Push";
+        final String POP = "Pop";
+        Node lastPush = null;
+        Node lastPop = null;
+        String lastOperation = null;
+        int level = 0;
+        for (String input : inputs) {
+            String[] lineArg = input.split(" ");
+            if (Objects.equals(lineArg[0], PUSH)) {
+                Node node = new Node();
+                node.data = Integer.parseInt(lineArg[1]);
+                node.level = level;
+                nodes.push(node);
+                if (lastOperation == null) {
+                    root = node;
+                } else if (Objects.equals(lastOperation, PUSH)) {
+                    lastPush.left = node;
+                } else if (Objects.equals(lastOperation, POP)) {
+                    lastPop.right = node;
+                }
+                lastPush = node;
+                lastOperation = PUSH;
+                level++;
+            } else {
+                lastPop = nodes.pop();
+                lastOperation = POP;
+                level--;
+            }
+        }
+        return root;
+    }
+
+    private static void traversalsTree(Node root, StringBuilder sb) {
+            if(root!=null) {
+                traversalsTree(root.left, sb);
+                traversalsTree(root.right, sb);
+                sb.append(root.data);
+                sb.append(' ');
+            }
+    }
+
+    static class Node {
+        int data = -1;
+        Node left;
+        Node right;
+        int level = 0;
+
+        @Override
+        public String toString() {
+            return "Node{" +
+                    "data=" + data +
+                    ", left=" + (left==null?"null":left.data) +
+                    ", right=" + (right==null?"null":right.data)+
+                    ", level=" + level +
+                    '}';
+        }
+    }
+}
+
+```
+
+- 总结：
+
+1. 通过先构建出原始树再后序遍历的方法解决了问题。
+2. 优化方向：将后序遍历的递归方式改为非递归方式。
+3. 此题应该可以在构建树时直接输出正确答案。
+
+- 非递归算法核心：
+
+首先要搞清楚先序、中序、后序的非递归算法共同之处：用栈来保存先前走过的路径，以便可以在访问完子树后,可以利用栈中的信息,回退到当前节点的双亲节点,进行下一步操作。
+后序遍历的非递归算法是三种顺序中最复杂的，原因在于，后序遍历是先访问左、右子树,再访问根节点，而在非递归算法中，利用栈回退到时，并不知道是从左子树回退到根节点，还是从右子树回退到根节点，如果从左子树回退到根节点，此时就应该去访问右子树，而如果从右子树回退到根节点，此时就应该访问根节点。所以相比前序和后序，必须得在压栈时添加信息，以便在退栈时可以知道是从左子树返回，还是从右子树返回进而决定下一步的操作。
