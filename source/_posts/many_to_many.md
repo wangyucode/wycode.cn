@@ -71,7 +71,7 @@ public class Teacher {
 public class Student {
     @Id
     private String id;
-    @ManyToMany(mappedBy = "students",targetEntity = Teacher.class)
+    @ManyToMany(mappedBy = "students")
     private List<Teacher> teachers;
 }
 
