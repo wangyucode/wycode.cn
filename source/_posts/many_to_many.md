@@ -91,7 +91,7 @@ public class Teacher {
 实际业务中，我们通常会遇到以下情况：
 
 1. 用户和用户的收货地址是一对多关系，当用户被删除时，这个用户的所有收货地址也应该一并删除。
-2. 当订单和订单中的商品也是一对多关系，但订单被删除时，订单所关联的商品肯定不能被删除。
+2. 订单和订单中的商品也是一对多关系，但订单被删除时，订单所关联的商品肯定不能被删除。
 
 此时只要配置正确的级联关系，就能达到想要的效果。
 
@@ -101,6 +101,7 @@ public class Teacher {
 - CascadeType.REMOVE：级联删除，当调用remove()方法删除Order实体时会先级联删除OrderItem的相关数据
 - CascadeType.MERGE：级联更新，当调用了Merge()方法，如果Order中的数据改变了会相应的更新OrderItem中的数据
 - CascadeType.ALL：包含以上所有级联属性
+- CascadeType.PERSIST：级联保存，当调用了Persist() 方法，会级联保存相应的数据
 
 需要注意的是，`CascadeType.ALL`要谨慎使用，为了达到数据同步，很多人喜欢用`CascadeType.ALL`来实现。但上面订单和商品的例子就不适用。
 
