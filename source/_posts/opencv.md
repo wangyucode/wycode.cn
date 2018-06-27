@@ -6,7 +6,7 @@ tags:
 categories: AI
 ---
 
-![OpenCV](/blog/images/20180308_OpenCV.png)
+![OpenCV](/images/20180308_OpenCV.png)
 
 > OpenCV是一个开源的计算机视觉库，广泛应用于各种图像处理，人脸识别，图像分析，自动驾驶等领域。目前最新版是3.4.1，本文基于最新版编写。
 
@@ -61,4 +61,4 @@ controller.setImage(img);
 运行结果如图：
 
 
-![OpenCV](/blog/images/20180309_opencv_test.png)
+![OpenCV](/images/20180309_opencv_test.png)

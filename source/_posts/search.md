@@ -16,7 +16,7 @@ categories: Front-end
 `hexo-generator-search`实际上是根据网页内容生成了一个数据文件，格式是`XML`或者`JSON`。然后通过JS代码去匹配这个文件的内容，从而达到搜索的目的。
 
 ## 最终效果
-![最终效果](/blog/images/20170616_search_01.png "最终效果")
+![最终效果](/images/20170616_search_01.png "最终效果")
 <!--more-->
 ## 步骤
 

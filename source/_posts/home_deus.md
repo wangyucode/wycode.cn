@@ -5,7 +5,7 @@ tags:
 categories: Story
 ---
 
-![未来简史](/blog/images/20180129_homo_deus.jpg)
+![未来简史](/images/20180129_homo_deus.jpg)
 
 ## 1%的精英和99%的无用的人
 

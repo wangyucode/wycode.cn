@@ -28,9 +28,9 @@ struct TNode{ /* 树结点定义 */
 
 给定两棵树T1和T2。如果T1可以通过若干次左右孩子互换就变成T2，则我们称两棵树是“同构”的。例如图1给出的两棵树就是同构的，因为我们把其中一棵树的结点A、B、G的左右孩子互换后，就得到另外一棵树。而图2就不是同构的。
 图1：
-![图1](/blog/images/20180326_data_structures03_1.png)
+![图1](/images/20180326_data_structures03_1.png)
 图2：
-![图2](/blog/images/20180326_data_structures03_2.png)
+![图2](/images/20180326_data_structures03_2.png)
 现给定两棵树，请你判断它们是否是同构的。
 
 - 输入格式:
@@ -322,7 +322,7 @@ An inorder binary tree traversal can be implemented in a non-recursive way with 
 
 - Figure 1
 
-![Figure 1](/blog/images/20180327_data_structures03_3.png)
+![Figure 1](/images/20180327_data_structures03_3.png)
 
 - Input Specification:
 

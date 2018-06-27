@@ -10,7 +10,7 @@ categories: 3D
 
 > Blender 是一款开源的跨平台全能三维动画制作软件，永久免费。
 
-![Blender](/blog/images/20170717_blender_logo.png)
+![Blender](/images/20170717_blender_logo.png)
 在这篇文章中你将学到Blender 3D建模入门。
 
 Blender官方中文手册：[https://docs.blender.org/manual/zh.cn/dev/](https://docs.blender.org/manual/zh.cn/dev/)
@@ -18,7 +18,7 @@ Blender官方中文手册：[https://docs.blender.org/manual/zh.cn/dev/](https:/
 <!--more-->
 
 ## 用户界面
-![用户界面](/blog/images/20170718_blender_interface.jpg)
+![用户界面](/images/20170718_blender_interface.jpg)
 - `T`打开、关闭工具栏（左侧）
 - `N`打开、关闭属性栏（右侧）
 - `Shift`+`Space`最大化当前窗口

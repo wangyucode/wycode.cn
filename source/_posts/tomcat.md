@@ -11,7 +11,7 @@ categories: Back-end
 
 > 今天又一次遇到了中文乱码问题。SwaggerUI上直接测试接口时本地LocalHost是OK的，部署到Linux服务器上就乱码了，查来查去很多文章都没说到点子上。既然是用了Spring，Tomcat等，肯定是哪里配置不对，改代码的方式解决是太low了。
 
-![Tomcat](/blog/images/20180411_tomcat.png)
+![Tomcat](/images/20180411_tomcat.png)
 
 <!--more-->
 

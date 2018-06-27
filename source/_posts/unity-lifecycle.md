@@ -11,4 +11,4 @@ categories: Unity
 
 <!--more-->
 
-![Unity脚本生命周期](/blog/images/20170707_monobehaviour_flowchart.svg)
+![Unity脚本生命周期](/images/20170707_monobehaviour_flowchart.svg)

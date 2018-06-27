@@ -33,10 +33,10 @@ categories: Front-end
 1.  使用网易账号登陆云跟帖后台；
 
 2.  填写基本信息和相关信息：
-![](/blog/images/20170609_pinglun_01.jpg)
+![](/images/20170609_pinglun_01.jpg)
 【图1】
 3.  然后就可以获取代码集成了：
-![](/blog/images/20170609_pinglun_02.jpg)
+![](/images/20170609_pinglun_02.jpg)
 【图2】
  代码如下：
 ```html

@@ -9,7 +9,7 @@ categories: Android
 
 > 今天碰到个需求，要求以波浪进度填充自定义透明形状，废话不多说，直接上最终效果图
 
-![波浪效果](/blog/images/20170724_wave_progress.gif)
+![波浪效果](/images/20170724_wave_progress.gif)
 
 <!--more-->
 
@@ -17,7 +17,7 @@ categories: Android
 
 通过判断`Bitmap`对象的像素颜色，对非透明像素进行颜色更改。波浪曲线采用sin曲线π到2π区间段，和将时间取余并和x坐标相加得到波浪y轴坐标，再加上百分比*Bitmap高度。核心算法如下:
 
-![sin](/blog/images/20170724_sin.png)
+![sin](/images/20170724_sin.png)
 
 ```java
     private int getWaveY(int x) {

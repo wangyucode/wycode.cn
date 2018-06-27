@@ -6,7 +6,7 @@ tags:
 categories: Back-end
 ---
 
-![springboot](/blog/images/20180623_springboot.jpg)
+![springboot](/images/20180623_springboot.jpg)
 
 > 我们知道SpringBoot内置了tomcat服务器，从而一个jar包就能实现web服务。但有时我们又想像传统tomcat那样部署一些外部的静态资源，虽然静态资源放在`resource`文件夹的`static`就能解决问题，但是static文件夹的内容会作为jar的一部分，要替换的话只能替换整个jar包，极为不便。能不能配置jar包外部的文件夹作为静态资源目录呢。当然是可以的...
 

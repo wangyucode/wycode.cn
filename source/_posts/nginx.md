@@ -4,7 +4,7 @@ date: 2018-6-23 15:12:33
 tags:
 - Linux
 - nginx
-categories: Back-end
+categories: Linux
 ---
 
 ![nginx](http://nginx.org/nginx.png)

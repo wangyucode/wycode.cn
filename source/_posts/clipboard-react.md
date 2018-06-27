@@ -7,7 +7,7 @@ tags:
 categories: Front-end
 ---
 
-![React](/blog/images/20180213_react.png)
+![React](/images/20180213_react.png)
 
 > 这篇文章我们将用React实现一个跨平台剪切板。
 

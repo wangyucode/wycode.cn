@@ -48,7 +48,7 @@ sp和dp差不多只是用于字体
 
 14sp为标准大小
 
-![sp](/blog/images/20170904_sp.png)
+![sp](/images/20170904_sp.png)
 
 |xx_small |x_small|small|medium|large|x_large|xx_large|xxx_large|
 | :------------: | :------------:| :------------:| :------------:|:------------:|:------------:|:------------:|:------------:|
@@ -58,4 +58,4 @@ sp和dp差不多只是用于字体
 
 所有组件都与间隔为 8dp 的基准网格对齐。排版/文字（Type）与间隔为 4dp 的基准网格对齐。在工具条中的图标同样与间隔为 4dp 的基准网格对齐。这些规则适用于移动设备、平板设备以及桌面应用程序。
 
-![baselinegrids](/blog/images/20170905_layout-metrics-baselinegrids.png)
+![baselinegrids](/images/20170905_layout-metrics-baselinegrids.png)

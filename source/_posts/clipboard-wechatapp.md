@@ -7,7 +7,7 @@ tags:
 categories: Front-end
 ---
 
-![React](/blog/images/20180213_clipboard.jpg)
+![React](/images/20180213_clipboard.jpg)
 
 > 这篇文章我们将开发一个微信小程序版的跨平台剪切板。
 

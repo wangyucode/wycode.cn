@@ -7,7 +7,7 @@ tags:
 categories: Front-end
 ---
 
-![React](/blog/images/20180213_react.png)
+![React](/images/20180213_react.png)
 
 > React框架的整体思路是将DOM元素彻底改为由JS代码渲染，通过组件(`Component`)的层层嵌套，最终由`ReactDOM.render()`渲染到页面上。
 

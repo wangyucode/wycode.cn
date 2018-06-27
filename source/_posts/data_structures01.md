@@ -92,7 +92,7 @@ void printNC(int n){
 
 ## 实验2：计算多项式的值
 
-![多项式](/blog/images/20180313_data_structure.png)
+![多项式](/images/20180313_data_structure.png)
 
 ```java
 public class Test02 {

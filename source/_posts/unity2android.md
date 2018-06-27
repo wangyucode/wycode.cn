@@ -21,7 +21,7 @@ categories: Unity
 4. 选择你喜欢的目录导出
 5. Unity发生了改动时，只需导出后替换asset文件夹内容即可
 
-![Export](/blog/images/20170726_export.png)
+![Export](/images/20170726_export.png)
 
 ## Unity调用Android方法
 
