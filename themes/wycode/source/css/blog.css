@@ -289,9 +289,27 @@ a.article-title{
     background: #fff;
     border-radius: 2px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    height: 50px;
     margin-bottom: 24px;
+    height: 78px;
 }
+
+@media (min-width: 768px){
+    .article-nav{
+        height: 78px;
+    }
+}
+@media (min-width: 992px){
+    .article-nav{
+        height: 48px;
+    }
+}
+@media (min-width: 1200px){
+    .article-nav{
+        height: 48px;
+    }
+}
+
+
 
 .article-tag-list-item{
     display: inline;
@@ -374,4 +392,16 @@ a.nav-link.active{
 
 .wy-footer ul{
     margin-bottom: 0;
+}
+
+.container-reward{
+    display: flex;
+    align-content: center;
+    margin: 24px;
+}
+
+.img-reward{
+    height: 320px;
+    width: 320px;
+    margin: auto;
 }
