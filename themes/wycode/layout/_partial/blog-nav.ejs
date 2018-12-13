@@ -12,11 +12,6 @@
                 <% } %>
             </a>
             <% } %>
-
-            <% if (theme.rss){ %>
-            <a class="blog-nav-right-rss" href="<%- url_for(theme.rss) %>" title="<%= __('rss_feed') %>"
-               target="_blank"><i class="fa fa-rss" aria-hidden="true"></i> 订阅</a>
-            <% } %>
             <a class="blog-nav-right-search" title="<%= __('search') %>" data-toggle="modal"  href="#searchModal"><i class="fa fa-search" aria-hidden="true"></i> 搜索</a>
         </nav>
     </div>
