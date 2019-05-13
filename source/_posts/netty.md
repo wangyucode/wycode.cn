@@ -15,7 +15,7 @@ categories: Back-end
 
 > Netty的灵活设计使得它能够开发几乎所有基于二进制流、文本应用协议的Web应用
 
-> 这篇文章将简单介绍如何使用Netty开发一个HTTP服务器
+这篇文章将简单介绍如何使用Netty开发一个HTTP服务器
 
 <!--more-->
 

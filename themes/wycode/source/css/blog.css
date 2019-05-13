@@ -59,6 +59,7 @@ p,li{
     font-size: 16px;
 }
 
+
 blockquote{
     border-left: 3px solid #0B9BA9;
     background: #eee;
@@ -68,6 +69,20 @@ blockquote{
 
 blockquote p{
     font-size: 16px;
+}
+
+.jumbotron{
+    margin-bottom: 0;
+}
+
+#particles-js{
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+    background: #aaa;
 }
 
 /*
@@ -86,74 +101,17 @@ blockquote p{
     background-color: #0B9BA9;
 }
 
-.blog-masthead {
-    background-color: #0B9BA9;
-    height: 42px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-}
-
-/* Nav links */
-.blog-nav-item {
-    position: relative;
+.nav-item{
     display: inline-block;
-    padding: 8px;
-    font-weight: bold;
-    color: #fff;
 }
 
-.blog-nav-right-rss {
-    padding: 8px;
-    float: right;
-    color: #fff;
+.blog-nav-right-search{
+    margin-left: auto;
+    margin-right: 24px;
 }
-
-.blog-nav-right-search {
-    padding: 8px;
-    float: right;
-    color: #fff;
-}
-
-.blog-nav-right-rss:hover,
-.blog-nav-right-rss:focus {
-    color: #fff;
-    text-decoration: none;
-}
-
-.blog-nav-right-search:hover,
-.blog-nav-right-search:focus {
-    color: #fff;
-    text-decoration: none;
-}
-
-.blog-nav-item:hover,
-.blog-nav-item:focus {
-    color: #fff;
-    text-decoration: none;
-}
-
-/* Active state gets a caret at the bottom */
-.blog-nav .active {
-    color: #fff;
-}
-
-.blog-nav .active:after {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 0;
-    margin-left: -5px;
-    vertical-align: middle;
-    content: " ";
-    border-right: 5px solid transparent;
-    border-bottom: 5px solid;
-    border-left: 5px solid transparent;
-}
-
 /*
  * Blog name and description
  */
-
 .blog-header {
     padding-top: 20px;
     padding-bottom: 20px;
@@ -368,12 +326,17 @@ a.article-title{
     color: #c7254e;
 }
 
+.navbar-nav{
+    width: 100%;
+}
+
+
 .navbar-dark .navbar-nav .nav-link {
     color: #eee;
 }
 
 a.nav-link.active{
-    background-color: rgba(0,140,160,0.8);
+    background-color: rgb(10, 124, 134);
     border-radius: 4px;
 }
 
