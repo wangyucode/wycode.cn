@@ -13,9 +13,16 @@ widgets:
 - recent_posts
 - category
 - tagcloud
+- about
 - clustrmaps
 
+about:
+  wechat: /img/wechat.jpg
+  email: wangyu@wycode.cn
+  github: https://github.com/wangyucode
 
+
+clustrmaps: //cdn.clustrmaps.com/map_v2.js?d=gqBX0NCZ-bHPpFMW_0e6Yy-FapJ0v9V1jVB6HKf1Weo&amp;cl=ffffff&amp;w=a
 
 # widget behavior
 archive_type: 'monthly'

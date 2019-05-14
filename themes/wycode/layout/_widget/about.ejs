@@ -1,0 +1,9 @@
+<div class="widget-wrap">
+    <h4 class="widget-title"><i class="fa fa-user" aria-hidden="true"></i> 关于我</h4>
+    <div class="widget">
+        <p class="p-about"><i class="fab fa-weixin"></i> 微信：</p>
+        <img src="<%- url_for(theme.about.wechat)%>" style="width:100%;" />
+        <p class="p-about"><i class="fas fa-envelope"></i> Email：<%- mail_to(theme.about.email) %></p>
+        <p class="p-about"><i class="fab fa-github"></i> Github：<a href="<%- theme.about.github %>"><%- theme.about.github %></a></p>
+    </div>
+</div>

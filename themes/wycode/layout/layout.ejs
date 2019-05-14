@@ -2,18 +2,19 @@
 <html lang="zh-CN">
 <%- partial('_partial/head') %>
 <body>
+<div id="particles-js"></div>
 <%- partial('_partial/wycode-nav') %>
 <%- partial('_partial/search-modal') %>
+<% var marginTop = '80px'; %>
 <% if(is_home()){ %>
     <%- partial('_partial/wycode-jumbotron'); %>
-    <% var marginTop = is_home() ? '-200px' : '20px' %>
-    <div id="particles-js"></div>
-    <div class="container" style="margin-top: <%- marginTop %>;">
+    <% marginTop = '-150px'; %>
 <% } %>
-        <div class="row">
-            <%- body %>
-        </div>
+<div class="container main-content" style="margin-top: <%- marginTop %>;">
+    <div class="row">
+        <%- body %>
     </div>
+</div>
 <%- partial('_partial/footer', null, {cache: !config.relative_link}) %>
 <%- partial('_partial/after-footer') %>
 </body>

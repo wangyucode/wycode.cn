@@ -3,9 +3,9 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 王郁的博客
+title: 王郁的小站
 subtitle:
-description: 王郁的博客
+description: 王郁的小站
 keywords:
 author: wycode
 language: zh-CN
@@ -13,7 +13,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://blog.wycode.cn/
+url: https://wycode.cn/
 root: /
 permalink: :year-:month-:day-:title.html
 permalink_defaults:

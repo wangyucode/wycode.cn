@@ -73,16 +73,23 @@ blockquote p{
 
 .jumbotron{
     margin-bottom: 0;
+    min-height: 500px;
+    position: relative;
+    z-index: 10;
 }
 
 #particles-js{
-    z-index: -1;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     position: fixed;
-    background: #aaa;
+    background: #ede7f6;
+}
+
+.main-content{
+    position: relative;
+    z-index: 20;
 }
 
 /*
@@ -206,9 +213,10 @@ blockquote p{
 }
 
 .article-category:before{
-    font-family: FontAwesome;
+    font-family: "Font Awesome 5 Free";
     color: #007BFF;
     content: "\f009";
+    font-weight: 900;
     margin-right: 0.3em;
 }
 
@@ -237,9 +245,10 @@ a.article-title{
 }
 
 .article-tag-list:before{
-    font-family: FontAwesome;
+    font-family: "Font Awesome 5 Free";
     color: #007BFF;
     content: "\f02b";
+    font-weight: 900;
     padding-right: 0.3em;
 }
 
@@ -326,6 +335,11 @@ a.article-title{
     color: #c7254e;
 }
 
+.wy-nav{
+    background-color: rgba(0,140,160,0.6);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.24);
+}
+
 .navbar-nav{
     width: 100%;
 }
@@ -335,14 +349,12 @@ a.article-title{
     color: #eee;
 }
 
-a.nav-link.active{
-    background-color: rgb(10, 124, 134);
-    border-radius: 4px;
-}
-
 .wy-footer {
     background-color: #0B9BA9;
     color:white;
+    padding-bottom: 4px;
+    position: relative;
+    z-index: 500;
 }
 
 .wy-footer a{
@@ -372,4 +384,27 @@ a.nav-link.active{
 #searchInput{
     margin-top: 12px;
     margin-bottom: 12px;
+}
+
+.all-post-link{
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.fa-weixin{
+    color: #1AAD19;
+}
+
+.fa-envelope{
+    color: #007BFF;
+}
+
+.fa-github{
+    color: black;
+}
+
+
+.p-about{
+    margin-bottom:0;
 }
