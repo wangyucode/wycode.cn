@@ -1,7 +1,6 @@
-<!--导航栏-->
-<nav class="navbar navbar-dark navbar-expand-lg" style="background-color: #008ca0">
+<nav class="navbar navbar-dark fixed-top navbar-expand-lg wy-nav">
     <div class="container">
-        <a class="navbar-brand" href="https://wycode.cn" target="_self"><img src="<%- url_for(theme.favicon) %>"
+        <a class="navbar-brand" href="<%- url_for('/')%>" target="_self"><img src="<%- url_for(theme.favicon) %>"
                                                                             width="32" height="32" alt="wycode.cn">
             王郁的小站</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -11,21 +10,19 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" href="https://blog.wycode.cn/"><i class="fa fa-pencil fa-lg"
-                                                                                aria-hidden="true"></i> 博客</a>
+                    <a class="<%- is_lab(page) ? 'nav-link active': 'nav-link';%>" href="<%- url_for('/lab.html')%>"><i class="fas fa-flask fa-fw"></i> 实验室</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://wycode.cn/lab.html"><i class="fa fa-flask fa-lg"
-                                                                            aria-hidden="true"></i> 实验室</a>
+                    <a class="nav-link" href="https://clipboard.wycode.cn/"><i class="fas fa-clipboard fa-fw"></i> 跨平台剪切板</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://clipboard.wycode.cn/"><i class="fa fa-file-text-o fa-lg"
-                                                                               aria-hidden="true"></i> 跨平台剪切板</a>
+                    <a class="<%- is_about(page) ? 'nav-link active': 'nav-link';%>" href="<%- url_for('/about.html')%>"><i class="fas fa-user fa-fw"></i> 关于</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://wycode.cn/about.html"><i class="fa fa-user fa-lg"
-                                                                              aria-hidden="true"></i> 关于</a>
+                <% if(!is_lab(page)&&!is_about(page)){ %>
+                <li class="nav-item blog-nav-right-search">
+                    <a class="nav-link" data-toggle="modal"  href="#searchModal"><i class="fas fa-search fa-fw"></i> 搜索</a>
                 </li>
+                <% } %>
             </ul>
         </div>
     </div>

@@ -5,6 +5,9 @@
 body {
     background: #e2e1e0;
     color: #555;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
 
 h1, .h1,
@@ -59,6 +62,7 @@ p,li{
     font-size: 16px;
 }
 
+
 blockquote{
     border-left: 3px solid #0B9BA9;
     background: #eee;
@@ -70,90 +74,61 @@ blockquote p{
     font-size: 16px;
 }
 
+.jumbotron{
+    margin-bottom: 0;
+    min-height: 500px;
+    position: relative;
+    z-index: 10;
+}
+
+#particles-js{
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+    background: #e7ecf6;
+}
+
+.main-content{
+    position: relative;
+    z-index: 20;
+    flex: 1;
+}
+
 /*
  * Masthead for nav
  */
-
-.wycode-nav {
-    background-color: #34495e;
-}
-
-.wycode-nav-a {
-    color: #fff;
-}
-
-.wycode-nav-li-active {
-    background-color: #0B9BA9;
-}
-
-.blog-masthead {
-    background-color: #0B9BA9;
-    height: 42px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-}
-
-/* Nav links */
-.blog-nav-item {
-    position: relative;
+.nav-item{
     display: inline-block;
-    padding: 8px;
-    font-weight: bold;
-    color: #fff;
 }
 
-.blog-nav-right-rss {
-    padding: 8px;
-    float: right;
-    color: #fff;
+a.nav-link.active{
+    background-color: rgb(0,140,160);
+    border-radius: 4px;
 }
 
-.blog-nav-right-search {
-    padding: 8px;
-    float: right;
-    color: #fff;
+.blog-nav-right-search{
+    margin-left: auto;
+    margin-right: 24px;
 }
 
-.blog-nav-right-rss:hover,
-.blog-nav-right-rss:focus {
-    color: #fff;
-    text-decoration: none;
+.wy-nav{
+    background-color: rgba(0,140,160,0.6);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.24);
 }
 
-.blog-nav-right-search:hover,
-.blog-nav-right-search:focus {
-    color: #fff;
-    text-decoration: none;
+.navbar-nav{
+    width: 100%;
 }
 
-.blog-nav-item:hover,
-.blog-nav-item:focus {
-    color: #fff;
-    text-decoration: none;
-}
 
-/* Active state gets a caret at the bottom */
-.blog-nav .active {
-    color: #fff;
+.navbar-dark .navbar-nav .nav-link {
+    color: #eee;
 }
-
-.blog-nav .active:after {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 0;
-    margin-left: -5px;
-    vertical-align: middle;
-    content: " ";
-    border-right: 5px solid transparent;
-    border-bottom: 5px solid;
-    border-left: 5px solid transparent;
-}
-
 /*
  * Blog name and description
  */
-
 .blog-header {
     padding-top: 20px;
     padding-bottom: 20px;
@@ -178,6 +153,10 @@ blockquote p{
 .blog-main {
     font-size: 18px;
     line-height: 1.5;
+}
+
+.lab-item{
+    margin: 8px;
 }
 
 /* Sidebar modules for boxing content */
@@ -244,13 +223,13 @@ blockquote p{
 
 .article-category{
     float: right;
-    display: inline;
 }
 
 .article-category:before{
-    font-family: FontAwesome;
+    font-family: "Font Awesome 5 Free";
     color: #007BFF;
     content: "\f009";
+    font-weight: 900;
     margin-right: 0.3em;
 }
 
@@ -279,9 +258,10 @@ a.article-title{
 }
 
 .article-tag-list:before{
-    font-family: FontAwesome;
+    font-family: "Font Awesome 5 Free";
     color: #007BFF;
     content: "\f02b";
+    font-weight: 900;
     padding-right: 0.3em;
 }
 
@@ -289,9 +269,27 @@ a.article-title{
     background: #fff;
     border-radius: 2px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    height: 50px;
     margin-bottom: 24px;
+    height: 78px;
 }
+
+@media (min-width: 768px){
+    .article-nav{
+        height: 78px;
+    }
+}
+@media (min-width: 992px){
+    .article-nav{
+        height: 48px;
+    }
+}
+@media (min-width: 1200px){
+    .article-nav{
+        height: 48px;
+    }
+}
+
+
 
 .article-tag-list-item{
     display: inline;
@@ -350,18 +348,12 @@ a.article-title{
     color: #c7254e;
 }
 
-.navbar-dark .navbar-nav .nav-link {
-    color: #eee;
-}
-
-a.nav-link.active{
-    background-color: rgba(0,140,160,0.8);
-    border-radius: 4px;
-}
-
 .wy-footer {
     background-color: #0B9BA9;
     color:white;
+    padding-bottom: 4px;
+    position: relative;
+    z-index: 500;
 }
 
 .wy-footer a{
@@ -374,4 +366,49 @@ a.nav-link.active{
 
 .wy-footer ul{
     margin-bottom: 0;
+}
+
+.container-reward{
+    display: flex;
+    align-content: center;
+    margin: 24px;
+}
+
+.img-reward{
+    height: 320px;
+    width: 320px;
+    margin: auto;
+}
+
+#searchInput{
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.all-post-link{
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.fa-weixin{
+    color: #1AAD19;
+}
+
+.fa-envelope{
+    color: #007BFF;
+}
+
+.fa-github{
+    color: black;
+}
+
+.p-about{
+    margin-bottom:0;
+}
+
+.img-pay{
+    margin: 16px;
+    display: inline-block;
+    width: 40%;
 }

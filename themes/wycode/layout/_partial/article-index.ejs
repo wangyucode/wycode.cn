@@ -12,12 +12,14 @@
         </header>
         <% } %>
         <div class="article-entry" itemprop="articleBody">
+            <% if(post.excerpt){ %>
+            <%- post.excerpt %>
+            <p class="article-more-link">
+                <a href="<%- url_for(post.path)+'#more' %>"><%= __('more') %></a>
+            </p>
+            <% } else { %>
             <%- post.content %>
+            <% } %>
         </div>
     </div>
-    <div class="container-reward">
-        <img class="img-reward" src="<%- url_for('/img/reward.jpg') %>"/>
-    </div>
 </article>
-
-<%- partial('post/nav') %>
