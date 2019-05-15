@@ -34,7 +34,7 @@ th,td{
 }
 
 h1 {
-    font-size: 28px;
+    font-size: 24px;
 }
 
 h2 {
@@ -50,7 +50,7 @@ h4 {
 }
 
 .article-entry img{
-    max-width: 100%;
+    width: 60%;
     height: auto;
 }
 
@@ -79,6 +79,8 @@ blockquote p{
     min-height: 500px;
     position: relative;
     z-index: 10;
+    background-repeat: no-repeat;
+    background-size:100% 100%;
 }
 
 #particles-js{
@@ -233,20 +235,23 @@ a.nav-link.active{
     margin-right: 0.3em;
 }
 
-.article,.archive-year-month-wrap,.widget-wrap,.article-nav,.comment{
+.article,.archive-year-month-wrap,.widget-wrap,.article-nav,.comment,.page-nav{
     background: #fff;
     border-radius: 2px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     padding: 12px;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
 }
 
 .archive-year-month{
-    font-size: 28px;
+    font-size: 22px;
+    color: #1687a7;
 }
 
+.
+
 .archive-article-title{
-    font-size: 18px;
+    font-size: 16px;
 }
 
 a.article-title{
@@ -311,6 +316,11 @@ a.article-title{
 
 .page-nav{
     text-align: center;
+}
+
+.page-number,.space,.extend{
+    margin-left: 4px;
+    margin-right: 4px;
 }
 
 .category-list{
