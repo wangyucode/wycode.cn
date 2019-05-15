@@ -6,7 +6,7 @@
 <%- partial('_partial/wycode-nav') %>
 <%- partial('_partial/search-modal') %>
 <% var marginTop = '80px'; %>
-<% if(is_home()){ %>
+<% if(is_home() && page.current === 1){ %>
     <%- partial('_partial/wycode-jumbotron'); %>
     <% marginTop = '-150px'; %>
 <% } %>
@@ -15,7 +15,7 @@
         <%- body %>
     </div>
 </div>
-<%- partial('_partial/footer', null, {cache: !config.relative_link}) %>
+<%- partial('_partial/footer') %>
 <%- partial('_partial/after-footer') %>
 </body>
 </html>

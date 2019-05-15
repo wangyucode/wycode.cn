@@ -5,6 +5,9 @@
 body {
     background: #e2e1e0;
     color: #555;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
 
 h1, .h1,
@@ -84,37 +87,44 @@ blockquote p{
     left: 0;
     right: 0;
     position: fixed;
-    background: #ede7f6;
+    background: #e7ecf6;
 }
 
 .main-content{
     position: relative;
     z-index: 20;
+    flex: 1;
 }
 
 /*
  * Masthead for nav
  */
-
-.wycode-nav {
-    background-color: #34495e;
-}
-
-.wycode-nav-a {
-    color: #fff;
-}
-
-.wycode-nav-li-active {
-    background-color: #0B9BA9;
-}
-
 .nav-item{
     display: inline-block;
+}
+
+a.nav-link.active{
+    background-color: rgb(0,140,160);
+    border-radius: 4px;
 }
 
 .blog-nav-right-search{
     margin-left: auto;
     margin-right: 24px;
+}
+
+.wy-nav{
+    background-color: rgba(0,140,160,0.6);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.navbar-nav{
+    width: 100%;
+}
+
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #eee;
 }
 /*
  * Blog name and description
@@ -143,6 +153,10 @@ blockquote p{
 .blog-main {
     font-size: 18px;
     line-height: 1.5;
+}
+
+.lab-item{
+    margin: 8px;
 }
 
 /* Sidebar modules for boxing content */
@@ -209,7 +223,6 @@ blockquote p{
 
 .article-category{
     float: right;
-    display: inline;
 }
 
 .article-category:before{
@@ -335,20 +348,6 @@ a.article-title{
     color: #c7254e;
 }
 
-.wy-nav{
-    background-color: rgba(0,140,160,0.6);
-    box-shadow: 0 1px 2px rgba(0,0,0,0.24);
-}
-
-.navbar-nav{
-    width: 100%;
-}
-
-
-.navbar-dark .navbar-nav .nav-link {
-    color: #eee;
-}
-
 .wy-footer {
     background-color: #0B9BA9;
     color:white;
@@ -404,7 +403,12 @@ a.article-title{
     color: black;
 }
 
-
 .p-about{
     margin-bottom:0;
+}
+
+.img-pay{
+    margin: 16px;
+    display: inline-block;
+    width: 40%;
 }
