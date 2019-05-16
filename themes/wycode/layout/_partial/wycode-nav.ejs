@@ -13,12 +13,12 @@
                     <a class="<%- is_lab(page) ? 'nav-link active': 'nav-link';%>" href="<%- url_for('/lab.html')%>"><i class="fas fa-flask fa-fw"></i> 实验室</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://clipboard.wycode.cn/" target="_blank"><i class="fas fa-clipboard fa-fw"></i> 跨平台剪切板</a>
+                    <a class="<%- is_clipboard(page) ? 'nav-link active': 'nav-link';%>" href="<%- url_for('/clipboard.html')%>"><i class="fas fa-clipboard fa-fw"></i> 跨平台剪切板</a>
                 </li>
                 <li class="nav-item">
                     <a class="<%- is_about(page) ? 'nav-link active': 'nav-link';%>" href="<%- url_for('/about.html')%>"><i class="fas fa-user fa-fw"></i> 关于</a>
                 </li>
-                <% if(!is_lab(page)&&!is_about(page)){ %>
+                <% if(not_static_page(page)){ %>
                 <li class="nav-item blog-nav-right-search">
                     <a class="nav-link" data-toggle="modal"  href="#searchModal"><i class="fas fa-search fa-fw"></i> 搜索</a>
                 </li>

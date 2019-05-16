@@ -6,6 +6,5 @@
 <script src="https://cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <script>particlesJS.load('particles-js', '<%- url_for('/assets/particlesjs-config.json') %>');</script>
-<%- js('js/script') %>
 <%- js('js/search') %>
 <script>searchFunc('<%= url_for('search.xml') %>', 'searchInput', 'searchResult');</script>
