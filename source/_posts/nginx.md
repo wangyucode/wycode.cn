@@ -7,7 +7,7 @@ tags:
 categories: Linux
 ---
 
-![nginx](http://nginx.org/nginx.png)
+![nginx](https://nginx.org/nginx.png)
 
 > 当我们需要在Ubuntu上部署SpringBoot服务时，通常正式环境需要将监听端口切换到80端口，或443端口，但是Ubuntu为了安全起见，普通用户是不能监听1024以下端口的。另外我们需要同时支持HTTP和HTTPS，貌似SpringBoot只支持监听1个端口，这时有很多解决方案。比如使用`sudo`提升运行权限，也可以通过Linux防火墙iptables配置端口转发，把80端口转发到8080端口上等方式。
 
