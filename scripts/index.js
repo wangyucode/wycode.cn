@@ -16,21 +16,23 @@ function is_404(page) {
     return Boolean(page.__404);
 }
 
+function is_api(page) {
+    return Boolean(page.__api);
+}
+
 function not_static_page(page) {
     return !is_about(page) &&
         !is_lab(page) &&
         !is_clipboard(page) &&
+        !is_api(page) &&
         !is_404(page);
 }
 
 hexo.extend.helper.register('is_about', is_about);
-
 hexo.extend.helper.register('is_lab', is_lab);
-
 hexo.extend.helper.register('is_clipboard', is_clipboard);
-
 hexo.extend.helper.register('is_404', is_404);
-
+hexo.extend.helper.register('is_api', is_api);
 hexo.extend.helper.register('not_static_page', not_static_page);
 
 hexo.extend.generator.register('about', (locals) => {
@@ -69,6 +71,16 @@ hexo.extend.generator.register('404', (locals) => {
         layout: '404',
         data: {
             __404: true
+        }
+    };
+});
+
+hexo.extend.generator.register('api', (locals) => {
+    return {
+        path: 'api.html',
+        layout: 'api',
+        data: {
+            __api: true
         }
     };
 });

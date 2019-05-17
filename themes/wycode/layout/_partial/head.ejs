@@ -22,6 +22,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/font-awesome/5.8.2/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css" rel="stylesheet">
-    <!-- 自定义css -->
+    <% if (is_api(page)){ %>
+    <link href="https://cdn.bootcss.com/swagger-ui/3.22.1/swagger-ui.css" rel="stylesheet">
+    <% } %>
     <%- css('css/blog') %>
 </head>

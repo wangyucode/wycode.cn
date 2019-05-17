@@ -16,6 +16,9 @@
                     <a class="<%- is_clipboard(page) ? 'nav-link active': 'nav-link';%>" href="<%- url_for('/clipboard.html')%>"><i class="fas fa-clipboard fa-fw"></i> 跨平台剪切板</a>
                 </li>
                 <li class="nav-item">
+                    <a class="<%- is_api(page) ? 'nav-link active': 'nav-link';%>" href="<%- url_for('/api.html')%>"><i class="fas fa-plug fa-fw"></i> API</a>
+                </li>
+                <li class="nav-item">
                     <a class="<%- is_about(page) ? 'nav-link active': 'nav-link';%>" href="<%- url_for('/about.html')%>"><i class="fas fa-user fa-fw"></i> 关于</a>
                 </li>
                 <% if(not_static_page(page)){ %>
