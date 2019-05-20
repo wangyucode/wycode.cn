@@ -14,13 +14,15 @@ categories: CI
 
 > 持续集成能够帮你：减少风险、减少重复过程、自动化生成可部署的软件、增强项目的可见性、建立团队对开发产品的信心。
 
-这篇文章教你使用 [Travis CI](https://travis-ci.org "Travis CI") 自动化构建和发布你的软件产品。
+这篇文章教你使用 [Travis CI](https://travis-ci.com "Travis CI") 自动化构建和发布你的软件产品。
 
 <!--more-->
 
 ## 准备
 
-Travis CI可以使用Github的OAuth登录，赋予其必要的权限，我们就能使用Github开源代码库创建一个Application了
+Travis CI可以使用Github的OAuth登录，赋予其必要的权限，我们就能使用Github开源代码库开启构建了。
+
+> 需要注意的是：Travis CI目前有两个域名`travis-ci.org`和`travis-ci.com`，推荐使用`com`，官方已经将`.org`合并到`.com`了。
 
 ## 配置
 
@@ -28,7 +30,13 @@ Travis CI通过读取项目根目录的`.travis.yml`文件获取配置信息，�
 
 ```yml
 language: node_js
+node_js:
+  - "8"
 script: ./node_modules/.bin/hexo clean && ./node_modules/.bin/hexo deploy
 ```
+- 语言环境选择`nodejs`
+- 一个Job包含两个主要部分：`install`和`script`
+- 我这里指定了node版本为v8
+- `install`默认会执行`npm install`，在有`yarn.lock`的工程中会替代`npm`为`yarn`
 
 以上，转载请注明出处!
