@@ -94,7 +94,12 @@ theme: wycode
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type:
+  type: git
+  repo: https://github.com/wangyucode/wangyucode.github.io.git
+  branch: gh-pages
+  name: wayne
+	email: wangyu@wycode.cn
+  message: Auto deployed:{{ now('YYYY-MM-DD HH:mm:ss') }}
 
 server:
   compress: true
