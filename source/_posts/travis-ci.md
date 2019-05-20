@@ -32,11 +32,19 @@ Travis CI通过读取项目根目录的`.travis.yml`文件获取配置信息，�
 language: node_js
 node_js:
   - "8"
-script: ./node_modules/.bin/hexo clean && ./node_modules/.bin/hexo deploy
+script: ./node_modules/.bin/hexo clean && ./node_modules/.bin/hexo generate
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  repo: https://github.com/wangyucode/wangyucode.github.io.git
+  local_dir: public
 ```
 - 语言环境选择`nodejs`
 - 一个Job包含两个主要部分：`install`和`script`
 - 我这里指定了node版本为v8
 - `install`默认会执行`npm install`，在有`yarn.lock`的工程中会替代`npm`为`yarn`
+- `script`会在`install`完成后执行
+- `deploy`中我部署了github pages，`skip_cleanup`表示跳过cleanup因为部署时我不需要清理任何文件，`github_token`因为比较敏感，所以作为变量配置在`Repository Settings`中，`repo`配置了要提交的仓库，`local_dir`表示只会部署`public`中的文件
 
 以上，转载请注明出处!
