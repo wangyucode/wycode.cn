@@ -3,8 +3,13 @@ node_js:
   - "8"
 script: ./node_modules/.bin/hexo clean && ./node_modules/.bin/hexo generate
 deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
-  repo: wangyucode/wangyucode.github.io
-  local_dir: public
+  # deploy to github pages
+  - provider: pages
+    skip_cleanup: true
+    target_branch: master
+    github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+    repo: wangyucode/wangyucode.github.io
+    local_dir: public
+after_deploy:
+  - node deploy/sftp.js $SERVER_PASSWORD
+

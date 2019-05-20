@@ -34,17 +34,31 @@ node_js:
   - "8"
 script: ./node_modules/.bin/hexo clean && ./node_modules/.bin/hexo generate
 deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
-  repo: wangyucode/wangyucode.github.io
-  local_dir: public
+  # deploy to github pages
+  - provider: pages
+    skip_cleanup: true
+    target_branch: master
+    github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+    repo: wangyucode/wangyucode.github.io
+    local_dir: public
+after_deploy:
+  - node deploy/sftp.js $SERVER_PASSWORD
 ```
+
 - 语言环境选择`nodejs`
 - 一个Job包含两个主要部分：`install`和`script`
 - 我这里指定了node版本为v8
 - `install`默认会执行`npm install`，在有`yarn.lock`的工程中会替代`npm`为`yarn`
 - `script`会在`install`完成后执行
-- `deploy`中我部署了github pages，`skip_cleanup`表示跳过cleanup因为部署时我不需要清理任何文件，`github_token`因为比较敏感，所以作为变量配置在`Repository Settings`中，`repo`配置了要提交的仓库，`local_dir`表示只会部署`public`中的文件
+- `deploy`中我部署了github pages，`skip_cleanup`表示跳过cleanup因为部署时我不需要清理任何文件，`target_branch`指定了要提交的分支，`github_token`因为比较敏感，所以作为变量配置在`Repository Settings`中，`repo`配置了要提交的仓库，`local_dir`表示只会部署`public`中的文件
+- `after_deploy`在部署完成之后我还会将文件部署到我的linux服务器，这里用了`sftp-sync-deploy`开源库
+
+## 部署
+
+push代码后即可触发集成，在控制台可以看到如下log，说明构建及部署都成功了！
+
+```bash
+Done. Your build exited with 0.
+```
 
 以上，转载请注明出处!
