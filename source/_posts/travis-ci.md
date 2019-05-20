@@ -37,7 +37,7 @@ deploy:
   provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
-  repo: https://github.com/wangyucode/wangyucode.github.io.git
+  repo: https://github.com/wangyucode/wangyucode.github.io
   local_dir: public
 ```
 - 语言环境选择`nodejs`
