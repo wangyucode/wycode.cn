@@ -6,7 +6,7 @@ tags:
 categories: CI
 ---
 
-![TravisCI](https://images.g2crowd.com/uploads/product/image/social_landscape/social_landscape_3d0f73d54a32a276d3ab019ea841d944/travis-ci.png)
+![TravisCI](https://www.smartfile.com/blog/wp-content/uploads/2015/05/logo-travisci-wide1.jpg)
 
 > 持续集成（Continuous integration，简称CI）是一种软件开发实践。以每天小的代码改动集成替代在开发周期的末尾集成大量的代码，通过自动化的构建（包括编译，自动化测试，发布)来验证，从而尽快地发现和定位错误。让产品可以快速迭代，同时还能保持高质量。
 
@@ -55,9 +55,23 @@ after_deploy:
 
 ## 部署
 
-push代码后即可触发集成，在控制台可以看到如下log，说明构建及部署都成功了！
+push代码后即可触发集成，在Travis Dashboard可以看到如下log，说明构建及部署都成功了！
 
 ```bash
+Worker information
+Build system information
+docker stop/waiting
+resolvconf stop/waiting
+$ git clone --depth=50 --branch=master https://github.com/wangyucode/wycode.cn.git wangyucode/wycode.cn
+
+...
+
+Logged in as @wangyucode (王郁)
+cd /tmp/d20190520-5677-1oocet1/work
+Preparing deploy
+Deploying application
+$ node deploy/sftp.js $SERVER_PASSWORD
+
 Done. Your build exited with 0.
 ```
 
