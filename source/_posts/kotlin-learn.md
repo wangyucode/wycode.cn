@@ -3,10 +3,6 @@ title: Kotlin入门
 date: 2017-7-27 13:19:47
 tags:
 - Kotlin
-- Java
-- Android
-- Spring
-- JavaScript
 categories: Languages
 ---
 

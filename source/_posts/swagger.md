@@ -2,10 +2,9 @@
 title: 使用swagger为Spring REST API生成在线文档
 date: 2017-10-23 12:58:47
 tags:
-- Spring Boot
-- REST
+- Spring
 - Java
-- SwaggerUI
+- Swagger
 - JavaScript
 categories: Back-end
 ---

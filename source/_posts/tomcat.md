@@ -2,7 +2,7 @@
 title: SwaggerUI GET请求中文乱码问题解决
 date: 2018-4-11 15:36:43
 tags:
-- SwaggerUI
+- Swagger
 - Spring
 - Tomcat
 categories: Back-end

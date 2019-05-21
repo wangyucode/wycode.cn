@@ -3,8 +3,6 @@ title: Blender建模入门
 date: 2017-7-18 17:53:34
 tags:
 - Blender
-- Modeling
-- 3D
 categories: 3D
 ---
 

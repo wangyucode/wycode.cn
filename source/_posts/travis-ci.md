@@ -3,6 +3,9 @@ title: 使用TravisCI进行持续集成
 date: 2019-5-20 13:37:19
 tags:
 - CI
+- Hexo
+- Linux
+- Nodejs
 categories: CI
 ---
 

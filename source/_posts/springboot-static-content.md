@@ -3,6 +3,7 @@ title: SpringBoot配置Jar外部静态资源
 date: 2018-6-23 13:12:33
 tags:
 - Spring
+- Java
 categories: Back-end
 ---
 

@@ -3,9 +3,7 @@ title: Gradle构建变种版本（多渠道打包）
 date: 2017-9-4 15:53:38
 tags:
 - Gradle
-- Java
 - Android
-- Build Variants
 categories: Android
 ---
 

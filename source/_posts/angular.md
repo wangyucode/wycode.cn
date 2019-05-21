@@ -3,6 +3,7 @@ title: Angular框架原理的思考
 date: 2017-12-28 10:00:07
 tags:
 - Angular
+- TypeScript
 categories: Front-end
 ---
 

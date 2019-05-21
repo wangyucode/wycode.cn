@@ -5,6 +5,7 @@ tags:
 - Hexo
 - EJS
 - Bootstrap
+- HTML
 categories: Front-end
 ---
 

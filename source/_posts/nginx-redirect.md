@@ -1,23 +1,23 @@
 ---
-title: nginx配置重定向
+title: NGINX配置重定向
 date: 2019-5-17 10:34:11
 tags:
 - Linux
-- nginx
+- NGINX
 categories: Linux
 ---
 
-![nginx](https://nginx.org/nginx.png)
+![NGINX](https://nginx.org/nginx.png)
 
 > 服务器配置Https之后，我们希望同时支持http，但是80端口进来的请求直接重定向到443端口上。
 
 > 有时我们会将某些网页永久迁移到别的地址，但是又不想让老用户直接无法访问，或者看到404，而是要将这些老地址的请求转发到新地址上。
 
-这篇文章教你如何配置nginx重定向。
+这篇文章教你如何配置NGINX重定向。
 
 <!--more-->
 
-nginx安装及配置请移步这里：[Nginx安装](/2018-06-23-nginx.html "Nginx安装")
+NGINX安装及配置请移步这里：[Nginx安装](/2018-06-23-nginx.html "NGINX安装")
 
 
 ## 使用rewrite
@@ -59,6 +59,6 @@ server {
 }
 ```
 
-这里的第二个server监听80端口，在下面的`return 301`语句中将请求转发到第一个server中去，并且host和request_uri不变。
+这里的第二个`server`监听80端口，在下面的`return 301`语句中将请求转发到第一个`server`中去，并且`host`和`request_uri`不变。
 
 以上，转载请注明出处!

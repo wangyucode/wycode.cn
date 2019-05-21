@@ -3,6 +3,7 @@ title: OpenCV入门
 date: 2018-3-8 20:41:04
 tags:
 - OpenCV
+- Java
 categories: AI
 ---
 

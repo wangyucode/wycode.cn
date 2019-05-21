@@ -3,8 +3,6 @@ title: SEO：优化网站排名
 date: 2017-6-19 17:46:37
 tags:
 - SEO
-- robots.txt
-- Sitemaps
 categories: Front-end
 ---
 
