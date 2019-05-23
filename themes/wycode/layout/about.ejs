@@ -5,6 +5,11 @@
         <img src="<%- url_for('/img/about/alipay.png') %>" class="img-pay">
         <img src="<%- url_for('/img/about/wechatpay.png') %>" class="img-pay">
     </div>
+    <div id="comments" class="widget-wrap">
+        <wycode-comments path="<%- page.path %>"></wycode-comments>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <%- js('js/comments/index.js') %>
 </div>
 <div class="col-md-3 blog-sidebar">
     <%- partial('_widget/about') %>
