@@ -30,21 +30,22 @@ data class Comment(
         @SequenceGenerator(name = "seq_comment", sequenceName = "SEQ_COMMENT", allocationSize = 1, initialValue = 1)
         val id: Long = 0,
         @ApiModelProperty(value = "主题id")
-        val subjectId: String = "",
+        val topicId: String = "",
         @ManyToOne
         val app: CommentApp = CommentApp(),
         @Column(length = 1023)
         val content: String? = null,
-        @ApiModelProperty(value = "评论类型，1.文字评论，2.点赞，3.图片评论")
-        val type: Int = 1,
+        @ApiModelProperty(value = "评论类型，0.文字评论，1.点赞，2.图片评论")
+        val type: Int = 0,
         val fromUserId: String = "",
-        val fromUserName: String = "匿名用户",
-        val fromUserIcon: String = "",
+        val fromUserName: String? = null,
+        val fromUserIcon: String? = null,
         val toUserId: String? = null,
         val toUserName: String? = null,
         val toUserIcon: String? = null,
         val toContent: String? = null,
-        val likeCount: Int = 0)
+        val createTime: Date = Date(),
+        var likeCount: Int = 0)
 ```
 - 为了能够在多个app中使用，所以增加了一个`CommentApp`实体，里面包含一个name和accessKey，评论和app是多对一关系。
 - `type`字段可以用来扩展为直接对文章点赞，以及图片的评论（`content`为图片地址）。
@@ -53,5 +54,83 @@ data class Comment(
 - 页面展示上其实并不需要`UserId`，这里是考虑提高数据的可维护性。
 
 ## 接口
+
+### 1.新增评论或点赞
+
+```kotlin
+@ApiOperation(value = "新增评论及点赞")
+@RequestMapping(path = ["/newComment"], method = [RequestMethod.POST])
+fun newComment(@RequestParam accessKey: String,
+               @RequestParam appName: String,
+               @ApiParam("评论类型，0.文字评论，1.点赞，2.图片评论", defaultValue = "0",example = "0",allowableValues = "0,1,2")
+               @RequestParam type: Int = 0,
+               @RequestParam topicId: String,
+               @RequestParam(required = false) content: String?,
+               @RequestParam fromUserId: String,
+               @RequestParam(required = false) fromUserName: String?,
+               @RequestParam(required = false) fromUserIcon: String?,
+               @RequestParam(required = false) toCommentId: Long?
+): JsonResult<Comment> {
+    if (type < 0 || type > 2) return JsonResult.error("参数错误")
+    var contentText = content
+    //文字及图片评论内容限制
+    if (type == 0 || type == 2) {
+        if (StringUtils.isEmpty(contentText)) return JsonResult.error("内容不能为空")
+        if (contentText!!.length > 1023) return JsonResult.error("内容不能超过1000个字")
+    }
+    val app = commentAppRepository.findByNameAndAccessKey(appName, accessKey)
+            ?: return JsonResult.error("app不存在，或key错误")
+    //图片评论上传至OSS
+    if (type == 2) {
+        val file = storageService.loadTemp(contentText).toFile()
+        if (!file.exists()) {
+            return JsonResult.error("相片不存在")
+        }
+        contentText = ossService.putFile(OssService.COMMENT_BUCKET_NAME, appName, file)
+                ?: return JsonResult.error("评论失败，请重试")
+    }
+    //处理回复
+    var toComment: Comment? = null
+    if (toCommentId != null && toCommentId > 0) {
+        toComment = commentRepository.findById(toCommentId).orElse(null) ?: return JsonResult.error("被回复的评论不存在")
+        if (toComment.topicId != topicId) return JsonResult.error("不能跨主题回复")
+        if (toComment.type == 1) return JsonResult.error("不能对点赞回复")
+        //对评论点赞，直接对点赞数+1，不保存此条评论
+        if (type == 1) {
+            toComment.likeCount++
+            return JsonResult.data(commentRepository.save(toComment))
+        }
+    }
+    //需要新增的comment
+    val comment = Comment(
+            topicId = topicId,
+            app = app,
+            content = contentText,
+            type = type,
+            fromUserId = fromUserId,
+            fromUserName = fromUserName,
+            fromUserIcon = fromUserIcon,
+            toUserId = toComment?.fromUserId,
+            toUserName = toComment?.fromUserName,
+            toUserIcon = toComment?.fromUserIcon,
+            toContent = toComment?.content)
+    log.info("$fromUserName 评论了 ${app.name} 的 $topicId")
+    return JsonResult.data(commentRepository.save(comment))
+}
+```
+
+### 2.获取评论列表
+
+```kotlin
+@ApiOperation(value = "获取评论列表")
+@RequestMapping(path = ["/getComments"], method = [RequestMethod.GET])
+fun getComments(@RequestParam accessKey: String,
+                @RequestParam appName: String,
+                @RequestParam topicId: String): JsonResult<List<Comment>> {
+    commentAppRepository.findByNameAndAccessKey(appName, accessKey)
+            ?: return JsonResult.error("app不存在，或key错误")
+    return JsonResult.data(commentRepository.findAllByApp_NameAndTopicId(appName, topicId))
+}
+```
 
 以上，转载请注明出处!
