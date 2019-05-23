@@ -32,6 +32,10 @@ Travis CI可以使用Github的OAuth登录，赋予其必要的权限，我们就
 Travis CI通过读取项目根目录的`.travis.yml`文件获取配置信息，所以需要在工程目录下配置`.travis.yml`
 
 ```yml
+# safelist
+branches:
+  only:
+  - master
 language: node_js
 node_js:
   - "8"
@@ -48,6 +52,7 @@ after_deploy:
   - node deploy/sftp.js $SERVER_PASSWORD
 ```
 
+- `branches`可以配置需要构建的黑白名单，我这里设置了白名单，只构建`master`分支
 - 语言环境选择`nodejs`
 - 一个Job包含两个主要部分：`install`和`script`
 - 我这里指定了node版本为v8
