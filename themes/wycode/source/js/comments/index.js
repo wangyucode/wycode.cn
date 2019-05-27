@@ -5,10 +5,15 @@ Vue.component('wycode-comments',
         },
         data: function () {
             return {
-                show: false
+                show: false,
+                comments: []
             }
         },
-        methods: {},
+        methods: {
+            handleSend: function () {
+
+            }
+        },
         mounted: function () {
             var queryData = {
                 accessKey: "114c03ec4d6f40a4a1490a5638d8141d",
@@ -25,11 +30,17 @@ Vue.component('wycode-comments',
             });
         },
         template: `
-<div v-if="show">
+<div v-if="show" class="widget-wrap">
     <div class="comments-list">
-        <div class="comment"></div>
+        <div class="comment" v-for="comment in comments"></div>
     </div>
-    {{path}}
+    
+    <div class="comments-input input-group">
+        <input type="text" class="form-control" placeholder="评论一下吧？" aria-label="评论一下吧？">
+        <div class="input-group-append">
+            <button v-on:click="handleSend" class="btn btn-outline-primary" type="button"><i class="fas fa-paper-plane"></i>  发送</button>
+        </div>
+    </div>
     <span class="about-vue">此模块由 <a href="https://cn.vuejs.org" target="_blank">Vue.js</a> 驱动渲染</span>
 </div>
 `
