@@ -86,7 +86,7 @@ Vue.component('wycode-clipboard',
             <button v-on:click="handleBack"
                     class="btn-save btn btn-primary form-control  form-group">返回</button>
         </div>
-        <span class="clipboard-vue">此模块由 <a href="https://cn.vuejs.org" target="_blank">Vue.js</a> 驱动渲染</span>
+        <span class="about-vue">此模块由 <a href="https://cn.vuejs.org" target="_blank">Vue.js</a> 驱动渲染</span>
     </div>
 </div>
 `

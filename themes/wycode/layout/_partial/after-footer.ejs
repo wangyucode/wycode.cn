@@ -8,3 +8,11 @@
 <script>particlesJS.load('particles-js', '<%- url_for('/assets/particlesjs-config.json') %>');</script>
 <%- js('js/search') %>
 <script>searchFunc('<%= url_for('search.xml') %>', 'searchInput', 'searchResult');</script>
+<!--TODO 必要时才添加vue-->
+<script src="https://vuejs.org/js/vue.js"></script>
+<% if(is_clipboard(page)){ %>
+    <%- js('js/clipboard/index.js') %>
+<% } %>
+<% if(is_about(page)){ %>
+    <%- js('js/comments/index.js') %>
+<% } %>

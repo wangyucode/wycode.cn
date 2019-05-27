@@ -219,7 +219,7 @@ a.nav-link.active{
     margin-right: 0.3em;
 }
 
-.article,.archive-year-month-wrap,.widget-wrap,.article-nav,.comment,.page-nav{
+.article,.archive-year-month-wrap,.widget-wrap,.article-nav,.page-nav{
     background: #fff;
     border-radius: 2px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -419,7 +419,7 @@ a.article-title{
 剪切板
 */
 
-.clipboard-vue{
+.about-vue{
     width: 100%;
     text-align: center;
     font-size: 12px;
