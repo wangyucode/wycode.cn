@@ -13,6 +13,9 @@ Vue.component('wycode-comments',
         },
         template: `
 <div>
+    <div class="comments-list">
+        <div class="comment"></div>
+    </div>
     {{path}}
 </div>
 `
