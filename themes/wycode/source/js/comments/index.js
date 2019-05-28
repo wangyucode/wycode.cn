@@ -5,14 +5,17 @@ Vue.component('wycode-comments',
         },
         data: function () {
             return {
+                hasLogin: false,
                 show: false,
-                comments: []
+                comments: [],
+                githubAuthorizeUrl: "https://github.com/login/oauth/authorize?scope=read:user&client_id=ac839e7de6bee6fa3776&redirect_uri="+location.href
             }
         },
         methods: {
             handleSend: function () {
 
-            }
+            },
+
         },
         mounted: function () {
             var queryData = {
@@ -22,19 +25,24 @@ Vue.component('wycode-comments',
             };
             $.get('https://wycode.cn/web/api/public/comment/getComments', queryData, (response) => {
                 console.log(response);
-                if (response && response.data) {
+                if (response && response.success) {
                     this.show = true;
                 } else {
-                    alert('查询码不正确！');
+                    log.error(response.error)
                 }
             });
+
+            var userId = localStorage.getItem("userId")
         },
         template: `
 <div v-if="show" class="widget-wrap">
     <div class="comments-list">
         <div class="comment" v-for="comment in comments"></div>
     </div>
-    
+    <div v-if="!hasLogin" class="comments-login">
+        <a class="btn btn-success" role="button" v-bind:href="githubAuthorizeUrl"><i class="fab fa-github" style="color: white"></i>  Github登录</a>
+        <button class="btn btn-outline-secondary" type="button">匿名评论</button>
+    </div>
     <div class="comments-input input-group">
         <input type="text" class="form-control" placeholder="评论一下吧？" aria-label="评论一下吧？">
         <div class="input-group-append">
