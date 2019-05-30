@@ -8,7 +8,7 @@ Vue.component('wycode-comments',
                 hasLogin: false,
                 show: false,
                 comments: [],
-                githubAuthorizeUrl: "https://github.com/login/oauth/authorize?scope=read:user&client_id=ac839e7de6bee6fa3776&redirect_uri="+location.href
+                githubAuthorizeUrl: "https://github.com/login/oauth/authorize?scope=read:user&client_id=ac839e7de6bee6fa3776&redirect_uri=" + location.origin + location.pathname
             }
         },
         methods: {
@@ -24,7 +24,7 @@ Vue.component('wycode-comments',
                 topicId: this.path,
             };
             $.get('https://wycode.cn/web/api/public/comment/getComments', queryData, (response) => {
-                console.log(response);
+                console.log('getComments->', response);
                 if (response && response.success) {
                     this.show = true;
                 } else {
@@ -32,7 +32,33 @@ Vue.component('wycode-comments',
                 }
             });
 
-            var userId = localStorage.getItem("userId")
+            var queryObj = {};
+            var pairs = window.location.search.substring(1).split("&");
+            for (i in pairs) {
+                if (pairs[i] === "") continue;
+
+                pair = pairs[i].split("=");
+                queryObj[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+            }
+            if (queryObj['code']) {
+                var exchangeTokenData = {
+                    client_id: 'ac839e7de6bee6fa3776',
+                    client_secret: 'e40b6c2fbd0ae21f81996aed6d057cf05a7b9951',
+                    code: queryObj['code'],
+                };
+                $.ajax({
+                    url:'https://github.com/login/oauth/access_token',
+                    data:exchangeTokenData,
+                    type:'POST',
+                    success:(result)=>{
+                        console.log('ExchangeToken->', result);
+                    },
+                    error:(error)=>{
+                        console.log('ExchangeToken->', error);
+                    }
+                });
+            }
+            //var userId = localStorage.getItem("userId")
         },
         template: `
 <div v-if="show" class="widget-wrap">
