@@ -6,16 +6,22 @@ Vue.component('wycode-comments',
         data: function () {
             return {
                 hasLogin: false,
+                anonymous:false,
                 show: false,
                 comments: [],
-                githubAuthorizeUrl: "https://github.com/login/oauth/authorize?scope=read:user&client_id=ac839e7de6bee6fa3776&redirect_uri=" + location.origin + location.pathname
+                githubAuthorizeUrl: "https://github.com/login/oauth/authorize?scope=read:user&client_id=ac839e7de6bee6fa3776&redirect_uri=" + location.origin + location.pathname,
+                avatarUrl: "",
+                username:"",
+                //loading:false
             }
         },
         methods: {
             handleSend: function () {
 
             },
-
+            handleAnonymous:function () {
+                this.anonymous = true;
+            }
         },
         mounted: function () {
             var queryData = {
@@ -23,12 +29,13 @@ Vue.component('wycode-comments',
                 appName: "wycode",
                 topicId: this.path,
             };
-            $.get('https://wycode.cn/web/api/public/comment/getComments', queryData, (response) => {
+            var vue = this;
+            $.get('https://wycode.cn/web/api/public/comment/getComments', queryData, function(response){
                 console.log('getComments->', response);
                 if (response && response.success) {
-                    this.show = true;
+                    vue.show = true;
                 } else {
-                    log.error(response.error)
+                    console.error(response.error)
                 }
             });
 
@@ -36,25 +43,29 @@ Vue.component('wycode-comments',
             var pairs = window.location.search.substring(1).split("&");
             for (i in pairs) {
                 if (pairs[i] === "") continue;
-
                 pair = pairs[i].split("=");
                 queryObj[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
             }
             if (queryObj['code']) {
-                var exchangeTokenData = {
-                    client_id: 'ac839e7de6bee6fa3776',
-                    client_secret: 'e40b6c2fbd0ae21f81996aed6d057cf05a7b9951',
-                    code: queryObj['code'],
-                };
-                $.ajax({
-                    url:'https://github.com/login/oauth/access_token',
-                    data:exchangeTokenData,
-                    type:'POST',
-                    success:(result)=>{
-                        console.log('ExchangeToken->', result);
-                    },
-                    error:(error)=>{
-                        console.log('ExchangeToken->', error);
+                $.get('https://wycode.cn/web/api/public/comment/githubToken', {code: queryObj['code']}, function(response) {
+                    console.log('githubToken->', response);
+                    if (response && response.success && response.data.access_token) {
+                        $.ajax({
+                            url: "https://api.github.com/user",
+                            headers: {
+                                Accept: "application/json; charset=utf-8",
+                                Authorization: "token " + response.data.access_token
+                            },
+                            type: "GET",
+                            success: function(data) {
+                                console.log("user-->",data);
+                                vue.hasLogin = true;
+                                vue.avatarUrl = data.avatar_url;
+                                vue.username = data.name
+                            }
+                        });
+                    } else {
+                        console.error(response.error + ',' + response.data.error_description);
                     }
                 });
             }
@@ -65,11 +76,12 @@ Vue.component('wycode-comments',
     <div class="comments-list">
         <div class="comment" v-for="comment in comments"></div>
     </div>
-    <div v-if="!hasLogin" class="comments-login">
+    <div v-if="!hasLogin && !anonymous" class="comments-login">
         <a class="btn btn-success" role="button" v-bind:href="githubAuthorizeUrl"><i class="fab fa-github" style="color: white"></i>  Github登录</a>
-        <button class="btn btn-outline-secondary" type="button">匿名评论</button>
+        <button class="btn btn-outline-secondary" type="button" v-on:click="handleAnonymous">匿名评论</button>
     </div>
-    <div class="comments-input input-group">
+    <div v-else="hasLogin||anonymous" class="comments-input input-group">
+        <img v-if="avatarUrl" v-bind:src="avatarUrl" width="48px" height="48px" style=""/>
         <input type="text" class="form-control" placeholder="评论一下吧？" aria-label="评论一下吧？">
         <div class="input-group-append">
             <button v-on:click="handleSend" class="btn btn-outline-primary" type="button"><i class="fas fa-paper-plane"></i>  发送</button>
