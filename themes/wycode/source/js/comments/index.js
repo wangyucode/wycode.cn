@@ -6,20 +6,20 @@ Vue.component('wycode-comments',
         data: function () {
             return {
                 hasLogin: false,
-                anonymous:false,
+                anonymous: false,
                 show: false,
                 comments: [],
                 githubAuthorizeUrl: "https://github.com/login/oauth/authorize?scope=read:user&client_id=ac839e7de6bee6fa3776&redirect_uri=" + location.origin + location.pathname,
                 avatarUrl: "",
-                username:"",
-                //loading:false
+                username: "",
+                logging:false
             }
         },
         methods: {
             handleSend: function () {
 
             },
-            handleAnonymous:function () {
+            handleAnonymous: function () {
                 this.anonymous = true;
             }
         },
@@ -30,7 +30,7 @@ Vue.component('wycode-comments',
                 topicId: this.path,
             };
             var vue = this;
-            $.get('https://wycode.cn/web/api/public/comment/getComments', queryData, function(response){
+            $.get('https://wycode.cn/web/api/public/comment/getComments', queryData, function (response) {
                 console.log('getComments->', response);
                 if (response && response.success) {
                     vue.show = true;
@@ -47,7 +47,8 @@ Vue.component('wycode-comments',
                 queryObj[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
             }
             if (queryObj['code']) {
-                $.get('https://wycode.cn/web/api/public/comment/githubToken', {code: queryObj['code']}, function(response) {
+                this.logging = true;
+                $.get('https://wycode.cn/web/api/public/comment/githubToken', {code: queryObj['code']}, function (response) {
                     console.log('githubToken->', response);
                     if (response && response.success && response.data.access_token) {
                         $.ajax({
@@ -57,11 +58,12 @@ Vue.component('wycode-comments',
                                 Authorization: "token " + response.data.access_token
                             },
                             type: "GET",
-                            success: function(data) {
-                                console.log("user-->",data);
+                            success: function (data) {
+                                console.log("user-->", data);
                                 vue.hasLogin = true;
                                 vue.avatarUrl = data.avatar_url;
-                                vue.username = data.name
+                                vue.username = data.name;
+                                vue.logging = false;
                             }
                         });
                     } else {
@@ -76,16 +78,22 @@ Vue.component('wycode-comments',
     <div class="comments-list">
         <div class="comment" v-for="comment in comments"></div>
     </div>
-    <div v-if="!hasLogin && !anonymous" class="comments-login">
-        <a class="btn btn-success" role="button" v-bind:href="githubAuthorizeUrl"><i class="fab fa-github" style="color: white"></i>  Github登录</a>
-        <button class="btn btn-outline-secondary" type="button" v-on:click="handleAnonymous">匿名评论</button>
-    </div>
-    <div v-else="hasLogin||anonymous" class="comments-input input-group">
-        <img v-if="avatarUrl" v-bind:src="avatarUrl" width="48px" height="48px" style=""/>
-        <input type="text" class="form-control" placeholder="评论一下吧？" aria-label="评论一下吧？">
-        <div class="input-group-append">
-            <button v-on:click="handleSend" class="btn btn-outline-primary" type="button"><i class="fas fa-paper-plane"></i>  发送</button>
+    <div class="comments-add">
+        <div v-if="!hasLogin && !anonymous" class="comments-login">
+            <a class="btn btn-success" role="button" v-bind:href="githubAuthorizeUrl"><i class="fab fa-github" style="color: white"></i>  Github登录</a>
+            <button class="btn btn-outline-secondary" type="button" v-on:click="handleAnonymous">匿名评论</button>
         </div>
+        <div v-else="hasLogin||anonymous" class="comments-input">
+            <img v-if="avatarUrl" v-bind:src="avatarUrl" width="24px" height="24px"  style="border-radius: 12px" alt="用户头像"/>
+            <span style="font-size: 16px;vertical-align: center">{{username}}</span>
+            <div class="input-group" style="margin-top: 8px">
+                <input type="text" class="form-control" placeholder="评论一下吧？" aria-label="评论一下吧？">
+                <div class="input-group-append">
+                    <button v-on:click="handleSend" class="btn btn-outline-primary" type="button"><i class="fas fa-paper-plane"></i>  发送</button>
+                </div>
+            </div>
+        </div>
+        <div v-if="logging" class="comments-logging-cover"><i class="fas fa-sync fa-spin fa-lg"></i></div>
     </div>
     <span class="about-vue">此模块由 <a href="https://cn.vuejs.org" target="_blank">Vue.js</a> 驱动渲染</span>
 </div>

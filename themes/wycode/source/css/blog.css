@@ -407,6 +407,7 @@ a.article-title{
 
 .p-about{
     margin-bottom:0;
+    font-size: 14px;
 }
 
 .img-pay{
@@ -441,4 +442,18 @@ a.article-title{
 /*评论*/
 .comments-input{
     margin-top: 12px;
+}
+
+.comments-add{
+    position: relative;
+}
+
+.comments-logging-cover{
+    position: absolute;
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    z-index: 100;
+    text-align: center;
 }
