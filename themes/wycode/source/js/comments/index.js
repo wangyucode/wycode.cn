@@ -10,13 +10,15 @@ Vue.component('wycode-comments',
                 show: false,
                 comments: [],
                 githubAuthorizeUrl: "https://github.com/login/oauth/authorize?scope=read:user&client_id=ac839e7de6bee6fa3776&redirect_uri=" + location.origin + location.pathname,
-                avatarUrl: "",
-                username: "",
+                avatarUrl: "https://wycode.cn/upload/image/account.png",
+                username: "匿名用户",
                 userId: -1,
                 logging: false,
                 errorMsg: '',
                 successMsg: '',
-                content: ''
+                content: '',
+                replyingIndex: -1,
+                replyContent: ''
             }
         },
         methods: {
@@ -44,6 +46,8 @@ Vue.component('wycode-comments',
                             vue.logging = false;
                             if (response && response.success) {
                                 vue.content = '';
+                                vue.anonymous = false;
+                                vue.comments.push(response.data);
                                 vue.successMsg = '发布成功';
                             } else {
                                 vue.errorMsg = '发布失败：' + response.error
@@ -58,6 +62,46 @@ Vue.component('wycode-comments',
                 this.anonymous = true;
                 this.errorMsg = '';
                 this.successMsg = '';
+            },
+            handleReply: function (e) {
+                if (this.hasLogin) {
+                    this.replyContent='';
+                    this.replyingIndex = Number(e.target.dataset.index);
+                } else {
+                    alert("请先登录");
+                }
+            },
+            handleReplySend: function () {
+                var vue = this;
+                if (this.replyContent) {
+                    var fd = new FormData();
+                    var toComment = this.comments[this.replyingIndex];
+                    fd.append('accessKey', "114c03ec4d6f40a4a1490a5638d8141d");
+                    fd.append("appName", "wycode");
+                    fd.append('topicId', this.path);
+                    fd.append('fromUserId', this.userId);
+                    fd.append('content', this.replyContent);
+                    fd.append('fromUserIcon', this.avatarUrl);
+                    fd.append('fromUserName', this.username);
+                    fd.append('toCommentId', toComment.id);
+                    this.replyContent='';
+                    this.replyingIndex=-1;
+                    $.ajax({
+                        url: 'https://wycode.cn/web/api/public/comment/newComment',
+                        type: 'POST',
+                        data: fd,
+                        contentType: false,
+                        processData: false,
+                        success: function (response) {
+                            console.log('newReply->', response);
+                            if (response && response.success) {
+                                vue.comments.push(response.data);
+                            }
+                        }
+                    });
+                } else {
+                    alert('内容不能为空');
+                }
             }
         },
         mounted: function () {
@@ -136,15 +180,25 @@ Vue.component('wycode-comments',
     <div v-if="comments.length > 0" class="comments-list">
         <div class="comment container" v-for="(comment,index) in comments">
             <div class="comment-head row">
-                <img class="comment-avatar" v-bind:src="comment.fromUserIcon" width="36px" height="36px" alt="用户头像"/>
+                <img class="comment-avatar" v-bind:src="comment.fromUserIcon" width="28px" height="28px" alt="用户头像"/>
                 <div class="comment-info col">
                     <div class="comment-username">{{comment.fromUserName}}</div>
                     <div class="comment-create-time">{{comment.createTime}}</div>
                 </div>
-                <button class="btn btn-outline-primary btn-sm comment-reply" type="button" v-bind:data-index="index">回复</button>
+                <button v-if="replyingIndex !== index" class="btn btn-link btn-sm comment-reply" type="button" v-bind:data-index="index" v-on:click="handleReply"><i class="fas fa-reply"></i>  回复</button>
             </div>
             <div class="comment-content row">{{comment.content}}</div>
-            <hr style="margin:0 0 8px 0"/>
+            <div v-if="comment.toUserName" class="alert alert-secondary comment-quote" role="alert"><span class="comment-quote-user">@{{comment.toUserName}}</span>  {{comment.toContent}}</div>
+            <div v-if="replyingIndex === index" class="row input-group col comment-reply-input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text comment-reply-to">@{{comment.fromUserName}}</span>
+                </div>
+                <input type="text" class="form-control comment-reply-input" placeholder="说的不对？" aria-label="评论一下吧？" v-model="replyContent">
+                <div class="input-group-append">
+                    <button v-on:click="handleReplySend" class="btn btn-outline-primary comment-reply-send" type="button"><i class="fas fa-paper-plane"></i>  发送</button>
+                </div>
+            </div>
+            <hr style="margin:0 0 8px 20px"/>
         </div>
     </div>
     <div v-else class='no-comments'>暂无评论</div>
@@ -154,8 +208,8 @@ Vue.component('wycode-comments',
             <a class="btn btn-success" role="button" v-bind:href="githubAuthorizeUrl"><i class="fab fa-github" style="color: white"></i>  Github登录</a>
             <button class="btn btn-outline-secondary" type="button" v-on:click="handleAnonymous">匿名评论</button>
         </div>
-        <div v-else="hasLogin||anonymous" class="comments-input margin-top">
-            <img v-if="avatarUrl" v-bind:src="avatarUrl" width="24px" height="24px"  style="border-radius: 12px" alt="用户头像"/>
+        <div v-else class="comments-input margin-top">
+            <img v-bind:src="avatarUrl" width="24px" height="24px"  style="border-radius: 12px" alt="用户头像"/>
             <span style="font-size: 16px;vertical-align: center">{{username}}</span>
             <div class="input-group" style="margin-top: 8px">
                 <input type="text" class="form-control" placeholder="评论一下吧？" aria-label="评论一下吧？" v-model="content">

@@ -470,13 +470,43 @@ a.article-title {
 .comment-reply {
     padding: 0 4px;
     height: 28px;
+    font-size: 12px;
+    margin-right: 15px;
+}
+.comment-reply-input-group{
+    margin: 0 0 8px 0;
+    height: 28px;
+    padding: 0 0 0 20px;
+}
+
+.comment-reply-input{
     font-size: 14px;
 }
 
+.comment-reply-to,.comment-quote-user{
+    font-size: 14px;
+    color: rgb(51, 97, 254);
+}
+
+.comment-reply-send{
+    font-size: 14px;
+    padding: 0 4px;
+}
+
+.comment-quote{
+    padding: 4px 8px;
+    font-size: 14px;
+    margin: 0 0 8px 20px;
+}
+
+.comment-avatar{
+    border-radius: 14px;
+}
+
 .comment-content {
-    color: #333;
+    color: #222;
     font-size: 16px;
-    padding: 4px 8px 4px 24px;
+    padding: 4px 8px 4px 36px;
 }
 
 .margin-top {
