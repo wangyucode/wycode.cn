@@ -10,7 +10,7 @@ tags:
 categories: Back-end
 ---
 
-![网易云音乐](http://image.woshipm.com/wp-files/2018/04/QFTkYSkExyHKCzhTTl7V.jpg)
+![网易云音乐](https://image.woshipm.com/wp-files/2018/04/QFTkYSkExyHKCzhTTl7V.jpg)
 
 畅言的广告有点过于流氓，所以准备开发一套评论系统，除了博客，还能用在其它APP中。
 
@@ -63,7 +63,7 @@ data class Comment(
 fun newComment(@RequestParam accessKey: String,
                @RequestParam appName: String,
                @ApiParam("评论类型，0.文字评论，1.点赞，2.图片评论", defaultValue = "0",example = "0",allowableValues = "0,1,2")
-               @RequestParam type: Int = 0,
+               @RequestParam(required = false, defaultValue = "0") type: Int = 0,
                @RequestParam topicId: String,
                @RequestParam(required = false) content: String?,
                @RequestParam fromUserId: String,
