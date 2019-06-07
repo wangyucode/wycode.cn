@@ -18,7 +18,8 @@ Vue.component('wycode-comments',
                 successMsg: '',
                 content: '',
                 replyingIndex: -1,
-                replyContent: ''
+                replyContent: '',
+                likeCommentIndexes: []
             }
         },
         methods: {
@@ -42,7 +43,7 @@ Vue.component('wycode-comments',
                         contentType: false,
                         processData: false,
                         success: function (response) {
-                            console.log('newComment->', response);
+                            //console.log('newComment->', response);
                             vue.logging = false;
                             if (response && response.success) {
                                 vue.content = '';
@@ -65,8 +66,8 @@ Vue.component('wycode-comments',
             },
             handleReply: function (e) {
                 if (this.hasLogin) {
-                    this.replyContent='';
-                    this.replyingIndex = Number(e.target.dataset.index);
+                    this.replyContent = '';
+                    this.replyingIndex = Number(e.currentTarget.dataset.index);
                 } else {
                     alert("请先登录");
                 }
@@ -84,8 +85,8 @@ Vue.component('wycode-comments',
                     fd.append('fromUserIcon', this.avatarUrl);
                     fd.append('fromUserName', this.username);
                     fd.append('toCommentId', toComment.id);
-                    this.replyContent='';
-                    this.replyingIndex=-1;
+                    this.replyContent = '';
+                    this.replyingIndex = -1;
                     $.ajax({
                         url: 'https://wycode.cn/web/api/public/comment/newComment',
                         type: 'POST',
@@ -93,7 +94,7 @@ Vue.component('wycode-comments',
                         contentType: false,
                         processData: false,
                         success: function (response) {
-                            console.log('newReply->', response);
+                            //console.log('newReply->', response);
                             if (response && response.success) {
                                 vue.comments.push(response.data);
                             }
@@ -102,6 +103,40 @@ Vue.component('wycode-comments',
                 } else {
                     alert('内容不能为空');
                 }
+            },
+
+            handleLike: function (e) {
+                if (this.likeCommentIndexes[e.currentTarget.dataset.index]) {
+                    return;
+                }
+
+                Vue.set(this.likeCommentIndexes, e.currentTarget.dataset.index, 'fas');
+
+                var toComment = this.comments[e.currentTarget.dataset.index];
+                if(localStorage.getItem(toComment.id)){
+                    return;
+                }
+
+                toComment.likeCount++;
+                Vue.set(this.comments, e.currentTarget.dataset.index, toComment);
+                var fd = new FormData();
+                fd.append('accessKey', "114c03ec4d6f40a4a1490a5638d8141d");
+                fd.append("appName", "wycode");
+                fd.append('topicId', this.path);
+                fd.append('fromUserId', this.userId);
+                fd.append('toCommentId', toComment.id);
+                fd.append('type', 1);
+                $.ajax({
+                    url: 'https://wycode.cn/web/api/public/comment/newComment',
+                    type: 'POST',
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        //console.log('like->', response);
+                        localStorage.setItem(toComment.id,true);
+                    }
+                });
             }
         },
         mounted: function () {
@@ -112,7 +147,7 @@ Vue.component('wycode-comments',
             };
             var vue = this;
             $.get('https://wycode.cn/web/api/public/comment/getComments', queryData, function (response) {
-                console.log('getComments->', response);
+                //console.log('getComments->', response);
                 if (response && response.success) {
                     vue.show = true;
                     vue.comments = response.data;
@@ -141,7 +176,7 @@ Vue.component('wycode-comments',
             if (queryObj['code']) {
                 this.logging = true;
                 $.get('https://wycode.cn/web/api/public/comment/githubToken', {code: queryObj['code']}, function (response) {
-                    console.log('githubToken->', response);
+                    //console.log('githubToken->', response);
                     if (response && response.success && response.data.access_token) {
                         $.ajax({
                             url: "https://api.github.com/user",
@@ -151,7 +186,7 @@ Vue.component('wycode-comments',
                             },
                             type: "GET",
                             success: function (data) {
-                                console.log("user-->", data);
+                                //console.log("user-->", data);
                                 vue.hasLogin = true;
                                 vue.avatarUrl = data.avatar_url;
                                 vue.username = data.name;
@@ -161,6 +196,23 @@ Vue.component('wycode-comments',
                                 localStorage.setItem("userId", data.id);
                                 localStorage.setItem("username", data.name);
                                 localStorage.setItem("avatarUrl", data.avatar_url);
+
+                                var fd = new FormData();
+                                fd.append('accessKey', "114c03ec4d6f40a4a1490a5638d8141d");
+                                fd.append("appName", "wycode");
+                                fd.append("company", "github");
+                                fd.append("id", "github_" + data.id);
+                                fd.append("userJson", JSON.stringify(data));
+                                $.ajax({
+                                    url: 'https://wycode.cn/web/api/public/comment/postUserInfo',
+                                    type: 'POST',
+                                    data: fd,
+                                    contentType: false,
+                                    processData: false,
+                                    success: function (response) {
+                                        //console.log('postUserInfo->', response);
+                                    }
+                                });
                             },
                             complete: function () {
                                 history.replaceState({}, document.title, location.pathname);
@@ -185,6 +237,7 @@ Vue.component('wycode-comments',
                     <div class="comment-username">{{comment.fromUserName}}</div>
                     <div class="comment-create-time">{{comment.createTime}}</div>
                 </div>
+                <button class="btn btn-link btn-sm comment-like" type="button" v-bind:data-index="index" v-on:click="handleLike"><i v-bind:class="likeCommentIndexes[index] || 'far'" class="fa-thumbs-up"></i>  {{comment.likeCount}}</button>
                 <button v-if="replyingIndex !== index" class="btn btn-link btn-sm comment-reply" type="button" v-bind:data-index="index" v-on:click="handleReply"><i class="fas fa-reply"></i>  回复</button>
             </div>
             <div class="comment-content row">{{comment.content}}</div>

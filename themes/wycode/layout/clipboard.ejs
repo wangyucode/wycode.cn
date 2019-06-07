@@ -1,3 +1,8 @@
-<div id="clipboard" style="width:100%">
+<div id="clipboard">
+    <% page.addClipboard = true %>
     <wycode-clipboard qr-image="<%- url_for('/img/clipboard/clipboard.jpg') %>"></wycode-clipboard>
+</div>
+<div id="comments">
+    <% page.addComment = true %>
+    <wycode-comments path="<%- page.path %>"></wycode-comments>
 </div>

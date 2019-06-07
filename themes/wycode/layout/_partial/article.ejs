@@ -19,5 +19,8 @@
         <img class="img-reward" src="<%- url_for('/img/reward.jpg') %>"/>
     </div>
 </article>
-
 <%- partial('post/nav') %>
+<div id="comments">
+    <% page.addComment = true %>
+    <wycode-comments path="<%- page.path %>"></wycode-comments>
+</div>

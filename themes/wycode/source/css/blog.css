@@ -467,39 +467,40 @@ a.article-title {
     font-size: 10px;
 }
 
-.comment-reply {
+.comment-reply, .comment-like {
     padding: 0 4px;
     height: 28px;
     font-size: 12px;
     margin-right: 15px;
 }
-.comment-reply-input-group{
+
+.comment-reply-input-group {
     margin: 0 0 8px 0;
     height: 28px;
     padding: 0 0 0 20px;
 }
 
-.comment-reply-input{
+.comment-reply-input {
     font-size: 14px;
 }
 
-.comment-reply-to,.comment-quote-user{
+.comment-reply-to, .comment-quote-user {
     font-size: 14px;
     color: rgb(51, 97, 254);
 }
 
-.comment-reply-send{
+.comment-reply-send {
     font-size: 14px;
     padding: 0 4px;
 }
 
-.comment-quote{
+.comment-quote {
     padding: 4px 8px;
     font-size: 14px;
     margin: 0 0 8px 20px;
 }
 
-.comment-avatar{
+.comment-avatar {
     border-radius: 14px;
 }
 
@@ -515,6 +516,10 @@ a.article-title {
 
 .comments-add {
     position: relative;
+}
+
+#comments, #clipboard {
+    width: 100%;
 }
 
 .comments-logging-cover {
