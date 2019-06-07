@@ -37,10 +37,9 @@ h4 {
 }
 
 .article-entry img {
-    width: 80%;
+    max-width: 80%;
     margin: 24px auto;
-    height: auto;
-    display: block;
+    max-height: 300px;
 }
 
 pre {
