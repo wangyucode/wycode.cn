@@ -129,7 +129,7 @@ fun getComments(@RequestParam accessKey: String,
                 @RequestParam topicId: String): JsonResult<List<Comment>> {
     commentAppRepository.findByNameAndAccessKey(appName, accessKey)
             ?: return JsonResult.error("app不存在，或key错误")
-    return JsonResult.data(commentRepository.findAllByApp_NameAndTopicId(appName, topicId))
+    return JsonResult.data(commentRepository.findAllByApp_NameAndTopicIdAndDeleted(appName, topicId))
 }
 ```
 
