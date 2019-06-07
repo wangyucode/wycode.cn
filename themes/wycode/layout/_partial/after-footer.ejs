@@ -8,3 +8,11 @@
 <script>particlesJS.load('particles-js', '<%- url_for('/assets/particlesjs-config.json') %>');</script>
 <%- js('js/search') %>
 <script>searchFunc('<%= url_for('search.xml') %>', 'searchInput', 'searchResult');</script>
+<% if(page.addClipboard){ %>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <%- js('js/clipboard/index.js') %>
+<% } %>
+<% if(page.addComment){ %>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <%- js('js/comments/index.js') %>
+<% } %>
