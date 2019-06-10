@@ -2,7 +2,7 @@
 title: 安装Node.js和npm的最佳实践
 date: 2017-11-14 11:06:35
 tags:
-- Nodejs
+- NodeJS
 - JavaScript
 - Linux
 - Ubuntu

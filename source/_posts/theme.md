@@ -3,7 +3,6 @@ title:  自定义Hexo主题
 date: 2017-6-15 12:47:36
 tags:
 - Hexo
-- EJS
 - Bootstrap
 - HTML
 categories: Front-end

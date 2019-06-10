@@ -5,7 +5,7 @@ tags:
 - CI
 - Hexo
 - Linux
-- Nodejs
+- NodeJS
 categories: CI
 ---
 
