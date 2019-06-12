@@ -40,6 +40,7 @@ h4 {
     max-width: 80%;
     margin: 24px auto;
     max-height: 300px;
+    display: block;
 }
 
 pre {
