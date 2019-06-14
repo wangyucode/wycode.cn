@@ -5,6 +5,7 @@ tags:
 - Spring
 - JWT
 - JSON
+- OAuth
 categories: Back-end
 ---
 
