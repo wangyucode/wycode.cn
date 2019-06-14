@@ -8,8 +8,8 @@ node_js:
 script: ./node_modules/.bin/hexo clean && ./node_modules/.bin/hexo generate
 deploy:
   # deploy to github pages
+  skip_cleanup: true
   - provider: pages
-    skip_cleanup: true
     target_branch: master
     github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
     repo: wangyucode/wangyucode.github.io
