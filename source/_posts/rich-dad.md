@@ -5,7 +5,7 @@ tags:
 categories: Story
 ---
 
-![TravisCI](https://images-cn.ssl-images-amazon.com/images/I/51mZHfA%2B-6L._SX351_BO1,204,203,200_.jpg)
+![rich-dad](https://images-cn.ssl-images-amazon.com/images/I/51mZHfA%2B-6L._SX351_BO1,204,203,200_.jpg)
 
 > 人穷穷观念，人富钱生钱。
 
