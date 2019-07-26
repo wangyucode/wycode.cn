@@ -4,7 +4,7 @@ date: 2019-7-25 18:35:54
 tags:
 - Flutter
 - Dart
-categories: Back-end
+categories: Front-end
 ---
 
 ![flutter](https://flutter.dev/assets/flutter-lockup-4cb0ee072ab312e59784d9fbf4fb7ad42688a7fdaea1270ccf6bbf4f34b7e03f.svg)
@@ -34,7 +34,7 @@ categories: Back-end
 
 ## 环境安装
 
-1. 安装`Dart`
+1. ~~安装`Dart`~~
 2. 安装`Flutter`，Flutter 1.5 以上就可以支持以web作为target平台，我这里安装的是`1.7.8`。
 3. 安装`webdev`，通过`flutter pub global active webdev`全局安装`webdev`工具包。
 4. 为了能够全局执行`webdev`命令，建议将`flutter/.pub-cache/bin`目录添加到`path`环境变量中。
@@ -52,3 +52,12 @@ $webdev serve
 打开<http://localhost:8080>，你就能看到红色的HelloWorld
 
 经过测试，在Edge浏览器会报错，目前只在Chrome中支持比较好。
+
+## 新建一个项目
+
+虽然未来的目标是用同一套代码来生成移动端和Web端，但目前的开发使用了不同的命名空间，所以还无法同时进行移动端和web端开发。
+
+新建的Flutter工程最简单的方式是使用IDE
+
+- VScode： 使用View->Command Paltte->`Flutter: New Web Project`。
+- IntelliJ：新建Dart项目，选择`Flutter for web`模板。
