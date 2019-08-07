@@ -85,7 +85,7 @@ Renderer.prototype.link = function(href, title, text) {
 
 //自定义table
 Renderer.prototype.table = function(header, body) {
-  return '<table class="table">\n'
+  return '<table class="table" style="font-size: 14px;">\n'
     + '<thead>\n'
     + header
     + '</thead>\n'
