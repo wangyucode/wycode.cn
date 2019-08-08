@@ -3,16 +3,20 @@
 var renderer = require('./lib/renderer');
 var assign = require('object-assign');
 
+hexo.config.sitemap = assign({
+    lastModified: new Date().toISOString()
+}, hexo.config.sitemap);
+
 hexo.config.marked = assign({
-  gfm: true,
-  pedantic: false,
-  sanitize: false,
-  tables: true,
-  breaks: true,
-  smartLists: true,
-  smartypants: true,
-  modifyAnchors: '',
-  autolink: true
+    gfm: true,
+    pedantic: false,
+    sanitize: false,
+    tables: true,
+    breaks: true,
+    smartLists: true,
+    smartypants: true,
+    modifyAnchors: '',
+    autolink: true
 }, hexo.config.marked);
 
 hexo.extend.renderer.register('md', 'html', renderer, true);

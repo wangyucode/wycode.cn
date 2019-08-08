@@ -35,19 +35,7 @@ categories: Linux
 
 ### 其它
 
-除了简单的输入和输出设备外，GPIO引脚还可以使用多种替代功能，一些可用于所有引脚，另一些则可用于特定引脚。
-
-PWM（脉冲宽度调制）
-    所有引脚均提供软件PWM
-    硬件PWM可在GPIO12，GPIO13，GPIO18，GPIO19上使用
-SPI
-    SPI0：MOSI（GPIO10）; MISO（GPIO9）; SCLK（GPIO11）; CE0（GPIO8），CE1（GPIO7）
-    SPI1：MOSI（GPIO20）; MISO（GPIO19）; SCLK（GPIO21）; CE0（GPIO18）; CE1（GPIO17）; CE2（GPIO16）
-I2C
-    数据：（GPIO2）; 时钟（GPIO3）
-    EEPROM数据：（GPIO0）; EEPROM时钟（GPIO1）
-串行
-    TX（GPIO14）; RX（GPIO15）
+除了简单的输入和输出设备外，GPIO引脚还可以使用多种替代功能，一些可用于所有引脚，另一些则可用于特定引脚。如：PWM、SPI、I2C、串行
 
 ## 装备
 

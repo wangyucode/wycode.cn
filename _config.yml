@@ -84,6 +84,10 @@ archive_generator:
   monthly: true
   daily: false
 
+# sitemap https://github.com/hexojs/hexo-generator-sitemap
+sitemap:
+    template: ./sitemap_template.xml
+
 search:
   path: search.xml
   field: post
@@ -98,3 +102,4 @@ deploy:
 
 server:
   compress: true
+

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://wycode.cn/</loc>
+        <lastmod>{{ config.sitemap.lastModified }}</lastmod>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://wycode.cn/archives/</loc>
+        <lastmod>{{ config.sitemap.lastModified }}</lastmod>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://wycode.cn/lab.html</loc>
+        <lastmod>{{ config.sitemap.lastModified }}</lastmod>
+        <changefreq>monthly</changefreq>
+    </url>
+    <url>
+        <loc>https://wycode.cn/about.html</loc>
+        <lastmod>{{ config.sitemap.lastModified }}</lastmod>
+        <changefreq>monthly</changefreq>
+    </url>
+    <url>
+        <loc>https://wycode.cn/clipboard.html</loc>
+        <lastmod>{{ config.sitemap.lastModified }}</lastmod>
+        <changefreq>monthly</changefreq>
+    </url>
+    
+    {% for post in posts %}
+    <url>
+        <loc>{{ post.permalink | uriencode }}</loc>
+        {% if post.updated %}
+        <lastmod>{{ post.updated.toISOString() }}</lastmod>
+        {% elif post.date %}
+        <lastmod>{{ post.date.toISOString() }}</lastmod>
+        {% endif %}
+    </url>
+    {% endfor %}
+</urlset>
