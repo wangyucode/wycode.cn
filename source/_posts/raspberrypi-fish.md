@@ -90,7 +90,46 @@ while True:
 3. 每0.5秒检测一次
 4. 开关打开则点亮LED，否则关闭LED
 
-## 发送警报邮件
+## Python发送邮件
+
+```python
+#coding=utf-8
+from email.mime.text import MIMEText
+from email.header import Header
+from smtplib import SMTP_SSL
+import time
+
+
+#邮箱smtp服务器
+host_server = 'smtp.exmail.qq.com'
+#sender用户名
+sender_user = 'wangyu@wycode.cn'
+#邮箱登录密码
+sender_pwd = '**********'
+#发件人的邮箱
+sender_mail = sender_user
+#收件人邮箱
+receiver = sender_user
+
+#邮件的正文内容
+mail_content = '【水位警报】过低\n时间：'+time.strftime( '%Y-%m-%d %X', time.localtime())
+#邮件标题
+mail_title = '【水位警报】过低'
+
+#ssl登录
+smtp = SMTP_SSL(host_server)
+#set_debuglevel()是用来调试的。参数值为1表示开启调试模式，参数值为0关闭调试模式
+smtp.set_debuglevel(1)
+smtp.ehlo(host_server)
+smtp.login(sender_user, sender_pwd)
+
+msg = MIMEText(mail_content, "plain", 'utf-8')
+msg["Subject"] = Header(mail_title, 'utf-8')
+msg["From"] = sender_mail
+msg["To"] = receiver
+smtp.sendmail(sender_mail, receiver, msg.as_string())
+smtp.quit()
+```
 
 未完待续...
 
