@@ -532,3 +532,9 @@ a.article-title {
     z-index: 100;
     text-align: center;
 }
+
+.tagcloud{
+    position: relative;
+    padding-bottom:100%;
+    width: 100%
+}

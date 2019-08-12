@@ -1,7 +1,7 @@
 <% if (site.tags.length){ %>
   <div class="widget-wrap">
     <h4 class="widget-title"><i class="fa fa-tags" aria-hidden="true"></i> <%= __('tagcloud') %></h4>
-    <div class="widget tagcloud">
+    <div class="widget tagcloud" id="tagsList">
       <%- tagcloud() %>
     </div>
   </div>
