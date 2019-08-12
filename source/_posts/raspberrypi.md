@@ -68,4 +68,25 @@ $ reboot
 
 然后我们就可以通过局域网`SSH`或者`VNC Viewer`远程访问树莓派了
 
+## VNC `Cannot currently show the desktop`
+
+使用`VNC Viewer`远程连接时显示`Cannot currently show the desktop`
+
+解决方案:
+
+```bash
+$ cd /boot/
+$ sudo nano config.txt
+```
+取消注释以下3行
+
+```yml
+# uncomment if hdmi display is not detected and composite is being output
+hdmi_force_hotplug=1
+
+# uncomment to force a specific HDMI mode (this will force VGA)
+hdmi_group=1
+hdmi_mode=1
+```
+
 什么？你想要通过互联网远程访问？那么我们需要**内网穿透**这门技术。下篇文章我们来搞这个。
