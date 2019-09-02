@@ -24,15 +24,15 @@ categories: Linux
 
 由于现在小区宽带都是接入到服务商的大路由上，IPV4的资源也很珍贵，所以基本都是没有外网IP的，本文重点讨论没有外网IP的情况。
 
-### 付费方案
+## 付费方案
 
-[花生壳](https://www.oray.com)
+[https://www.oray.com](https://www.oray.com)
 
 花生壳提供软件解决方案，同时他们也提供能够实现穿透的硬件方案。
 
 当然还有`NAT123`，但是他们的官网就像是上个世纪的网站，还是算了吧。
 
-### ngrok
+## ngrok
 
 ![Network](https://camo.githubusercontent.com/f2d698991e6a0411680413ebcc15a6460b8beda3/68747470733a2f2f6e67726f6b2e636f6d2f7374617469632f696d672f6f766572766965772e706e67)
 
@@ -41,13 +41,13 @@ ngrok2.x是闭源的，官网在这：[https://ngrok.com](https://ngrok.com)
 
 ngrok商业化之后估计1.x就很少维护了，2.x目前是有限制的免费。
 
-### frp
+## frp
 
 ![Network](https://github.com/fatedier/frp/raw/master/doc/pic/architecture.png)
 
 `frp`是一个开源的内网穿透的反向代理应用，支持 tcp, udp 协议。
 
-[frp](https://github.com/fatedier/frp)
+[https://github.com/fatedier/frp](https://github.com/fatedier/frp)
 
 用户通过访问一个装有`frps`的公网服务器，由服务器代理访问处于内网，并安装了`frpc`的内网服务
 
@@ -67,9 +67,5 @@ ngrok商业化之后估计1.x就很少维护了，2.x目前是有限制的免费
 
 具体配置请参考官网及github
 
-[官网](https://www.v2ray.com)
-[Github](https://github.com/V2Ray/v2ray-core)
-
-
-
-
+[https://www.v2ray.com](https://www.v2ray.com)
+[https://github.com/V2Ray/v2ray-core](https://github.com/V2Ray/v2ray-core)
