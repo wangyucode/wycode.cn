@@ -4,6 +4,7 @@ date: 2017-12-28 10:00:07
 tags:
 - Angular
 - TypeScript
+- HTML
 categories: Front-end
 ---
 
