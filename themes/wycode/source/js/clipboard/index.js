@@ -53,7 +53,7 @@ Vue.component('wycode-clipboard',
 
             handleBack: function () {
                 this.isShowResult = false;
-            }
+            },
         },
         template: `
 <div>
@@ -66,6 +66,8 @@ Vue.component('wycode-clipboard',
                type="text"
                class="input-query-number form-control form-group"
                maxlength=6
+               autofocus="true"
+               v-on:keyup.enter="handleQuery"
                v-model="queryNumber"
                v-bind:disabled="isShowResult"/>
         <button v-if="!isShowResult"
