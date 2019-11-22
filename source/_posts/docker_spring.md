@@ -22,6 +22,8 @@ Docker容器化技术，使得部署变得平滑。再也不需要维护软件�
 ```bash
 $ curl -fsSL https://get.docker.com -o get-docker.sh
 $ sudo sh get-docker.sh
+$ systemctl enable docker
+$ systemctl start docker
 ```
 
 ## 准备SpringBoot工程
@@ -117,3 +119,16 @@ $ docker pull ubuntu
 $ docker tag ubuntu localhost:5000/ubuntu
 $ docker push localhost:5000/ubuntu
 ```
+
+> 为了安全，创建的私有仓库也要添加Https
+
+## 总结
+
+使用docker部署SpringBoot工程时，正规的流程应该是：
+1. 为工程编写Dockerfile
+2. 添加Docker插件，构建Docker镜像
+3. push到公共或私有Docker仓库
+4. 拉取最新镜像并运行
+
+本地无法构建时，应使用某种持续集成方法让编译机去负责出包和推送，不应该使用remote API这不是常规做法，而且有安全风险。
+此外Docker官方提供了安全的私有Docker仓库，少量使用是免费的。
