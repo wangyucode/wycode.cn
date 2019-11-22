@@ -131,5 +131,3 @@ smtp.sendmail(sender_mail, receiver, msg.as_string())
 smtp.quit()
 ```
 
-未完待续...
-
