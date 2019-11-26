@@ -240,8 +240,8 @@ Vue.component('wycode-comments',
                 <button class="btn btn-link btn-sm comment-like" type="button" v-bind:data-index="index" v-on:click="handleLike"><i v-bind:class="likeCommentIndexes[index] || 'far'" class="fa-thumbs-up"></i>  {{comment.likeCount}}</button>
                 <button v-if="replyingIndex !== index" class="btn btn-link btn-sm comment-reply" type="button" v-bind:data-index="index" v-on:click="handleReply"><i class="fas fa-reply"></i>  回复</button>
             </div>
-            <div class="comment-content row">{{comment.content}}</div>
             <div v-if="comment.toUserName" class="alert alert-secondary comment-quote" role="alert"><span class="comment-quote-user">@{{comment.toUserName}}</span>  {{comment.toContent}}</div>
+            <div class="comment-content row">{{comment.content}}</div>
             <div v-if="replyingIndex === index" class="row input-group col comment-reply-input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text comment-reply-to">@{{comment.fromUserName}}</span>

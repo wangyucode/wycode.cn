@@ -496,7 +496,7 @@ a.article-title {
 .comment-quote {
     padding: 4px 8px;
     font-size: 14px;
-    margin: 0 0 8px 20px;
+    margin: 8px 0 0 20px;
 }
 
 .comment-avatar {
@@ -507,6 +507,7 @@ a.article-title {
     color: #222;
     font-size: 16px;
     padding: 4px 8px 4px 36px;
+    margin-bottom: 8px;
 }
 
 .margin-top {
