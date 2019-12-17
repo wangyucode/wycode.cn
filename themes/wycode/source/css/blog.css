@@ -431,10 +431,10 @@ a.article-title {
 }
 
 .clipboard-qrcode {
-    margin: 0 auto;
+    margin: 24px auto;
     display: block;
-    max-width: 120px;
-    max-height: 120px;
+    max-width: 240px;
+    max-height: 240px;
 }
 
 .swagger-ui .col {
