@@ -20,6 +20,8 @@ categories: Back-end
 - 用户上下线和邀请码刷新时有系统提示。
 - Web连接必然是不稳定的，所以断线必须能够重连。
 
+线上Demo演示请直接访问: <https://wycode.cn/chat/>
+
 技术方面：
 
 - 使用`WebSocket`协议提供Web上的全双工通信支持。
