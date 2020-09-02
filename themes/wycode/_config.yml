@@ -21,8 +21,6 @@ about:
   github: https://github.com/wangyucode
 
 
-clustrmaps: //cdn.clustrmaps.com/map_v2.js?d=gqBX0NCZ-bHPpFMW_0e6Yy-FapJ0v9V1jVB6HKf1Weo&amp;cl=ffffff&amp;w=a&amp;t=tt
-
 # widget behavior
 archive_type: 'monthly'
 show_count: true
