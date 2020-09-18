@@ -9,7 +9,7 @@ tags:
 categories: Android
 ---
 
-![Flutter](https://flutter-io.cn/assets/flutter-lockup-4cb0ee072ab312e59784d9fbf4fb7ad42688a7fdaea1270ccf6bbf4f34b7e03f.svg)
+![Flutter](https://flutter.cn/favicon.ico)
 
 > Flutter是由Google开发的开源的跨平台应用开发框架，支持Android、iOS开发，能够开发媲美原生的高性能应用。按照2019年的开发路线图，Flutter即将支持Web和桌面端应用的开发。这篇文章带你领略Flutter的魅力。
 
@@ -29,9 +29,11 @@ ReactNative技术看起来很美好，因为对公司而言，并不需要很多
 
 Flutter的优势在于，它完全抛弃了使用原生UI，而是从底层2D渲染就独立出来。使用了Google开发的叫`Skia`的C++渲染库。类似于游戏引擎一样，能够提供60FPS的性能。上层使用`Dart`提供了一套现代的响应式布局框架。抛弃了原生组件，同时也就免去了原生组件的定制。定制UI也是在Flutter框架的范围内，不涉及原生开发。
 
+这就是Flutter的魅力所在。
+
 ## Flutter技术架构
 
-![Flutter技术架构](https://flutter-io.cn/images/whatisflutter/diagram-layercake.svg)
+![Flutter技术架构](https://flutter.cn/images/arch-overview/archdiagram.png)
 
 ## 关于环境搭建
 
