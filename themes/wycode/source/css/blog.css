@@ -518,10 +518,6 @@ a.article-title {
     position: relative;
 }
 
-#comments{
-    margin-top: 12px;
-}
-
 .comments-logging-cover {
     position: absolute;
     background-color: #fff;

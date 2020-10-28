@@ -33,16 +33,30 @@
             target="_blank">https://github.com/wangyucode/chatroom-angular-antdesign-websocket-stomp</a></p>
 </div>
 <div class="widget-wrap col-md-5 lab-item">
+    <h6>《谁是卧底发牌员》，线下聚会必备，点击链接就能一起玩，快将链接分享给好友吧。<a href="http://wycode.cn/dealer/"
+            target="_blank">http://wycode.cn/dealer/</a></h6>
+    <img src="<%- url_for('/img/dealer/dealer1.png') %>" alt="截图" width="45%" />
+    <img src="<%- url_for('/img/dealer/dealer2.png') %>" alt="截图" width="45%" />
+    <p>源码：<i class="fab fa-github"></i> <a
+            href="https://github.com/wangyucode/dealer"
+            target="_blank">https://github.com/wangyucode/dealer</a></p>
+</div>
+<div class="widget-wrap col-md-6 lab-item">
+    <h6>JavaFX技术实现的五子棋，可以局域网对局，可以聊天，可以自动判定胜负，可以悔棋，总代码不超过1000行，编译后仅18KB</h6>
+    <img src="<%- url_for('/img/fivechess/fiveChess.png') %>" alt="五子棋" width="100%" />
+    <p>源码：<i class="fab fa-github"></i> <a href="https://github.com/wangyucode/FiveChess"
+            target="_blank">https://github.com/wangyucode/FiveChess</a></p>
+</div>
+<div class="widget-wrap col-md-5 lab-item">
     <h6>开源、纯净、无广告；省电、安全、不推送；适配安卓2.3至安卓7.1的纯净版西安自行车网点查询来了，还你一个简单纯净的出行APP，立即下载<a
             href="http://wycode.cn/upload/apk/bike.apk" target="_blank">西安公共自行车</a></h6>
     <img src="<%- url_for('/img/bike/bike1.png') %>" alt="截图" width="45%" />
     <img src="<%- url_for('/img/bike/bike2.png') %>" alt="截图" width="45%" />
 </div>
-<div class="widget-wrap col-md-5 lab-item">
-    <h6>JavaFX技术实现的五子棋，可以局域网对局，可以聊天，可以自动判定胜负，可以悔棋，总代码不超过1000行，编译后仅18KB</h6>
-    <img src="<%- url_for('/img/fivechess/fiveChess.png') %>" alt="五子棋" width="100%" />
-    <p>源码：<i class="fab fa-github"></i> <a href="https://github.com/wangyucode/FiveChess"
-            target="_blank">https://github.com/wangyucode/FiveChess</a></p>
+
+<div id="comments" class="col-md-12">
+    <% page.addComment = true %>
+    <wycode-comments path="<%- page.path %>"></wycode-comments>
 </div>
 
 <div class="col-md-12">
@@ -51,9 +65,4 @@
     <script>
         (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
-</div>
-
-<div id="comments" class="col-md-12">
-    <% page.addComment = true %>
-    <wycode-comments path="<%- page.path %>"></wycode-comments>
 </div>
