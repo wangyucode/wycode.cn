@@ -518,8 +518,8 @@ a.article-title {
     position: relative;
 }
 
-#comments, #clipboard {
-    width: 100%;
+#comments{
+    margin-top: 12px;
 }
 
 .comments-logging-cover {
