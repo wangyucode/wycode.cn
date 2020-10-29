@@ -1,68 +1,128 @@
-<div class="widget-wrap col-md-2 lab-item">
-    <h6>一起来玩<strong>3D滚蛋吧</strong></h6>
-    <p>看谁滚得远</p>
-    <img src="<%- url_for('/img/roll/roll.jpg') %>" alt="小程序码" width="100%" />
-</div>
-<div class="widget-wrap col-md-2 lab-item">
-    <h6><del>造福鱼友：欢迎使用<strong>养鱼小助手</strong></del></h6>
-    <p><del>查养鱼攻略，查鱼类品种，问答社区</del></p>
-    <div class="alert alert-danger" role="alert">已下架</div>
-    <img src="<%- url_for('/img/fish/fish_logo.jpg') %>" alt="小程序码" width="100%" />
-</div>
-<div class="widget-wrap col-md-2 lab-item">
-    <h6>玩DOTA2，查英雄，查物品，查赛事，查天梯排行<strong>DOTA2英雄技能物品天梯助手</strong></h6>
-    <img src="<%- url_for('/img/dota/dota_logo.jpg') %>" alt="小程序码" width="100%" />
-</div>
-<div class="widget-wrap col-md-2 lab-item">
-    <h6>手机电脑互发文字？最简单的方式：使用<a href="https://wycode.cn/clipboard.html" target="_blank">跨平台剪切板</a>即可</h6>
-    <p>并提供小程序版本</p>
-    <img src="<%- url_for('/img/clipboard/clipboard.jpg') %>" alt="小程序码" width="100%" />
-</div>
-<div class="widget-wrap col-md-2 lab-item">
-    <h6>Wengine是一款轻量级Android游戏引擎，使用纯Java开发，对Android开发者友好，可以用极少的代码实现一些简单的小游戏，目前有5款demo，打砖块，天天跑酷，FlappyBird，打飞机，蛇蛇大作战</h6>
-    <p>源码：<i class="fab fa-github"></i> <a href="https://github.com/wangyucode/Wengine-android" target="_blank"
-            style="width:100%">https://github.com/wangyucode/Wengine-android</a></p>
-</div>
-<div class="widget-wrap col-md-6 lab-item">
-    <h6>基于Websocket和STOMP协议的网页聊天室，无需注册，完全匿名，聊天记录自动清除，邀请码定时刷新，短线自动重连。<a href="http://wycode.cn/chat/"
-            target="_blank">http://wycode.cn/chat/</a></h6>
-    <img src="<%- url_for('/img/chat/login.png') %>" alt="截图" width="45%" />
-    <img src="<%- url_for('/img/chat/chat.png') %>" alt="截图" width="45%" />
-    <p>源码：<i class="fab fa-github"></i> <a
-            href="https://github.com/wangyucode/chatroom-angular-antdesign-websocket-stomp"
-            target="_blank">https://github.com/wangyucode/chatroom-angular-antdesign-websocket-stomp</a></p>
-</div>
-<div class="widget-wrap col-md-5 lab-item">
-    <h6>《谁是卧底发牌员》，线下聚会必备，点击链接就能一起玩，快将链接分享给好友吧。<a href="http://wycode.cn/dealer/"
-            target="_blank">http://wycode.cn/dealer/</a></h6>
-    <img src="<%- url_for('/img/dealer/dealer1.png') %>" alt="截图" width="45%" />
-    <img src="<%- url_for('/img/dealer/dealer2.png') %>" alt="截图" width="45%" />
-    <p>源码：<i class="fab fa-github"></i> <a
-            href="https://github.com/wangyucode/dealer"
-            target="_blank">https://github.com/wangyucode/dealer</a></p>
-</div>
-<div class="widget-wrap col-md-6 lab-item">
-    <h6>JavaFX技术实现的五子棋，可以局域网对局，可以聊天，可以自动判定胜负，可以悔棋，总代码不超过1000行，编译后仅18KB</h6>
-    <img src="<%- url_for('/img/fivechess/fiveChess.png') %>" alt="五子棋" width="100%" />
-    <p>源码：<i class="fab fa-github"></i> <a href="https://github.com/wangyucode/FiveChess"
-            target="_blank">https://github.com/wangyucode/FiveChess</a></p>
-</div>
-<div class="widget-wrap col-md-5 lab-item">
-    <h6>开源、纯净、无广告；省电、安全、不推送；适配安卓2.3至安卓7.1的纯净版西安自行车网点查询来了，还你一个简单纯净的出行APP，立即下载<a
-            href="http://wycode.cn/upload/apk/bike.apk" target="_blank">西安公共自行车</a></h6>
-    <img src="<%- url_for('/img/bike/bike1.png') %>" alt="截图" width="45%" />
-    <img src="<%- url_for('/img/bike/bike2.png') %>" alt="截图" width="45%" />
+<div class="col-12 col-lg-6">
+    <div class="card lab-item">
+        <div class="card-body">
+            <h5 class="card-title">谁是卧底发牌员</h5>
+            <p class="card-text">线下聚会必备，点击链接就能一起玩，快将链接分享给好友吧：<a href="http://wycode.cn/dealer/" target="_blank">http://wycode.cn/dealer/</a></p>
+            
+            <div class="row">
+                <div class="col-6"><img class="card-img" src="<%- url_for('/img/dealer/dealer1.png') %>" alt="截图" />
+                </div>
+                <div class="col-6"><img class="card-img" src="<%- url_for('/img/dealer/dealer2.png') %>" alt="截图" />
+                </div>
+            </div>
+            <br>
+            <a class="card-link" href="https://github.com/wangyucode/dealer" target="_blank"><i class="fab fa-github"></i>
+                https://github.com/wangyucode/dealer</a>
+        </div>
+    </div>
+
+    <div class="card lab-item">
+        <div class="card-body">
+            <p class="card-text">基于Websocket和STOMP协议的网页聊天室，无需注册，完全匿名，聊天记录自动清除，邀请码定时刷新，短线自动重连：</p>
+            <a class="card-link" href="http://wycode.cn/chat/" target="_blank">http://wycode.cn/chat/</a>
+            <div class="row">
+                <div class="col-6"><img class="card-img" src="<%- url_for('/img/chat/login.png') %>" alt="截图" /></div>
+                <div class="col-6"><img class="card-img" src="<%- url_for('/img/chat/chat.png') %>" alt="截图" /></div>
+            </div>
+            <a class="card-link" href="https://github.com/wangyucode/chatroom-angular-antdesign-websocket-stomp"
+                target="_blank"><i class="fab fa-github"></i>
+                https://github.com/wangyucode/chatroom-angular-antdesign-websocket-stomp</a>
+        </div>
+    </div>
+
+    <div class="card lab-item">
+        <div class="card-body">
+            <h5 class="card-title">西安公共自行车</h5>
+            <p class="card-text">开源、纯净、无广告；省电、安全、不推送；适配安卓2.3至安卓7.1的纯净版西安自行车网点查询来了，还你一个简单纯净的出行APP，立即下载：<a
+                    href="http://wycode.cn/upload/apk/bike.apk" target="_blank">点我下载</a></p>
+            <div class="row">
+                <div class="col-6"><img class="card-img" src="<%- url_for('/img/bike/bike1.png') %>" alt="截图" /></div>
+                <div class="col-6"><img class="card-img" src="<%- url_for('/img/bike/bike2.png') %>" alt="截图" /></div>
+            </div>
+            <a class="card-link" href="https://github.com/wangyucode/XiAnBike" target="_blank"><i class="fab fa-github"></i>
+                https://github.com/wangyucode/XiAnBike</a>
+        </div>
+    </div>
+
+    <div class="card lab-item">
+        <div class="card-body">
+            <h5 class="card-title">局域网五子棋</h5>
+            <p class="card-text">JavaFX技术实现的五子棋，可以局域网对局，可以聊天，可以自动判定胜负，可以悔棋，总代码不超过1000行，编译后仅18KB</p>
+            <img class="card-img-top" src="<%- url_for('/img/fivechess/fiveChess.png') %>" alt="五子棋" />
+            <a class="card-link" href="https://github.com/wangyucode/FiveChess" target="_blank"><i
+                    class="fab fa-github"></i> https://github.com/wangyucode/FiveChess</a>
+        </div>
+    </div>
 </div>
 
-<div id="comments" class="col-md-12">
+<div class="col-12 col-md-6 col-lg-3">
+    <div class="card lab-item">
+        <div class="card-body">
+            <h5 class="card-title">3D滚蛋吧</h5>
+            <p class="card-text">一起来玩<strong>3D滚蛋吧</strong>看谁滚得远</p>
+            <img src="<%- url_for('/img/roll/roll.jpg') %>" class="card-img-top" alt="小程序码">
+        </div>
+    </div>
+
+    <div class="card lab-item">
+        <div class="card-body">
+            <h5 class="card-title">跨平台剪切板</h5>
+            <p class="card-text">跨平台跨网络发送文字，保存信息？最简单的方式：使用 <strong>跨平台剪切板</strong> 即可：</p>
+            <a class="card-link" href="https://wycode.cn/clipboard.html"
+                target="_blank">https://wycode.cn/clipboard.html</a>
+            <p class="card-text">并提供小程序版本</p>
+            <img src="<%- url_for('/img/clipboard/clipboard.jpg') %>" class="card-img-top" alt="小程序码">
+        </div>
+    </div>
+
+    <div class="card lab-item">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4650660107955528" data-ad-slot="6505490608"
+            data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
+    <div class="card lab-item">
+        <div class="card-body">
+            <h5 class="card-title"><del>养鱼小助手</del></h5>
+            <p class="card-text"><del>造福鱼友：查养鱼攻略，查鱼类品种，问答社区</del></p>
+            <p class="alert alert-danger" role="alert">已下架
+        </div>
+        <img src="<%- url_for('/img/fish/fish_logo.jpg') %>" class="card-img-top" alt="小程序码">
+    </div>
+</div>
+
+<div class="col-12 col-md-6 col-lg-3">
+    <div class="card lab-item">
+        <div class="card-body">
+            <h5 class="card-title">DOTA2英雄技能物品天梯助手</h5>
+            <p class="card-text">玩DOTA2，查英雄，查物品，查赛事，查天梯排行就看<strong>DOTA2英雄技能物品天梯助手</strong></p>
+            <img src="<%- url_for('/img/dota/dota_logo.jpg') %>" class="card-img-top" alt="小程序码">
+        </div>
+    </div>
+
+    <div class="card lab-item">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4650660107955528" data-ad-slot="6505490608"
+            data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
+    <div class="card lab-item">
+        <div class="card-body">
+            <h5 class="card-title">Wengine</h5>
+            <p class="card-text">
+                Wengine是一款轻量级Android游戏引擎，使用纯Java开发，对Android开发者友好，可以用极少的代码实现一些简单的小游戏，目前有5款demo，打砖块，天天跑酷，FlappyBird，打飞机，蛇蛇大作战
+            </p>
+            <a class="card-link" href="https://github.com/wangyucode/Wengine-android" target="_blank"><i
+                    class="fab fa-github"></i> https://github.com/wangyucode/Wengine-android</a>
+        </div>
+    </div>
+</div>
+
+<div id="comments" class="col-12">
     <% page.addComment = true %>
     <wycode-comments path="<%- page.path %>"></wycode-comments>
-</div>
-
-<div class="col-md-12">
-    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4650660107955528"
-        data-ad-slot="6505490608" data-ad-format="auto" data-full-width-responsive="true"></ins>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
 </div>

@@ -10,10 +10,12 @@ jumbotron:
 # Sidebar
 widgets:
 - recent_posts
+- ad1
 - category
 - tagcloud
 - about
 - clustrmaps
+- ad2
 
 about:
   wechat: /img/wechat.jpg

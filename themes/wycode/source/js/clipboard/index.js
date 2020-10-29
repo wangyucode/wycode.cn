@@ -60,6 +60,8 @@ Vue.component('wycode-clipboard',
     <div v-if="!isShowResult" class="widget-wrap col-md-12" >
         <div class="alert alert-success" role="alert" style="text-align:center;">跨平台剪切板2.0已上线，获取新版查询码请扫描下方小程序码，查看属于自己的剪切板！</div>
         <img class="clipboard-qrcode" v-bind:src="qrImage" alt="小程序码"/>
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4650660107955528"
+            data-ad-slot="6505490608" data-ad-format="auto" data-full-width-responsive="true"></ins>
     </div>
     <div class="widget-wrap col-md-12">
         <input placeholder="查询码"

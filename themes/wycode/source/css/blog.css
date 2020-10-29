@@ -43,6 +43,10 @@ h4 {
     display: block;
 }
 
+.article-entry a {
+    word-break: break-word;
+}
+
 pre {
     font-size: 12px;
 }
@@ -143,7 +147,7 @@ a.nav-link.active {
 }
 
 .lab-item {
-    margin: 8px;
+    margin-bottom: 12px;
 }
 
 /* Sidebar modules for boxing content */
@@ -375,7 +379,7 @@ a.article-title {
 .container-reward {
     display: flex;
     align-content: center;
-    margin: 24px;
+    margin: 24px 0;
 }
 
 .img-reward {
