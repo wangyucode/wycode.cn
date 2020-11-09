@@ -95,11 +95,6 @@ search:
 ## Themes: https://hexo.io/themes/
 theme: wycode
 
-# Deployment
-## Docs: https://hexo.io/docs/deployment.html
-deploy:
-  type: 
+## minifier: https://github.com/chenzhutian/hexo-all-minifier
 
-server:
-  compress: true
 
