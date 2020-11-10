@@ -5,6 +5,9 @@
   "hexo": {
     "version": "4.2.1"
   },
+  "scripts": {
+    "build": "hexo g"
+  },
   "dependencies": {
     "hexo": "^4.2.1",
     "hexo-clean-css": "^1.0.0",
