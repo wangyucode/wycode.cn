@@ -55,5 +55,7 @@ jobs:
           repo: wangyucode/wangyucode.github.io
           target_branch: master
           build_dir: public
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
           
