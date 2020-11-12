@@ -40,13 +40,16 @@ jobs:
       - run: npm run build
       # Deploy
       - name: rsync uploader
-        uses: up9cloud/action-rsync@v1.2
+        uses: Pendect/action-rsyncer@v1.1.0
+        env:
+          DEPLOY_KEY: ${{secrets.SERVER_KEY}}
         with:
-          HOST: 'wycode.cn'
-          KEY: ${{secrets.SERVER_KEY}} # ssh private key
-          SOURCE: 'public'
-          VERBOSE: true
-          TARGET: '/var/www/wycode.cn/'
+          flags: '-avzr --delete'
+          options: ''
+          ssh_options: ''
+          src: 'public/'
+          dest: 'root@wycode.cn:/var/www/wycode.cn'
+    
       - name: Deploy to Github pages
         uses: crazy-max/ghaction-github-pages@v2.1.3
         with:
