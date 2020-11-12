@@ -40,11 +40,12 @@ jobs:
       - run: npm run build
       # Deploy
       - name: rsync uploader
-        uses: up9cloud/action-rsync@master
+        uses: up9cloud/action-rsync@v1.2
         with:
           HOST: 'wycode.cn'
           KEY: ${{secrets.SERVER_KEY}} # ssh private key
           SOURCE: 'public'
+          VERBOSE: true
           TARGET: '/var/www/wycode.cn/'
       - name: Deploy to Github pages
         uses: crazy-max/ghaction-github-pages@v2.1.3
