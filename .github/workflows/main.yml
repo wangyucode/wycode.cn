@@ -37,7 +37,7 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
       - run: npm install
-      - run: npm run build
+      - run: npm run clean && npm run build
       # Deploy
       - name: rsync uploader
         uses: Pendect/action-rsyncer@v1.1.0
