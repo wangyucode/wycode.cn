@@ -6,7 +6,7 @@ tags:
 categories: CI
 ---
 
-![Github Action](https://yyh-gl.github.io/tech-blog/img/tech-blog/2019/10/github-actions-private-action/featured.png)
+![Github Action](https://www.wangbase.com/blogimg/asset/201909/bg2019091201.jpg)
 
 > `Github Actions`是由Github发布的持续集成(CI)/持续交付(CD)服务，对于公开的仓库是免费使用的。之前我们使用`TravisCI`，现在用`Github Actions`更方便了。
 
