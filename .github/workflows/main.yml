@@ -48,7 +48,7 @@ jobs:
           options: ''
           ssh_options: ''
           src: 'public/'
-          dest: 'root@wycode.cn:/var/www/wycode.cn'
+          dest: 'root@wycode.cn:/root/nginx/www/wycode.cn'
     
       - name: Deploy to Github pages
         uses: crazy-max/ghaction-github-pages@v2.1.3
