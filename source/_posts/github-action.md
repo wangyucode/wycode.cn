@@ -1,9 +1,11 @@
 ---
 title: 使用Github Action进行持续集成
 date: 2020-10-28 20:04:26
-tags:
-- CI
-categories: CI
+tags: 
+- Github
+- NodeJS
+- SFTP
+categories: CI/CD
 ---
 
 ![Github Action](https://www.wangbase.com/blogimg/asset/201909/bg2019091201.jpg)

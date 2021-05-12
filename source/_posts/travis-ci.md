@@ -2,11 +2,11 @@
 title: 使用TravisCI进行持续集成
 date: 2019-5-20 13:37:19
 tags:
-- CI
+- TravisCI
 - Hexo
-- Linux
 - NodeJS
-categories: CI
+- Linux
+categories: CI/CD
 ---
 
 ![TravisCI](https://www.smartfile.com/blog/wp-content/uploads/2015/05/logo-travisci-wide1.jpg)
