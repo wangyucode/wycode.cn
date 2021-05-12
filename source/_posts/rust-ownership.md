@@ -8,11 +8,7 @@ categories: Languages
 
 ![Rust](https://www.rust-lang.org/static/images/rust-logo-blk.svg)
 
-<<<<<<< HEAD
 > Rust由Mozilla基金会开发，没有虚拟机和垃圾回收，却又提供了内存安全，有着媲美C/C++的性能，又同时支持命令式函数式编程以及泛型等便利。优雅（上层抽象）和高性能（底层控制）往往是鱼和熊掌不可兼得，但Rust试图挑战这一矛盾。允许你做带垃圾回收的语言（例如Java）做不到的事，比如控制底层。而同时又避免了比如空指针，野指针在内的（例如C/C++）的问题。它被用于开发浏览器引擎(`Servo`)，操作系统(`Redox OS`)，并且特别适合开发`WebAssembly`和嵌入式，以及高性能的Web服务。
-=======
-> Rust由Mozilla基金会开发，没有虚拟机和垃圾回收，却又提供了内存安全，有着媲美C/C++的性能，又同时支持命令式函数式编程以及泛型等便利。优雅（上层抽象）和高性能（底层控制）往往是鱼和熊掌不可兼得，但Rust试图挑战这一矛盾。允许你做带垃圾回收的语言（例如Java）做不到事，比如控制底层。而同时又避免了比如空指针，野指针在内的（例如C/C++）的问题。它被用于开发浏览器引擎(`Servo`)，操作系统(`Redox OS`)，并且特别适合开发`WebAssembly`和嵌入式，以及高性能的Web服务。
->>>>>>> origin/dependabot/npm_and_yarn/lodash-4.17.21
 
 > 本文介绍Rust语言中和其它语言相比一个非常重要的特性`所有权(Ownership)`以及其相关的`借用(Borrowing)`，`引用(References)`，`切片(Slice)`的理解和使用。这个特性保证了Rust不需要垃圾回收以及强大的内存安全，同时还能在多线程编程中带来好处。
 
@@ -120,8 +116,4 @@ fn change(some_string: &mut String) {
 
 但正是因为Rust拥有强大的编译器，它能够提前把bug扼杀在摇篮里，在编译阶段就拒绝各种各样的bug，从而同时保证程序的性能和安全。
 
-<<<<<<< HEAD
 这也是为什么Typescript，敏捷开发，TDD，会火的原因了。**尽可能早的发现和解决问题。**
-=======
-这也是为什么Typescript和敏捷开发会火的原因了。**尽可能早的发现和解决问题。**
->>>>>>> origin/dependabot/npm_and_yarn/lodash-4.17.21
