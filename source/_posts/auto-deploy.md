@@ -10,7 +10,9 @@ categories: CI/CD
 
 ![flow](/images/20200512_auto_deploy.png)
 
-> 之前写过一篇文章关于[使用Github Action进行持续集成](/2020-10-28-github-action.html)，但是对于部署的最后一步，如何将构建好的软件包，分发到运行环境？托付给自动化服务后如何保证服务器安全？本文介绍对于Docker镜像形式的软件包如何解决这些问题。
+> 之前写过一篇文章关于[使用Github Action进行持续集成](/2020-10-28-github-action.html)。
+但是如何将构建好的软件包，分发到运行环境？托付给自动化服务后如何保证服务器安全？Docker化部署的话，服务器上的Docker引擎如何自动检查、拉取、运行最新的镜像？
+本文介绍如何解决这些问题。
 
 <!--more-->
 
@@ -28,9 +30,15 @@ categories: CI/CD
 
 一个思路就是专门写一个守护程序，在接收到某种API请求时，执行以上的操作。但是这样它就脱离了Docker的管理，而且其本身也是需要维护和部署的。
 
-那将它也作为Docker镜像呢，那`Container`如何控制宿主机中的`Docker Engine`呢，这也有办法，我们只需要将`Host`的Docker域套接字(`UNIX domain socket`)，挂载到`Container`中：`docker run ... -v /var/run/docker.sock:/var/run/docker.sock`。
+但是如果将它也作为Docker镜像的话，`Container`又如何控制宿主机中的`Docker Engine`呢？
 
-这样因为Docker是CS模式，`Container`就可以控制宿主机的Docker引擎，以实现上述操作了。有人将其称为`Docker in Docker`。
+这也有办法，我们只需要将`Host`的Docker域套接字(`UNIX domain socket`)，挂载到`Container`中：
+
+```bash
+docker run ... -v /var/run/docker.sock:/var/run/docker.sock
+```
+
+因为Docker是CS模式，这样`Container`就可以控制宿主机的Docker引擎，以实现上述操作了。有人将其称为`Docker in Docker`。
 
 而以上这个思路已经有人造好轮子了。
 
@@ -40,4 +48,6 @@ Watchtower本身就是一个Docker镜像，支持定时、或者API Hook等方�
 
 最终的流程参考文章开头的流程图。
 
-这样一来，我们只需要push代码，Github Action会自动构建Docker镜像并push到Docker hub，然后curl一下我们的watchtower，它就会自动帮我们拉取并运行最新的镜像了。省了不少时间，最重要的：**不要内卷，要work-life balance**
+这样一来，我们只需要push代码，Github Action会自动构建Docker镜像并push到Docker hub，然后curl一下我们的watchtower，它就会自动帮我们拉取并运行最新的镜像了。
+
+省了不少时间，最重要的：**不要内卷，要work-life balance**
