@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<%- partial('_partial/head') %>
-<body>
-<%- partial('_partial/wycode-nav') %>
-<%- partial('_partial/search-modal') %>
-<% var marginTop = '80px'; %>
-<% if(is_home() && page.current === 1){ %>
-    <%- partial('_partial/jumbotron'); %>
-    <% marginTop = '-280px'; %>
-<% } %>
-<div class="container main-content" style="margin-top: <%- marginTop %>;">
-    <div class="row">
-        <%- body %>
-    </div>
-</div>
-<%- partial('_partial/footer') %>
-<%- partial('_partial/after-footer') %>
-</body>
+    <%- partial('_partial/head') %>
+    <body>
+        <%- partial('_partial/wycode-nav') %>
+        <%- partial('_partial/search-modal') %>
+        <% var marginTop = '80px'; %>
+        <% if(is_home() && page.current === 1){ %>
+            <%- partial('_partial/jumbotron'); %>
+            <% marginTop = '-240px'; %>
+        <% } %>
+        <div class="container main-content" style="margin-top: <%- marginTop %>;">
+            <div class="row">
+                <%- body %>
+            </div>
+        </div>
+        <%- partial('_partial/footer') %>
+        <%- partial('_partial/after-footer') %>
+    </body>
 </html>

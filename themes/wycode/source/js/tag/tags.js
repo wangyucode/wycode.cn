@@ -136,6 +136,7 @@ function Clouder(params) {
 			x += e.srcElement.offsetLeft;
 			y += e.srcElement.offsetTop;
 		}
+		console.log(x,y);
 		setPos(x, y);
 		setClosest(findClosest(x, y));
 	} // onMouseMove
@@ -371,6 +372,8 @@ function Clouder(params) {
 
 	init();
 
+	setPos(90, 190);
+
 } // Clouder
 
 function asPixels(number) {
@@ -390,3 +393,4 @@ window.onload = function () {
 		fontSize: 10,
 	});
 };
+
