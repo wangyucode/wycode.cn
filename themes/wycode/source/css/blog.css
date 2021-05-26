@@ -45,6 +45,7 @@ h4 {
 
 a {
     word-break: break-word;
+    text-decoration: none;
 }
 
 pre {
