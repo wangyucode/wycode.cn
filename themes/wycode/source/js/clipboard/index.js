@@ -15,18 +15,20 @@ Vue.component('wycode-clipboard',
             handleQuery: function () {
                 if (this.queryNumber.length < 4) {
                     alert('查询码不正确！');
-                    return
+                    return;
                 }
-                $.get('https://wycode.cn/web/api/public/clipboard/queryById', {id: this.queryNumber}, (response) => {
-                    console.log(response);
-                    if (response && response.data) {
-                        this.isShowResult = true;
-                        this.content = response.data.content;
-                        this.remarks = response.data.tips;
-                    } else {
-                        alert('查询码不正确！');
-                    }
-                });
+                fetch('https://wycode.cn/web/api/public/clipboard/queryById?id=' + this.queryNumber)
+                    .then((res) => res.json())
+                    .then(res => {
+                        console.log('handleQuery->', res);
+                        if (res && res.data) {
+                            this.isShowResult = true;
+                            this.content = res.data.content;
+                            this.remarks = res.data.tips;
+                        } else {
+                            alert('查询码不正确！');
+                        }
+                    });
             },
 
             handleSave: function () {
@@ -35,20 +37,16 @@ Vue.component('wycode-clipboard',
                 fd.append('content', this.content);
                 fd.append('tips', this.remarks);
 
-                $.ajax({
-                    url: 'https://wycode.cn/web/api/public/clipboard/saveById',
-                    type: 'POST',
-                    data: fd,
-                    contentType: false,
-                    processData: false,
-                    success: (response) => {
-                        console.log(response);
-                        this.isShowResult = false;
-                    },
-                    error: function (error) {
-                        console.log(error);
-                    }
-                });
+                fetch('https://wycode.cn/web/api/public/clipboard/saveById', { method: 'POST', body: fd })
+                    .then((res) => res.json())
+                    .then(res => {
+                        console.log('handleSave->', res);
+                        if (res && res.data) {
+                            this.isShowResult = false;
+                        } else {
+                            alert('保存失败！');
+                        }
+                    });
             },
 
             handleBack: function () {
@@ -66,7 +64,7 @@ Vue.component('wycode-clipboard',
     <div class="widget-wrap col-md-12">
         <input placeholder="查询码"
                type="text"
-               class="input-query-number form-control form-group"
+               class="input-query-number form-control form-group mb-3"
                maxlength=6
                autofocus="true"
                v-on:keyup.enter="handleQuery"
@@ -79,22 +77,21 @@ Vue.component('wycode-clipboard',
             <textarea v-model="content"
                     style="min-height: 280px;"
                     maxlength=2000
-                    class="textarea-text form-control form-group"></textarea>
+                    class="textarea-text form-control form-group mb-3"></textarea>
             <input placeholder="备注"
                     type="text"
                     maxlength=10
-                    class="input-query-number form-control form-group"
+                    class="input-query-number form-control form-group mb-3"
                     v-model="remarks"/>
             <button v-on:click="handleSave"
-                    class="btn-save btn btn-success form-control  form-group">保存</button>
+                    class="btn-save btn btn-success form-control mb-3 form-group">保存</button>
             <button v-on:click="handleBack"
-                    class="btn-save btn btn-primary form-control  form-group">返回</button>
+                    class="btn-save btn btn-primary form-control mb-3 form-group">返回</button>
         </div>
-        <span class="about-vue">此模块由 <a href="https://cn.vuejs.org" target="_blank">Vue.js</a> 驱动渲染</span>
     </div>
 </div>
 `
     }
 );
 
-var clipboard = new Vue({el: '#clipboard'});
+var clipboard = new Vue({ el: '#clipboard' });

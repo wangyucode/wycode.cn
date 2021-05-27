@@ -1,6 +1,6 @@
 <% if (site.posts.length){ %>
   <div class="widget-wrap">
-    <h4 class="widget-title"><i class="far fa-clock"></i> <%= __('recent_posts') %></h4>
+    <h4 class="widget-title"><i class="bi bi-clock-fill"></i> <%= __('recent_posts') %></h4>
     <div class="widget">
       <ul class="recent-list">
         <% site.posts.sort('date', -1).limit(10).each(function(post){ %>
@@ -9,8 +9,7 @@
           </li>
         <% }); %>
       </ul>
-      <a class="all-post-link" href="<%- url_for(theme.menu.archives) %>"><i class="fa fa-folder-open"
-                                                                                aria-hidden="true"></i> 查看全部</a>
+      <a class="all-post-link" href="<%- url_for(theme.menu.archives) %>"><i class="bi bi-folder2-open"></i>  查看全部</a>
     </div>
   </div>
 <% } %>

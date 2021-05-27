@@ -19,44 +19,40 @@ Vue.component('wycode-comments',
                 content: '',
                 replyingIndex: -1,
                 replyContent: '',
-                likeCommentIndexes: []
+                likeCommentIndexes: [],
+                key: "114c03ec4d6f40a4a1490a5638d8141d",
+                app: "wycode"
             }
         },
         methods: {
             handleSend: function () {
-                var vue = this;
                 if (this.content) {
                     this.logging = true;
                     var fd = new FormData();
-                    fd.append('accessKey', "114c03ec4d6f40a4a1490a5638d8141d");
-                    fd.append("appName", "wycode");
+                    fd.append('accessKey', this.key);
+                    fd.append("appName", this.app);
                     fd.append('topicId', this.path);
                     fd.append('fromUserId', this.userId);
                     fd.append('content', this.content);
                     fd.append('fromUserIcon', this.avatarUrl);
                     fd.append('fromUserName', this.username);
 
-                    $.ajax({
-                        url: 'https://wycode.cn/web/api/public/comment/newComment',
-                        type: 'POST',
-                        data: fd,
-                        contentType: false,
-                        processData: false,
-                        success: function (response) {
-                            //console.log('newComment->', response);
-                            vue.logging = false;
-                            if (response && response.success) {
-                                vue.content = '';
-                                vue.anonymous = false;
-                                vue.comments.push(response.data);
-                                vue.successMsg = '发布成功';
+                    fetch('https://wycode.cn/web/api/public/comment/newComment', { method: 'POST', body: fd })
+                        .then(res => res.json())
+                        .then(res => {
+                            console.log('newComment->', res);
+                            this.logging = false;
+                            if (res && res.success) {
+                                this.content = '';
+                                this.anonymous = false;
+                                this.comments.push(res.data);
+                                this.successMsg = '发布成功';
                             } else {
-                                vue.errorMsg = '发布失败：' + response.error
+                                this.errorMsg = '发布失败：' + res.error
                             }
-                        }
-                    });
+                        });
                 } else {
-                    alert('内容不能为空');
+                    this.errorMsg ='内容不能为空';
                 }
             },
             handleAnonymous: function () {
@@ -69,7 +65,7 @@ Vue.component('wycode-comments',
                     this.replyContent = '';
                     this.replyingIndex = Number(e.currentTarget.dataset.index);
                 } else {
-                    alert("请先登录");
+                    this.errorMsg ="请先登录";
                 }
             },
             handleReplySend: function () {
@@ -77,8 +73,8 @@ Vue.component('wycode-comments',
                 if (this.replyContent) {
                     var fd = new FormData();
                     var toComment = this.comments[this.replyingIndex];
-                    fd.append('accessKey', "114c03ec4d6f40a4a1490a5638d8141d");
-                    fd.append("appName", "wycode");
+                    fd.append('accessKey', this.key);
+                    fd.append("appName", this.app);
                     fd.append('topicId', this.path);
                     fd.append('fromUserId', this.userId);
                     fd.append('content', this.replyContent);
@@ -87,21 +83,16 @@ Vue.component('wycode-comments',
                     fd.append('toCommentId', toComment.id);
                     this.replyContent = '';
                     this.replyingIndex = -1;
-                    $.ajax({
-                        url: 'https://wycode.cn/web/api/public/comment/newComment',
-                        type: 'POST',
-                        data: fd,
-                        contentType: false,
-                        processData: false,
-                        success: function (response) {
-                            //console.log('newReply->', response);
-                            if (response && response.success) {
-                                vue.comments.push(response.data);
+                    fetch('https://wycode.cn/web/api/public/comment/newComment', { method: 'POST', body: fd })
+                        .then(res => res.json())
+                        .then(res => {
+                            console.log('newReply->', res);
+                            if (res && res.success) {
+                                this.comments.push(res.data);
                             }
-                        }
-                    });
+                        });
                 } else {
-                    alert('内容不能为空');
+                    this.errorMsg ='内容不能为空';
                 }
             },
 
@@ -110,51 +101,49 @@ Vue.component('wycode-comments',
                     return;
                 }
 
-                Vue.set(this.likeCommentIndexes, e.currentTarget.dataset.index, 'fas');
+                Vue.set(this.likeCommentIndexes, e.currentTarget.dataset.index, 'bi-hand-thumbs-up-fill');
 
                 var toComment = this.comments[e.currentTarget.dataset.index];
-                if(localStorage.getItem(toComment.id)){
+                if (localStorage.getItem(toComment.id)) {
                     return;
                 }
 
                 toComment.likeCount++;
                 Vue.set(this.comments, e.currentTarget.dataset.index, toComment);
                 var fd = new FormData();
-                fd.append('accessKey', "114c03ec4d6f40a4a1490a5638d8141d");
-                fd.append("appName", "wycode");
+                fd.append('accessKey', this.key);
+                fd.append("appName", this.app);
                 fd.append('topicId', this.path);
                 fd.append('fromUserId', this.userId);
                 fd.append('toCommentId', toComment.id);
                 fd.append('type', 1);
-                $.ajax({
-                    url: 'https://wycode.cn/web/api/public/comment/newComment',
-                    type: 'POST',
-                    data: fd,
-                    contentType: false,
-                    processData: false,
-                    success: function (response) {
-                        //console.log('like->', response);
-                        localStorage.setItem(toComment.id,true);
-                    }
-                });
+                fetch('https://wycode.cn/web/api/public/comment/newComment', { method: 'POST', body: fd })
+                    .then(res => res.json())
+                    .then(res => {
+                        console.log('like->', res);
+                        if (res && res.success) {
+                            localStorage.setItem(toComment.id, true);
+                        }
+                    });
             }
         },
         mounted: function () {
-            var queryData = {
-                accessKey: "114c03ec4d6f40a4a1490a5638d8141d",
-                appName: "wycode",
-                topicId: this.path,
-            };
-            var vue = this;
-            $.get('https://wycode.cn/web/api/public/comment/getComments', queryData, function (response) {
-                //console.log('getComments->', response);
-                if (response && response.success) {
-                    vue.show = true;
-                    vue.comments = response.data;
-                } else {
-                    console.error(response.error)
-                }
-            });
+            var queryData = new URLSearchParams();
+            queryData.append('accessKey', this.key);
+            queryData.append('appName', this.app);
+            queryData.append('topicId', this.path);
+
+            fetch('https://wycode.cn/web/api/public/comment/getComments?appName=' + this.app + '&accessKey=' + this.key + '&topicId=' + this.path)
+                .then(res => res.json())
+                .then(res => {
+                    console.log('getComments->', res);
+                    if (res && res.success) {
+                        this.show = true;
+                        this.comments = res.data;
+                    } else {
+                        console.error(res.error)
+                    }
+                });
             var userId = localStorage.getItem("userId");
             var username = localStorage.getItem("username");
             var avatarUrl = localStorage.getItem("avatarUrl");
@@ -175,7 +164,7 @@ Vue.component('wycode-comments',
             }
             if (queryObj['code']) {
                 this.logging = true;
-                $.get('https://wycode.cn/web/api/public/comment/githubToken', {code: queryObj['code']}, function (response) {
+                $.get('https://wycode.cn/web/api/public/comment/githubToken', { code: queryObj['code'] }, function (response) {
                     //console.log('githubToken->', response);
                     if (response && response.success && response.data.access_token) {
                         $.ajax({
@@ -198,8 +187,8 @@ Vue.component('wycode-comments',
                                 localStorage.setItem("avatarUrl", data.avatar_url);
 
                                 var fd = new FormData();
-                                fd.append('accessKey', "114c03ec4d6f40a4a1490a5638d8141d");
-                                fd.append("appName", "wycode");
+                                fd.append('accessKey', this.key);
+                                fd.append("appName", this.app);
                                 fd.append("company", "github");
                                 fd.append("id", "github_" + data.id);
                                 fd.append("userJson", JSON.stringify(data));
@@ -230,18 +219,18 @@ Vue.component('wycode-comments',
         template: `
 <div v-if="show" class="widget-wrap">
     <div v-if="comments.length > 0" class="comments-list">
-        <div class="comment container" v-for="(comment,index) in comments">
-            <div class="comment-head row">
+        <div class="comment" v-for="(comment,index) in comments">
+            <div class="d-flex flex-row align-items-center">
                 <img class="comment-avatar" v-bind:src="comment.fromUserIcon" width="28px" height="28px" alt="用户头像"/>
-                <div class="comment-info col">
+                <div class="mx-2 flex-column d-inline-block flex-grow-1">
                     <div class="comment-username">{{comment.fromUserName}}</div>
                     <div class="comment-create-time">{{comment.createTime}}</div>
                 </div>
-                <button class="btn btn-link btn-sm comment-like" type="button" v-bind:data-index="index" v-on:click="handleLike"><i v-bind:class="likeCommentIndexes[index] || 'far'" class="fa-thumbs-up"></i>  {{comment.likeCount}}</button>
-                <button v-if="replyingIndex !== index" class="btn btn-link btn-sm comment-reply" type="button" v-bind:data-index="index" v-on:click="handleReply"><i class="fas fa-reply"></i>  回复</button>
+                <button class="btn btn-link btn-sm comment-like" type="button" v-bind:data-index="index" v-on:click="handleLike"><i v-bind:class="likeCommentIndexes[index] || 'bi-hand-thumbs-up'" class="bi"></i>  {{comment.likeCount}}</button>
+                <button v-if="replyingIndex !== index" class="btn btn-link btn-sm comment-reply" type="button" v-bind:data-index="index" v-on:click="handleReply"><i class="bi bi-reply-fill"></i>  回复</button>
             </div>
             <div v-if="comment.toUserName" class="alert alert-secondary comment-quote" role="alert"><span class="comment-quote-user">@{{comment.toUserName}}</span>  {{comment.toContent}}</div>
-            <div class="comment-content row">{{comment.content}}</div>
+            <div class="comment-content">{{comment.content}}</div>
             <div v-if="replyingIndex === index" class="row input-group col comment-reply-input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text comment-reply-to">@{{comment.fromUserName}}</span>
@@ -251,14 +240,14 @@ Vue.component('wycode-comments',
                     <button v-on:click="handleReplySend" class="btn btn-outline-primary comment-reply-send" type="button"><i class="fas fa-paper-plane"></i>  发送</button>
                 </div>
             </div>
-            <hr style="margin:0 0 8px 20px"/>
+            <hr style="margin-bottom:12px"/>
         </div>
     </div>
     <div v-else class='no-comments'>暂无评论</div>
     <hr/>
     <div class="comments-add">
         <div v-if="!hasLogin && !anonymous" class="comments-login">
-            <a class="btn btn-success" role="button" v-bind:href="githubAuthorizeUrl"><i class="fab fa-github" style="color: white"></i>  Github登录</a>
+            <a class="btn btn-success" role="button" v-bind:href="githubAuthorizeUrl"><i class="bi bi-github"></i>  Github登录</a>
             <button class="btn btn-outline-secondary" type="button" v-on:click="handleAnonymous">匿名评论</button>
         </div>
         <div v-else class="comments-input margin-top">
@@ -266,19 +255,16 @@ Vue.component('wycode-comments',
             <span style="font-size: 16px;vertical-align: center">{{username}}</span>
             <div class="input-group" style="margin-top: 8px">
                 <input type="text" class="form-control" placeholder="评论一下吧？" aria-label="评论一下吧？" v-model="content">
-                <div class="input-group-append">
-                    <button v-on:click="handleSend" class="btn btn-outline-primary" type="button"><i class="fas fa-paper-plane"></i>  发送</button>
-                </div>
+                <button v-on:click="handleSend" class="btn btn-outline-primary" type="button"><i class="bi bi-pin-angle-fill"></i>  发送</button>
             </div>
         </div>
         <div v-if="logging" class="comments-logging-cover"><i class="fas fa-sync fa-spin fa-lg"></i></div>
-        <div v-if="errorMsg" class="alert alert-danger margin-top" role="alert">{{errorMsg}}</div>
-        <div v-if="successMsg" class="alert alert-success margin-top" role="alert">{{successMsg}}</div>
+        <div v-if="errorMsg" class="alert alert-danger margin-top" role="alert"><i class="bi bi-exclamation-lg"></i>    {{errorMsg}}</div>
+        <div v-if="successMsg" class="alert alert-success margin-top" role="alert"><i class="bi bi-check-lg"></i>   {{successMsg}}</div>
     </div>
-    <span class="about-vue">此模块由 <a href="https://cn.vuejs.org" target="_blank">Vue.js</a> 驱动渲染</span>
 </div>
 `
     }
 );
 
-new Vue({el: '#comments'});
+new Vue({ el: '#comments' });

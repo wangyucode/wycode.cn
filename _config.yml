@@ -90,7 +90,7 @@ sitemap:
     template: ./sitemap_template.xml
 
 search:
-  path: search.xml
+  path: search.json
   field: post
   content: true
 ## Themes: https://hexo.io/themes/
