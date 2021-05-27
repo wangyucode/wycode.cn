@@ -42,7 +42,7 @@ docker run ... -v /var/run/docker.sock:/var/run/docker.sock
 
 而以上这个思路已经有人造好轮子了。
 
-# Watchtower
+## Watchtower
 
 Watchtower本身就是一个Docker镜像，支持定时、或者API Hook等方式触发检查，在发现有更新的镜像时，它会停止当前运行的容器，自动拉取镜像，重新以之前运行的参数重启容器，完美解决我们的需求。
 

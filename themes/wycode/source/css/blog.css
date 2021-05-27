@@ -8,6 +8,11 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    --background: #007788
+}
+
+body[theme="dark"]{
+    --background: #002233
 }
 
 h1, .h1,
@@ -45,6 +50,7 @@ h4 {
 
 a {
     word-break: break-word;
+    text-decoration: none;
 }
 
 pre {
@@ -69,11 +75,11 @@ blockquote p {
 
 .jumbotron {
     margin-bottom: 0;
-    min-height: 640px;
-    z-index: 10;
+    min-height: 720px;
     background-image: url("https://api.dujin.org/bing/1920.php");
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
 }
 
 #particles-js {
@@ -91,30 +97,8 @@ blockquote p {
     flex: 1;
 }
 
-/*
- * Masthead for nav
- */
-.nav-item {
-    display: inline-block;
-}
-
-a.nav-link.active {
-    background-color: rgb(0, 140, 160);
-    border-radius: 4px;
-}
-
-.wy-nav {
-    background-color: rgba(0, 140, 160, 0.6);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.24);
-}
-
-.navbar-nav {
-    width: 100%;
-}
-
-
-.navbar-dark .navbar-nav .nav-link {
-    color: #eee;
+nav{
+    background-color: var(--background);
 }
 
 /*
@@ -216,12 +200,13 @@ a.nav-link.active {
     float: right;
 }
 
-.article-category:before {
-    font-family: "Font Awesome 5 Free";
-    color: #007BFF;
-    content: "\f009";
-    font-weight: 900;
-    margin-right: 0.3em;
+.article-tag-list{
+    padding-left: 0;
+}
+
+.article-tag{
+    margin: 0 4px;
+    display: inline;
 }
 
 .article, .archive-year-month-wrap, .widget-wrap, .article-nav, .page-nav {
@@ -243,18 +228,6 @@ a.nav-link.active {
 
 a.article-title {
     color: #0B9BA9;
-}
-
-.article-tag-list {
-    padding: 0;
-}
-
-.article-tag-list:before {
-    font-family: "Font Awesome 5 Free";
-    color: #007BFF;
-    content: "\f02b";
-    font-weight: 900;
-    padding-right: 0.3em;
 }
 
 .article-nav {
@@ -311,6 +284,31 @@ a.article-title {
     display: inline;
 }
 
+.article-title{
+    font-weight: bold;
+}
+
+.article-entry > h1,h2,h3{
+    font-weight: bold;
+    margin: 32px 0 16px 0;
+}
+
+.article-entry > p{
+    text-indent:24px
+}
+
+p.article-more-link{
+    text-indent: 0;
+}
+
+.article-entry > pre{
+    margin:0 24px 12px 24px
+}
+
+blockquote >　p{
+    margin: 0;
+}
+
 .page-nav {
     text-align: center;
 }
@@ -354,6 +352,8 @@ a.article-title {
 
 .search-keyword {
     color: #c7254e;
+    font-style: normal;
+    font-weight: bold;
 }
 
 .wy-footer {
@@ -426,14 +426,6 @@ a.article-title {
 剪切板
 */
 
-.about-vue {
-    width: 100%;
-    text-align: center;
-    font-size: 12px;
-    color: #777;
-    display: inline-block;
-}
-
 .clipboard-qrcode {
     margin: 24px auto;
     display: block;
@@ -461,20 +453,14 @@ a.article-title {
     color: #333;
 }
 
-.comment-info {
-    padding: 0 8px;
-}
-
 .comment-create-time {
     color: #555;
     font-size: 10px;
 }
 
 .comment-reply, .comment-like {
-    padding: 0 4px;
-    height: 28px;
-    font-size: 12px;
-    margin-right: 15px;
+    vertical-align: top;
+    text-decoration: none;
 }
 
 .comment-reply-input-group {
@@ -505,13 +491,13 @@ a.article-title {
 
 .comment-avatar {
     border-radius: 14px;
+    vertical-align: top;
 }
 
 .comment-content {
     color: #222;
     font-size: 16px;
-    padding: 4px 8px 4px 36px;
-    margin-bottom: 8px;
+    margin: 8px 0 0 36px;
 }
 
 .margin-top {

@@ -4,7 +4,9 @@
       show_count: false,
       class: 'article-category',
       style: 'none',
-      separator: '►'
+      transform: function (name) {
+        return '<i class="bi bi-archive-fill"></i>  '+name
+      }
     }) %>
   </div>
 <% } %>

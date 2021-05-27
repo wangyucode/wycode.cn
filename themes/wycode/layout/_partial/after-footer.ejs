@@ -1,10 +1,9 @@
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/languages/kotlin.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.7.2/build/highlight.min.js" integrity="sha256-fDu2hs+HxpIyPFPNwyUo7caGQX1EcAr9MoiLOTSfGMU=" crossorigin="anonymous"></script>
+<script>hljs.highlightAll();</script>
+<script>if (!window.fetch) alert('对不起，部分功能可能在IE浏览器中无法正常工作。请使用现代浏览器（Chrome，Firefox），以获取最佳的浏览体验。');</script>
 <%- js('js/search') %>
-<script>searchFunc('<%= url_for('search.xml') %>', 'searchInput', 'searchResult');</script>
+<script>searchFunc('<%= url_for('search.json') %>', 'searchInput', 'searchResult');</script>
 <% if(page.addClipboard){ %>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js"></script>
     <%- js('js/clipboard/index.js') %>
