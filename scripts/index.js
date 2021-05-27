@@ -1,13 +1,10 @@
 'use strict';
 
-var renderer = require('./lib/renderer');
-var assign = require('object-assign');
-
-hexo.config.sitemap = assign({
+hexo.config.sitemap = Object.assign({
     lastModified: new Date().toISOString()
 }, hexo.config.sitemap);
 
-hexo.config.marked = assign({
+hexo.config.marked = Object.assign({
     gfm: true,
     pedantic: false,
     sanitize: false,
@@ -19,13 +16,8 @@ hexo.config.marked = assign({
     autolink: true
 }, hexo.config.marked);
 
-hexo.extend.renderer.register('md', 'html', renderer, true);
-hexo.extend.renderer.register('markdown', 'html', renderer, true);
-hexo.extend.renderer.register('mkd', 'html', renderer, true);
-hexo.extend.renderer.register('mkdn', 'html', renderer, true);
-hexo.extend.renderer.register('mdwn', 'html', renderer, true);
-hexo.extend.renderer.register('mdtxt', 'html', renderer, true);
-hexo.extend.renderer.register('mdtext', 'html', renderer, true);
+hexo.extend.filter.register('marked:renderer', require('./lib/renderer'))
+
 
 function is_about(page) {
     return Boolean(page.__about);

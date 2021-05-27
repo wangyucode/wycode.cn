@@ -38,8 +38,8 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
       - run: npm install hexo-cli@4.2.0 -g
-      - run: npm install
-      - run: npm run clean && npm run build
+      - run: npm ci
+      - run: npm run build
       # Deploy
       - name: rsync uploader
         uses: Pendect/action-rsyncer@v1.1.0
