@@ -1,4 +1,4 @@
-# wycode.cn [![Build Status](https://travis-ci.com/wangyucode/wycode.cn.svg?branch=master)](https://travis-ci.com/wangyucode/wycode.cn)
+# wycode.cn [![CI](https://github.com/wangyucode/wycode.cn/actions/workflows/main.yml/badge.svg)](https://github.com/wangyucode/wycode.cn/actions/workflows/main.yml)
 
 This is code repository of [https://wycode.cn](https://wycode.cn "https://wycode.cn")
 
@@ -22,5 +22,5 @@ hexo s
 
 ## deploy
 
-see [travis CI](.travis.yml "travis CI")
+see [github Actions](https://github.com/wangyucode/wycode.cn/actions/workflows/main.yml)
 
