@@ -487,7 +487,19 @@ blockquote >　p{
 .comment-quote {
     padding: 4px 8px;
     font-size: 14px;
-    margin: 8px 0 0 20px;
+    margin: 8px 8px 0 36px;
+    border-width: 0;
+    border-left-width: 8px;
+    border-radius: 0;
+}
+
+.comments-input > .comment-quote{
+    margin: 0;
+    text-align: start;
+}
+
+.comment-quote > .btn-close{
+     float: right;
 }
 
 .comment-avatar {
@@ -498,7 +510,7 @@ blockquote >　p{
 .comment-content {
     color: #222;
     font-size: 16px;
-    margin: 8px 0 0 36px;
+    margin: 8px 8px 0 36px;
 }
 
 .margin-top {
@@ -507,6 +519,7 @@ blockquote >　p{
 
 .comments-add {
     position: relative;
+    text-align: center;
 }
 
 .comments-logging-cover {
