@@ -1,5 +1,5 @@
-// var server = "https://wycode.cn";
-var server = "http://localhost:8082";
+var server = "https://wycode.cn";
+// var server = "http://localhost:8082";
 
 Vue.component('wycode-comments',
     {
