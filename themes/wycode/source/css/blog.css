@@ -8,11 +8,11 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    --background: #007788
+    --background: #b0d2ea
 }
 
 body[theme="dark"]{
-    --background: #002233
+    --background: #a1bff5
 }
 
 h1, .h1,
