@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: wycode.cn - Build & Upload
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -50,7 +50,7 @@ jobs:
           options: ''
           ssh_options: ''
           src: 'public/'
-          dest: 'root@wycode.cn:/root/data/nginx/www/wycode.cn'
+          dest: 'root@47.92.249.97:/root/data/nginx/www/wycode.cn'
     
       - name: Deploy to Github pages
         uses: crazy-max/ghaction-github-pages@v2.1.3
