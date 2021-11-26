@@ -61,7 +61,7 @@ jobs:
 
 1. 在仓库设置（Settings）页面
 2. 添加密码（Add a new secret）
-3. 使用 `${{secrets.NAME}}` 引用密码（替换`NAME`为你设置的密码名称）
+3. <span v-pre>使用 `${{secrets.NAME}}` 引用密码（替换`NAME`为你设置的密码名称）</span>
 
 举个例子:
 
