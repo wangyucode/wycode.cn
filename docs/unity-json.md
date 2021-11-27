@@ -12,7 +12,7 @@ categories: Unity
 
 下面将基本的使用总结如下：
 
-<!--more-->
+<!-- more -->
 
 ## 使用 `Serializable`标记对象
 

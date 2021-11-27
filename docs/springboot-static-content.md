@@ -13,7 +13,7 @@ categories: Back-end
 
 以下示例代码基于SpringBoot 2.0.3，采用Kotlin语言实现：
 
-<!--more-->
+<!-- more -->
 
 ## WebMvcConfigurer
 

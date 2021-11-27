@@ -18,7 +18,7 @@ categories: Back-end
 
 > 响应式编程最早由 `.NET` 平台上的 `Reactive Extensions (Rx)` 库来实现。后来迁移到 Java 平台之后就产生了著名的 `RxJava` 库，并产生了很多其他编程语言上的对应实现。在这些实现的基础上产生了后来的响应式流（`Reactive Streams`）规范。该规范定义了响应式流的相关接口，并将集成到 Java 9 中。
 
-<!--more-->
+<!-- more -->
 
 ## 为什么要用响应式
 

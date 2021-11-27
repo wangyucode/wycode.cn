@@ -19,7 +19,7 @@ categories: CI/CD
 
 这篇文章教你使用 [Travis CI](https://travis-ci.com "Travis CI") 自动化构建和发布你的软件产品。
 
-<!--more-->
+<!-- more -->
 
 ## 准备
 

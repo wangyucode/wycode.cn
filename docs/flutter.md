@@ -14,7 +14,7 @@ categories: Android
 > Flutter是由Google开发的开源的跨平台应用开发框架，支持Android、iOS开发，能够开发媲美原生的高性能应用。按照2019年的开发路线图，Flutter即将支持Web和桌面端应用的开发。这篇文章带你领略Flutter的魅力。
 
 
-<!--more-->
+<!-- more -->
 
 [Flutter官网](https://flutter.dev/ "Flutter官网")
 

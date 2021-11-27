@@ -14,7 +14,7 @@ categories: AI
 
 OpenCV使用C++编写，采用了模块化的结构，本文将逐个介绍每个模块的主要功能，并将介绍如何使用Java调用OpenCV库。
 
-<!--more-->
+<!-- more -->
 
 ## 1.模块
 

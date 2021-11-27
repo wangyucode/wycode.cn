@@ -10,7 +10,7 @@ categories: Android
 
 ![波浪效果](/images/20170724_wave_progress.gif)
 
-<!--more-->
+<!-- more -->
 
 ## 思路
 

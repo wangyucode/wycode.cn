@@ -10,7 +10,7 @@ categories: Android
 
 > 本文介绍版本控制中，Android Studio工程应该忽略的文件，以及如何使用`.gitignore`文件快速配置自动忽略，教程同时适用于Git和SVN。
 
-<!--more-->
+<!-- more -->
 废话不多说直接上：
 ## 应该忽略的文件：
 ```

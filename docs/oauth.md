@@ -10,7 +10,7 @@ categories: Back-end
 
 `OAuth2.0`被写入`RFC6749`，RFC中的流程图看了还是不明白的话，可以看看下面这张图，展示了`OAuth2.0`四种模式的完整流程。
 
-<!--more-->
+<!-- more -->
 
 <img src="/images/20190614_oauth.png" alt="OAuth" style="width: 100%;height:auto;max-width: none;max-height: none;"/>
 

@@ -15,7 +15,7 @@ categories: Linux
 
 这篇文章教你如何配置NGINX重定向。
 
-<!--more-->
+<!-- more -->
 
 NGINX安装及配置请移步这里：[Nginx安装](/2018-06-23-nginx.html "NGINX安装")
 

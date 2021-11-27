@@ -13,7 +13,7 @@ categories: 3D
 
 Blender官方中文手册：[https://docs.blender.org/manual/zh.cn/dev/](https://docs.blender.org/manual/zh.cn/dev/)
 
-<!--more-->
+<!-- more -->
 
 ## 用户界面
 ![用户界面](/images/20170718_blender_interface.jpg)

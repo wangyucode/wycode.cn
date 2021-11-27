@@ -16,7 +16,7 @@ categories: Back-end
 
 在`Spring`中进行如下简单的配置就可以了。
 
-<!--more-->
+<!-- more -->
 
 ```kotlin
 @Configuration

@@ -11,7 +11,7 @@ categories: Back-end
 
 > 本文介绍如何使用swaggerUI为Spring Boot项目创建动态的、从代码生成的REST API文档
 
-<!--more-->
+<!-- more -->
 ## 创建SwaggerUI渲染需要的JSON
 - 首先为项目添加生成JSON的库：
 

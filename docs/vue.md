@@ -9,7 +9,7 @@ categories: Front-end
 
 准备做一个前后端分离的Web管理系统。
 
-<!--more-->
+<!-- more -->
 
 ## Getting Started
 

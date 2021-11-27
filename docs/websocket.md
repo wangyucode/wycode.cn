@@ -28,7 +28,7 @@ categories: Back-end
 - 使用`STOMP`作为上层协议，它基于帧(`Frame`)，和Http请求很类似，提供了一种发布订阅的模式，很适合需求的群聊模式。
 - 后端采用`Kotlin` + `SpringBoot`，前端采用`Typescript` + `Angular` + `AntDesign`，均使用最新版本。
 
-<!--more-->
+<!-- more -->
 
 ## 准备SpringBoot工程
 

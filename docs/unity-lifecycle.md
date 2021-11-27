@@ -9,6 +9,6 @@ categories: Unity
 
 > Unity脚本的生命周期，协程、各关键函数的调用顺序如下图所示：
 
-<!--more-->
+<!-- more -->
 
 ![Unity脚本生命周期](/images/20170707_monobehaviour_flowchart.svg)

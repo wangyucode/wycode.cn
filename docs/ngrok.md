@@ -12,7 +12,7 @@ categories: Linux
 
 本文介绍实现内网穿透的多种方式
 
-<!--more-->
+<!-- more -->
 
 ## 有外网IP
 

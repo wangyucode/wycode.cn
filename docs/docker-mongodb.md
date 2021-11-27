@@ -11,7 +11,7 @@ categories: Back-end
 
 > 本文介绍如何使用两行简单的命令来执行备份和还原Docker容器中MongoDB的数据库数据。
 
-<!--more-->
+<!-- more -->
 
 ## 备份
 

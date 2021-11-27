@@ -16,7 +16,7 @@ categories: Front-end
 我们知道Flutter是使用叫`Skia`的C++库来渲染UI，但是Web上是使用`Dom`，`Canvas`，以及`WebGL`，那么Flutter到底会采用哪种方式呢？
 
 这篇文章带你对Flutter for web做一个了解和实践：
-<!--more-->
+<!-- more -->
 
 ## 架构设计
 

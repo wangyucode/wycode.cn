@@ -9,7 +9,7 @@ categories: Android
 
 > 有关dpi、dp、px、sp、设计规范等等。
 
-<!--more-->
+<!-- more -->
 ## Pixel density (dpi)
 
 像素密度，表示每英寸的长度上有多少像素

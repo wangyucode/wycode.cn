@@ -17,7 +17,7 @@ categories: Front-end
 
 ## 最终效果
 ![最终效果](/images/20170616_search_01.png "最终效果")
-<!--more-->
+<!-- more -->
 ## 步骤
 
 ### 安装 hexo-generator-search

@@ -15,7 +15,7 @@ categories: Linux
 
 > NGINX是一款高性能Web服务器。配置简单，易扩展，并发能力强，可用于Web服务器，反向代理，负载均衡，邮件等。
 
-<!--more-->
+<!-- more -->
 
 ## 安装NGINX
 

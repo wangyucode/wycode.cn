@@ -14,7 +14,7 @@ VirtualBox是著名的开源虚拟机软件，最初由Sun公司出品。后来S
 
 不同模式的原理，也适用于VMWare。
 
-<!--more-->
+<!-- more -->
 
 ## Not attached
 

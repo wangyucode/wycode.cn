@@ -10,7 +10,7 @@ categories: Languages
 
 ![Kotlin](/images/20170815_kotlin.png)
 
-<!--more-->
+<!-- more -->
 
 ## Kotlin
 

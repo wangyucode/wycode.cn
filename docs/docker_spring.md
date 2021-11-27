@@ -14,7 +14,7 @@ Docker容器化技术，使得部署变得平滑。再也不需要维护软件�
 
 这篇文章实践从安装Docker开始，到将一个SpringBoot项目部署到Docker容器中。
 
-<!--more-->
+<!-- more -->
 
 ## 安装Docker CE(Community edition)
 

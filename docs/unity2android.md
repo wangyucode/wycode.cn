@@ -11,7 +11,7 @@ categories: Unity
 以下这种方式介绍了如何将Unity导出成Android Studio工程，从而添加Android代码。
 之后的教程中我还将介绍如何将Android写好的代码导回到Unity工程中。
 
-<!--more-->
+<!-- more -->
 
 ## Unity工程导出为Android工程
 

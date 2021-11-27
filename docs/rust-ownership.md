@@ -12,7 +12,7 @@ categories: Languages
 
 > 本文介绍Rust语言中和其它语言相比一个非常重要的特性`所有权(Ownership)`以及其相关的`借用(Borrowing)`，`引用(References)`，`切片(Slice)`的理解和使用。这个特性保证了Rust不需要垃圾回收以及强大的内存安全，同时还能在多线程编程中带来好处。
 
-<!--more-->
+<!-- more -->
 
 ## 所有权(Ownership)
 

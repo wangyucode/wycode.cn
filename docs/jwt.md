@@ -22,7 +22,7 @@ categories: Back-end
 1. 认证：通过调用登录接口，服务器颁发一个`JWT`（JSON Web Token）给客户端。
 2. 鉴权：客户端每个请求携带`JWT`，后端使用一个请求过滤器，从请求头中解析`JWT`，为本次请求授予相关权限
 
-<!--more-->
+<!-- more -->
 
 ## 导入`io.jsonwebtoken:jjwt`
 

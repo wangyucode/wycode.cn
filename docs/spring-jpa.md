@@ -12,7 +12,7 @@ categories: Back-end
 
 下面将基本的使用总结如下：
 
-<!--more-->
+<!-- more -->
 ## 接口能力
 
 - 定义接口继承`CrudRepository<T, ID>`即可获得增删改查能力；

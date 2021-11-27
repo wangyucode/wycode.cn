@@ -14,7 +14,7 @@ categories: Front-end
 > Facebook的React Native是比基于WebView更先进的跨平台解决方案。实现了只编写一次JavaScript代码即可同时生成Android及iOS应用，并且同时拥有原生控件的性能。此篇文章我将从React Native Android端源码中探究它到底是如何做到的。以及实现的思路，架构的设计等。
 
 
-<!--more-->
+<!-- more -->
 
 ## 核心类ReactActivity
 

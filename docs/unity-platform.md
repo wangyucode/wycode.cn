@@ -9,7 +9,7 @@ categories: Unity
 
 > Unity 平台的判断包含编译时判断和运行时判断，总结如下：
 
-<!--more-->
+<!-- more -->
 
 ## 编译时
 

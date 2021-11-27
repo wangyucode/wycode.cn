@@ -14,7 +14,7 @@ categories: Linux
 - 按`i`进入输入模式
 - 按`Esc`退回到命令模式
 
-<!--more-->
+<!-- more -->
 
 ## 常用命令
 

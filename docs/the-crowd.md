@@ -16,7 +16,7 @@ categories: Story
 
 本文摘抄了《乌合之众：大众心理研究》在Kindle电子书中的热门标注：
 
-<!--more-->
+<!-- more -->
 
 ## 热门标注
 

@@ -9,7 +9,7 @@ categories: Android
 
 > 本文介绍如何为Android应用添加分享功能。包含通过原生`Intent`和利用第三方SDK。
 
-<!--more-->
+<!-- more -->
 ## 原生Intent方式
 
 大多平台都支持隐式Intent方式发起分享。

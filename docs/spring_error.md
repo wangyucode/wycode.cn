@@ -33,7 +33,7 @@ categories: Back-end
 ```
 
 下面进行简单配置即可实现这个JSON结构的自定义：
-<!--more-->
+<!-- more -->
 
 ```kotlin
 import cn.wycode.web.DEV

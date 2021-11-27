@@ -10,7 +10,7 @@ categories: Android
 > 构建变体是 Gradle 按照特定规则集合进行打包，以生成适应不同需求的Apk包。
 例如，需要生成dev版，测试版、以及release版，它们的服务器地址，版本号，图标各不相同，以及多渠道打包等等。
 
-<!--more-->
+<!-- more -->
 ## productFlavors
 
 可以定义多个`productFlavors`版本，其继承覆盖所有`defaultConfig`中的字段

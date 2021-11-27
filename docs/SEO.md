@@ -8,7 +8,7 @@ categories: Front-end
 
 > 本文介绍SEO相关知识和实践
 
-<!--more-->
+<!-- more -->
 如何对搜索引擎的爬虫友好引导是关键
 
 ## robots.txt

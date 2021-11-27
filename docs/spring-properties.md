@@ -9,7 +9,7 @@ categories: Back-end
 
 > Spring框架在运行时会自动查找`application.properties`配置文件，在这个文件中进行项目相关配置属性，例如数据库地址密码等。当然也支持自定义属性。
 
-<!--more-->
+<!-- more -->
 
 ## 位置
 `application.properties`可以放置在以下目录

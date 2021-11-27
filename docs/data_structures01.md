@@ -11,7 +11,7 @@ categories: Data Structures and Algorithms
 
 浙江大学数据结构是国家精品课程，于2018年3月开学，2018年6月学期结束。
 
-<!--more-->
+<!-- more -->
 
 ## 实验1：给出数字N，要求程序输出1~N的整数
 

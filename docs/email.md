@@ -14,7 +14,7 @@ categories: Back-end
 
 这篇文章介绍如何使用SpringBoot发送邮件。
 
-<!--more-->
+<!-- more -->
 
 ## 添加依赖
 

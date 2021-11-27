@@ -15,7 +15,7 @@ categories: Back-end
 多对多关系是关联关系中最复杂的。本文使用Spring JPA框架总结多对多关系及`@ManyToMany`注解的详细使用。明白了`@ManyToMany`,其它
 `@OneToMany` 和`@OneToOne`就简单很多了。
 
-<!--more-->
+<!-- more -->
 
 ## Java和JPA中的多对多关系
 

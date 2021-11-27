@@ -15,7 +15,7 @@ categories: Linux
 <video src="/images/20190807_raspberrypi_fish.mp4" controls="controls"  width="70%" style="margin:24px auto;display: block;"></video>
 
 使用GPIO接口控制硬件和接收传感器的数据，实现过程如下：
-<!--more-->
+<!-- more -->
 
 ## GPIO介绍
 

@@ -10,7 +10,7 @@ categories: Data Structures and Algorithms
 > 线性结构的基础是数组和链表，由数组和链表可以扩展出堆栈和队列。
 
 
-<!--more-->
+<!-- more -->
 
 ## 实验1：计算表达式的值
 

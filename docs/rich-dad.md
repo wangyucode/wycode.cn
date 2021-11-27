@@ -13,7 +13,7 @@ categories: Story
 
 本文摘抄了《富爸爸，穷爸爸》在Kindle电子书中的热门标注：
 
-<!--more-->
+<!-- more -->
 
 
 ## 热门标注
