@@ -13,15 +13,20 @@
     </header>
 
     <div class="theme-default-content custom">
-      <!--  <Content />  -->
-      Home 123
+      <div v-for="item in articles">
+        <h2>{{ item.title }}</h2>
+        <div>{{ item.dateString }}</div>
+        <div>{{  item.frontmatter.categories}}</div>
+        <div v-if="item.tags">{{item.tags}}</div>
+        <div v-html="item.excerpt"></div>
+        <a :href="item.path">阅读更多</a>
+      </div> 
     </div>
 
-    <template v-if="footer">
-      <!-- eslint-disable-next-line vue/no-v-html -->
-      <div v-if="footerHtml" class="footer" v-html="footer" />
-      <div v-else class="footer" v-text="footer" />
-    </template>
+    <div class="footer">
+      <a href="http://beian.miit.gov.cn" target="_blank">陕ICP备15011477号</a>
+      <p v-text="footer"/>
+    </div>
   </main>
 </template>
 
@@ -33,14 +38,12 @@ import {
 } from '@vuepress/client'
 import { isArray } from '@vuepress/shared'
 import { usePagesData } from '@vuepress/client'
-import { computed } from 'vue'
+import { computed, reactive } from 'vue'
 import type { DefaultThemeHomePageFrontmatter } from '@vuepress/theme-default/lib/shared'
 
 const frontmatter = usePageFrontmatter<DefaultThemeHomePageFrontmatter>()
 const siteLocale = useSiteLocaleData()
 const pages = usePagesData()
-console.log(Promise.all(Object.values(pages.value).map(f => f())).then(p => console.log('wy->', p)))
-
 
 // hero image and title
 const heroImage = computed(() => {
@@ -70,28 +73,20 @@ const tagline = computed(() => {
   )
 })
 
-// action buttons
-const actions = computed(() => {
-  if (!isArray(frontmatter.value.actions)) {
-    return []
-  }
+let articles = reactive([])
 
-  return frontmatter.value.actions.map(({ text, link, type = 'primary' }) => ({
-    text,
-    link,
-    type,
-  }))
-})
-
-// feature list
-const features = computed(() => {
-  if (isArray(frontmatter.value.features)) {
-    return frontmatter.value.features
-  }
-  return []
+Promise.all(Object.values(pages.value).map(f => f())).then((items) => {
+  items = items.filter(item => !item.frontmatter.layout)
+  items.sort((a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date))
+  items.map(i => {
+    i.dateString = i.frontmatter.date.substring(0,10)
+    i.tags = i.frontmatter.tags ? i.frontmatter.tags.join(' '): null
+    articles.push(i)
+    console.log('wy->', i)
+  })
+  
 })
 
 // footer
 const footer = computed(() => frontmatter.value.footer)
-const footerHtml = computed(() => frontmatter.value.footerHtml)
 </script>
