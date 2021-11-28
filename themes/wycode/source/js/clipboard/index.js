@@ -8,45 +8,54 @@ Vue.component('wycode-clipboard',
                 isShowResult: false,
                 queryNumber: '',
                 remarks: '',
-                content: ''
+                content: '',
+                loading: false
             }
         },
         methods: {
             handleQuery: function () {
+                this.loading = true;
                 if (this.queryNumber.length < 4) {
                     alert('查询码不正确！');
                     return;
                 }
-                fetch('https://wycode.cn/web/api/public/clipboard/queryById?id=' + this.queryNumber)
+                fetch('https://wycode.cn/node/clipboard/' + this.queryNumber)
                     .then((res) => res.json())
                     .then(res => {
                         console.log('handleQuery->', res);
-                        if (res && res.data) {
+                        if (res && res.success) {
                             this.isShowResult = true;
-                            this.content = res.data.content;
-                            this.remarks = res.data.tips;
+                            this.content = res.payload.content;
+                            this.remarks = res.payload.tips;
                         } else {
                             alert('查询码不正确！');
                         }
-                    });
+                    })
+                    .finally(()=> this.loading = false);
             },
 
             handleSave: function () {
-                var fd = new FormData();
-                fd.append('id', this.queryNumber);
-                fd.append('content', this.content);
-                fd.append('tips', this.remarks);
-
-                fetch('https://wycode.cn/web/api/public/clipboard/saveById', { method: 'POST', body: fd })
+                this.loading = true;
+                const data = {
+                    _id: this.queryNumber,
+                    content: this.content,
+                    tips: this.remarks
+                };
+                fetch('https://wycode.cn/node/clipboard', {
+                    method: 'POST', 
+                    headers: {'Content-Type': 'application/json'}, 
+                    body: JSON.stringify(data)
+                })
                     .then((res) => res.json())
                     .then(res => {
                         console.log('handleSave->', res);
-                        if (res && res.data) {
-                            this.isShowResult = false;
+                        if (res && res.success) {
+                            alert('保存成功！');
                         } else {
                             alert('保存失败！');
                         }
-                    });
+                    })
+                    .finally(()=> this.loading = false);
             },
 
             handleBack: function () {
@@ -72,6 +81,7 @@ Vue.component('wycode-clipboard',
                v-bind:disabled="isShowResult"/>
         <button v-if="!isShowResult"
                 v-on:click="handleQuery"
+                v-bind:disabled="loading"
                 class="btn-new btn btn-primary form-control form-group">查询</button>
         <div v-else>
             <textarea v-model="content"
@@ -84,6 +94,7 @@ Vue.component('wycode-clipboard',
                     class="input-query-number form-control form-group mb-3"
                     v-model="remarks"/>
             <button v-on:click="handleSave"
+                    v-bind:disabled="loading"
                     class="btn-save btn btn-success form-control mb-3 form-group">保存</button>
             <button v-on:click="handleBack"
                     class="btn-save btn btn-primary form-control mb-3 form-group">返回</button>
