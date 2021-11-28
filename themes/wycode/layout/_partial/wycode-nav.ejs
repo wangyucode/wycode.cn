@@ -2,13 +2,14 @@
     <div class="container-fluid mx-4">
         <a class="navbar-brand" href="<%- url_for('/')%>" target="_self">
             <img src="/favicon.svg" width="32" height="32" alt="wycode.cn">
+            王郁的小站
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="me-auto navbar-nav mb-2 mb-lg-0">
+            <ul class="me-auto navbar-nav mb-2 mb-lg-0 w-100 justify-content-end">
                 <li class="nav-item">
                     <a class="<%- not_static_page(page) ? 'nav-link active': 'nav-link';%>" href="<%- url_for('/')%>"><i
                             class="bi bi-pen-fill"></i> 博客</a>
@@ -28,14 +29,13 @@
                     <a class="<%- is_about(page) ? 'nav-link active': 'nav-link';%>"
                         href="<%- url_for('/about.html')%>"><i class="bi bi-person-plus-fill"></i> 关于</a>
                 </li>
-
+                <% if(not_static_page(page)){ %>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="modal" data-bs-target="#searchModal"><i
+                                class="bi bi-search"></i> 搜索</a>
+                    </div>
+                <% } %>
             </ul>
-            <% if(not_static_page(page)){ %>
-                <div class="navbar-nav">
-                    <a class="btn btn-link nav-link" data-bs-toggle="modal" data-bs-target="#searchModal"><i
-                            class="bi bi-search"></i> 搜索</a>
-                </div>
-            <% } %>
         </div>
     </div>
 </nav>
