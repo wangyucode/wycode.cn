@@ -55,24 +55,24 @@ jobs:
           files: |
             public.tar.gz
       # Deploy
-      # - name: rsync uploader
-      #   uses: Pendect/action-rsyncer@v1.1.0
-      #   env:
-      #     DEPLOY_KEY: ${{secrets.SERVER_KEY}}
-      #   with:
-      #     flags: '-avzr --delete'
-      #     options: ''
-      #     ssh_options: ''
-      #     src: 'public/'
-      #     dest: 'root@47.92.249.97:/root/data/nginx/www/wycode.cn'
-    
-      - name: Deploy to Github pages
-        uses: crazy-max/ghaction-github-pages@v2.1.3
-        with:
-          repo: wangyucode/wangyucode.github.io
-          target_branch: master
-          build_dir: public
+      - name: rsync uploader
+        uses: Pendect/action-rsyncer@v1.1.0
         env:
-          GITHUB_TOKEN: ${{ secrets.WY_GITHUB_TOKEN }}
+          DEPLOY_KEY: ${{secrets.SERVER_KEY}}
+        with:
+          flags: '-avzr --delete'
+          options: '-p 5190'
+          ssh_options: ''
+          src: 'public/'
+          dest: 'root@wycode.cn:/root/data/nginx/www/wycode.cn'
+    
+#       - name: Deploy to Github pages
+#         uses: crazy-max/ghaction-github-pages@v2.1.3
+#         with:
+#           repo: wangyucode/wangyucode.github.io
+#           target_branch: master
+#           build_dir: public
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.WY_GITHUB_TOKEN }}
           
           
