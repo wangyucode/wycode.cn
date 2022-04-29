@@ -61,8 +61,8 @@ jobs:
           DEPLOY_KEY: ${{secrets.SERVER_KEY}}
         with:
           flags: '-avzr --delete'
-          options: '-p 5190'
-          ssh_options: ''
+          options: ''
+          ssh_options: '-p 5190'
           src: 'public/'
           dest: 'root@wycode.cn:/root/data/nginx/www/wycode.cn'
     
