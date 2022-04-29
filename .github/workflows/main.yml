@@ -55,16 +55,26 @@ jobs:
 #           files: |
 #             public.tar.gz
       # Deploy
-      - name: rsync uploader
-        uses: Pendect/action-rsyncer@v1.1.0
-        env:
-          DEPLOY_KEY: ${{secrets.SERVER_KEY}}
+#       - name: rsync uploader
+#         uses: Pendect/action-rsyncer@v1.1.0
+#         env:
+#           DEPLOY_KEY: ${{secrets.SERVER_KEY}}
+#         with:
+#           flags: '-avzr --delete'
+#           options: ''
+#           ssh_options: '-p 5190'
+#           src: 'public/'
+#           dest: 'root@wycode.cn:/root/data/nginx/www/wycode.cn'
+          
+      - name: SFTP uploader
+        uses: wangyucode/sftp-upload-action@v1.1
         with:
-          flags: '-avzr --delete'
-          options: ''
-          ssh_options: '-p 5190'
-          src: 'public/'
-          dest: 'root@wycode.cn:/root/data/nginx/www/wycode.cn'
+          host: 'wycode.cn'
+          port: 5190 # optional, default is 22 
+          password: ${{ secrets.SERVER_KEY }} 
+          localDir: 'public'
+          remoteDir: '/root/data/nginx/www/wycode.cn/'
+          dryRun: true # optional
     
       - name: Deploy to Github pages
         uses: crazy-max/ghaction-github-pages@v2.1.3
