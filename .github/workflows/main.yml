@@ -67,11 +67,11 @@ jobs:
 #           dest: 'root@wycode.cn:/root/data/nginx/www/wycode.cn'
           
       - name: SFTP uploader
-        uses: wangyucode/sftp-upload-action@v1.1
+        uses: wangyucode/sftp-upload-action@v1.2
         with:
           host: 'wycode.cn'
           port: 5190 # optional, default is 22 
-          password: ${{ secrets.SERVER_KEY }} 
+          privateKey: ${{ secrets.SERVER_KEY }} 
           localDir: 'public'
           remoteDir: '/root/data/nginx/www/wycode.cn/'
           dryRun: true # optional
