@@ -67,7 +67,7 @@ jobs:
 #           dest: 'root@wycode.cn:/root/data/nginx/www/wycode.cn'
           
       - name: SFTP uploader
-        uses: wangyucode/sftp-upload-action@v1.3.1
+        uses: wangyucode/sftp-upload-action@v1.3.2
         with:
           host: 'wycode.cn'
           port: 5190 # optional, default is 22 
